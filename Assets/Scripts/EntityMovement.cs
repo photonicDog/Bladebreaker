@@ -26,7 +26,7 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private EntityAnimation _animation;
 
     private float _walkInput;
-    private int _facing = 1;
+    public int _facing = 1;
     public bool midair = true;
     public bool _hasJump = true;
     private float _jumpDecayCurrent;
@@ -84,7 +84,7 @@ public class EntityMovement : MonoBehaviour {
         if (jump) {
             if (_jumpDecayCurrent > 0) {
                 _frameVelocity += new Vector2(0, _jumpDecayCurrent);
-                _jumpDecayCurrent -= 0.001f;
+                _jumpDecayCurrent -= 0.003f;
             }
             else {
                 jump = false;

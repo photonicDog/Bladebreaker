@@ -8,7 +8,7 @@ public class EntityInput : MonoBehaviour {
 
     public bool _dashStart;
     public bool _dashConfirm;
-    
+
     // Start is called before the first frame update
     void Awake() {
         _em = GetComponent<EntityMovement>();
