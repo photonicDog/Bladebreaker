@@ -15,29 +15,33 @@ public class EntityInput : MonoBehaviour {
     }
     
     public void Walk(InputAction.CallbackContext context) {
-        if (context.canceled && (!_dashStart||_dashConfirm)) {
-            _dashStart = false;
-            _dashConfirm = false;
+        if (context.canceled) {
             _em.Stop();
-        }
-        
-        if (context.started && !_dashStart) {
-            _dashStart = true;
-            StartCoroutine(DashCheck());
-        } else if (context.started && _dashStart) {
-            _dashConfirm = true;
-        }
-
-        if (_dashConfirm) {
-            _em.Sprint(context.ReadValue<float>());
+            if ((!_dashStart||_dashConfirm)) {
+                _dashStart = false;
+                _dashConfirm = false;
+            }
         }
         else {
-            _em.Walk(context.ReadValue<float>());
+            if (context.started && !_dashStart) {
+                _dashStart = true;
+                StartCoroutine(DashCheck());
+            } else if (context.started && _dashStart) {
+                _dashConfirm = true;
+            }
+
+            if (_dashConfirm) {
+                _em.Sprint(context.ReadValue<float>());
+            }
+            else {
+                _em.Walk(context.ReadValue<float>());
+            }
         }
     }
 
     public void Jump(InputAction.CallbackContext context) {
         if (context.started) _em.Jump();
+        else if (context.canceled) _em.JumpRelease();
     }
 
     public void FastFall(InputAction.CallbackContext context) {
