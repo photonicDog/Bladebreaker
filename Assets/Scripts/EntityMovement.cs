@@ -11,6 +11,7 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _jumpHeight;
     [SerializeField] private float _sprintMod;
     [SerializeField] private float _jumpDecay;
+    [SerializeField] private float _groundFriction;
 
     [SerializeField] private float _gravity;
 
@@ -107,17 +108,21 @@ public class EntityMovement : MonoBehaviour {
         }
 
         if (_dashKill) {
-            velocity = new Vector2(velocity.x * 0.2f, velocity.y);
+            velocity = new Vector2(velocity.x * 0.05f, velocity.y);
             _dashKill = false;
         }
 
         if (dash) {
-            _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * 10);
+            _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * 40);
         } else if (sprint) {
             _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * _sprintMod);
         }
         else {
             _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity);
+        }
+
+        if (!walk && !sprint && !dash) {
+            velocity += new Vector2(-velocity.x * _groundFriction, velocity.y);
         }
     }
 

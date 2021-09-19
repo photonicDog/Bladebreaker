@@ -49,9 +49,16 @@ public class EntityInput : MonoBehaviour {
     }
 
     IEnumerator DashCheck() {
-        yield return new WaitForSeconds(0.3f);
-        if (_dashConfirm) {
-            _em.Dash();
+        int counter = 20;
+        while (counter > 0) {
+            if (_dashConfirm) {
+                _em.Dash();
+                break;
+            }
+            else {
+                counter--;
+                yield return new WaitForFixedUpdate();
+            }
         }
         _dashStart = false;
     }

@@ -742,6 +742,7 @@ MonoBehaviour:
   _jumpHeight: 0.5
   _sprintMod: 1.5
   _jumpDecay: 0.045
+  _groundFriction: 0.8
   _gravity: 0.08
   _maxVelocity: 0.02
   velocity: {x: 0, y: 0}
