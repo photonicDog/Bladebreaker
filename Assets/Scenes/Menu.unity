@@ -735,14 +735,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a870ee49fb7ac74b8523cc73749a67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundSpeed: 0.04
-  _airSpeed: 0.03
+  _groundSpeed: 0.013
+  _airSpeed: 0.013
   _dashSpeed: 0.5
-  _dashDistance: 0.06
+  _dashDistance: 0.05
   _jumpHeight: 0.5
-  _sprintMod: 1.5
+  _sprintMod: 1.25
   _jumpDecay: 0.045
-  _groundFriction: 0.8
+  _groundFriction: 0.12
   _gravity: 0.08
   _maxVelocity: 0.02
   velocity: {x: 0, y: 0}
@@ -794,8 +794,8 @@ MonoBehaviour:
   m_RefResolutionY: 144
   m_UpscaleRT: 0
   m_PixelSnapping: 1
-  m_CropFrameX: 0
-  m_CropFrameY: 0
+  m_CropFrameX: 1
+  m_CropFrameY: 1
   m_StretchFill: 0
 --- !u!81 &2146641718
 AudioListener:
