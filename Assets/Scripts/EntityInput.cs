@@ -15,6 +15,12 @@ public class EntityInput : MonoBehaviour {
     }
     
     public void Walk(InputAction.CallbackContext context) {
+        if (context.canceled && (!_dashStart||_dashConfirm)) {
+            _dashStart = false;
+            _dashConfirm = false;
+            _em.Stop();
+        }
+        
         if (context.started && !_dashStart) {
             _dashStart = true;
             StartCoroutine(DashCheck());
@@ -27,11 +33,6 @@ public class EntityInput : MonoBehaviour {
         }
         else {
             _em.Walk(context.ReadValue<float>());
-        }
-        
-        if (context.canceled && (!_dashStart || _dashConfirm)) {
-            _dashStart = false;
-            _dashConfirm = false;
         }
     }
 
@@ -48,8 +49,6 @@ public class EntityInput : MonoBehaviour {
         if (_dashConfirm) {
             _em.Dash();
         }
-        else {
-            _dashStart = false;
-        }
+        _dashStart = false;
     }
 }
