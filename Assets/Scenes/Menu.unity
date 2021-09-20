@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 213214871}
   - component: {fileID: 213214873}
   - component: {fileID: 213214872}
+  - component: {fileID: 213214874}
   m_Layer: 0
   m_Name: Dash Trail
   m_TagString: Untagged
@@ -235,7 +236,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1846884196}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!199 &213214872
 ParticleSystemRenderer:
@@ -5009,6 +5010,19 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &213214874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 213214870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082d6906332891a438368c55598f41fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  em: {fileID: 1846884201}
 --- !u!1 &331765690
 GameObject:
   m_ObjectHideFlags: 0
@@ -5252,7 +5266,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1846884196}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1600531960
 Animator:
@@ -5372,8 +5386,8 @@ Transform:
   m_LocalPosition: {x: -2, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 213214871}
   - {fileID: 1600531959}
+  - {fileID: 213214871}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5546,13 +5560,14 @@ MonoBehaviour:
   _dashDistance: 0.05
   _jumpHeight: 0.5
   _sprintMod: 1.25
-  _jumpDecay: 0.045
+  _jumpDecay: 0.055
   _groundFriction: 0.12
   _gravity: 0.08
   _maxVelocity: 0.02
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
   _animation: {fileID: 1846884195}
+  _facing: 1
   midair: 1
   _hasJump: 0
   walk: 0
