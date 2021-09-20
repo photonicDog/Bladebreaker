@@ -1,8 +1,11 @@
-public enum Ranking
+namespace Assets.Scripts.Types.Enums
 {
-    Bronze,
-    Silver,
-    Gold,
-    Insane,
-    Overdrive
+    public enum Ranking
+    {
+        Bronze,
+        Silver,
+        Gold,
+        Insane,
+        Overdrive
+    }
 }
