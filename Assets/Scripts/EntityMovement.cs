@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EntityMovement : MonoBehaviour {
@@ -42,6 +43,12 @@ public class EntityMovement : MonoBehaviour {
     public bool fastfall = false;
     public bool sprint = false;
 
+    private LayerMask terrain;
+    private LayerMask platform;
+
+    public bool leftCollide;
+    public bool rightCollide;
+
 
     // Start is called before the first frame update
     void Awake() {
@@ -49,11 +56,17 @@ public class EntityMovement : MonoBehaviour {
         _coll = GetComponent<BoxCollider2D>();
         _hasAnimation = _animation != null;
         velocity = new Vector2(0, 0);
+        
+        terrain = LayerMask.GetMask("Terrain");
+        platform = LayerMask.GetMask("Platform");
     }
 
     private void FixedUpdate() {
+        Vector3 groundComp = Vector3.zero;
+        Vector3 wallComp = Vector3.zero;
         _frameVelocity = new Vector2(0, 0);
-        Vector3 groundComp = GroundRaycast();
+        groundComp = FloorRaycast();
+        wallComp = WallRaycast();
         if (jump && _hasJump) {
             _frameVelocity += new Vector2(0, _jumpHeight);
             _jumpDecayCurrent = _jumpDecay;
@@ -75,7 +88,11 @@ public class EntityMovement : MonoBehaviour {
 
         velocity = (velocity * 0.95f) + _frameVelocity;
         if (!midair) velocity *= new Vector2(1, 0);
-        transform.position = (transform.position + (Vector3)velocity + groundComp);
+
+        if ((leftCollide && velocity.x < 0) || (rightCollide && velocity.x > 0)) 
+            velocity *= new Vector2(0, 1);
+
+        transform.position = (transform.position + (Vector3) velocity + groundComp + wallComp);
     }
 
     private void MidairPhysics() {
@@ -134,19 +151,14 @@ public class EntityMovement : MonoBehaviour {
         _dashKill = true;
     }
 
-    private Vector3 GroundRaycast() {
+    private Vector3 FloorRaycast() {
         float leftXBound = _coll.bounds.min.x;
         float rightXBound = _coll.bounds.max.x;
         float bottomY = _coll.bounds.center.y;
         float rayDistance = 2f;
 
-        LayerMask t = LayerMask.GetMask("Terrain");
-        
-        Debug.DrawRay(new Vector3(leftXBound, bottomY), Vector3.down*rayDistance, Color.green, 1f);
-        Debug.DrawRay(new Vector3(rightXBound, bottomY), Vector3.down*rayDistance, Color.green, 1f);
-
-        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY), Vector2.down, rayDistance, t);
-        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY), Vector2.down, rayDistance, t);
+        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY), Vector2.down, rayDistance, terrain);
+        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY), Vector2.down, rayDistance, terrain);
 
         if (leftRay || rightRay) {
             _hasJump = true;
@@ -165,6 +177,52 @@ public class EntityMovement : MonoBehaviour {
         return Vector2.zero;
     }
 
+    private Vector2 WallRaycast() {
+        float bottomBound = _coll.bounds.min.y + 0.25f;
+        float topBound = _coll.bounds.max.y - 0.25f;
+        float centerX = _coll.bounds.center.x;
+        float rayDistance = 1.51f;
+        
+        Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.left*rayDistance, Color.green, 1f);
+        Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.right*rayDistance, Color.green, 1f);
+        Debug.DrawRay(new Vector3(centerX, topBound), Vector3.left*rayDistance, Color.green, 1f);
+        Debug.DrawRay(new Vector3(centerX, topBound), Vector3.right*rayDistance, Color.green, 1f);
+
+        RaycastHit2D topLeftRay = Physics2D.Raycast(new Vector2(centerX, topBound), Vector2.left, rayDistance, terrain);
+        RaycastHit2D bottomLeftRay = Physics2D.Raycast(new Vector2(centerX, bottomBound), Vector2.left, rayDistance, terrain);
+        RaycastHit2D topRightRay = Physics2D.Raycast(new Vector2(centerX, topBound), Vector2.right, rayDistance, terrain);
+        RaycastHit2D bottomRightRay = Physics2D.Raycast(new Vector2(centerX, bottomBound), Vector2.right, rayDistance, terrain);
+
+        if (topLeftRay || bottomLeftRay) {
+            leftCollide = true;
+            if (topLeftRay && topLeftRay.point.x > _coll.bounds.min.x) {
+                return new Vector2((topLeftRay.point.x - _coll.bounds.min.x), 0);
+            }
+            if (bottomLeftRay && bottomLeftRay.point.x > _coll.bounds.min.x) {
+                return new Vector2((bottomLeftRay.point.x - _coll.bounds.min.x), 0);
+            }
+        }
+        else {
+            leftCollide = false;
+        }
+        
+        if (topRightRay || bottomRightRay) {
+            rightCollide = true;
+            Debug.Log("Colliding right!");
+            if (topRightRay && topRightRay.point.x > _coll.bounds.max.x) {
+                return new Vector2((_coll.bounds.max.x - topRightRay.point.x), 0);
+            }
+            if (bottomRightRay && bottomRightRay.point.x > _coll.bounds.max.x) {
+                return new Vector2((_coll.bounds.max.x - bottomRightRay.point.x), 0);
+            }
+        }
+        else {
+            rightCollide = false;
+        }
+        
+        return Vector2.zero;
+    }
+
     private Vector2 VelocityLimit(Vector2 input, float limit) {
         if (Mathf.Abs(input.x) > limit) {
             return new Vector2(Mathf.Sign(input.x) * limit, input.y);
@@ -173,20 +231,7 @@ public class EntityMovement : MonoBehaviour {
             return input;
         }
     }
-/*
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.collider.CompareTag("Terrain")) {
-            if (transform.position.y < other.transform.position.y) {
-                Debug.Log("From the bottom");
-            }
-            else {
-                _hasJump = true;
-                _midair = false;
-                Debug.Log("From the top");
-            }
-        }
-    }
-*/
+
     public void Walk(float input) {
         walk = true;
         _walkInput = input;
