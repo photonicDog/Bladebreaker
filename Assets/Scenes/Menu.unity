@@ -1190,7 +1190,7 @@ ParticleSystem:
     rateOverDistance:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -5557,18 +5557,18 @@ MonoBehaviour:
   _groundSpeed: 0.013
   _airSpeed: 0.013
   _dashSpeed: 0.5
-  _dashDistance: 0.05
-  _jumpHeight: 0.5
-  _sprintMod: 1.25
-  _jumpDecay: 0.055
+  _dashDistance: 0.04
+  _jumpHeight: 0.15
+  _sprintMod: 1.28
+  _jumpDecay: 0.06
   _groundFriction: 0.12
-  _gravity: 0.08
+  _gravity: 0.05
   _maxVelocity: 0.02
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
   _animation: {fileID: 1846884195}
   _facing: 1
-  midair: 1
+  midair: 0
   _hasJump: 0
   walk: 0
   dash: 0
