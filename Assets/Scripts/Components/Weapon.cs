@@ -1,3 +1,4 @@
+using Assets.Scripts.Types.Enums;
 using UnityEngine;
 
 namespace Assets.Scripts.Components
@@ -5,7 +6,7 @@ namespace Assets.Scripts.Components
     public class Weapon : Component
     {
         [Header("Weapon")]
-        public Weapon WeaponType;
+        public WeaponType WeaponType;
 
         [Header("Durability")]
         public byte Durability;
