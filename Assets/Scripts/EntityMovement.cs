@@ -13,6 +13,7 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _sprintMod;
     [SerializeField] private float _jumpDecay;
     [SerializeField] private float _groundFriction;
+    [SerializeField] private float _airResistance;
 
     [SerializeField] private float _gravity;
 
@@ -123,9 +124,20 @@ public class EntityMovement : MonoBehaviour {
             }
             _frameVelocity += new Vector2(0, _jumpDecayCurrent);
         }
-        
+
+        if (_dashKill)
+        {
+            velocity = new Vector2(_facing * _sprintMod * _airResistance, velocity.y);
+            _dashKill = false;
+        }
+
         if (fastfall) {
             _frameVelocity += new Vector2(0, -_jumpHeight);
+        }
+
+        if (_walkInput == 0)
+        {
+            _frameVelocity.x *= _airResistance;
         }
 
         _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity);
@@ -139,7 +151,7 @@ public class EntityMovement : MonoBehaviour {
         }
 
         if (_dashKill) {
-            velocity = new Vector2(velocity.x * 0.05f, velocity.y);
+            velocity = new Vector2(_facing * _sprintMod * _groundFriction, velocity.y);
             _dashKill = false;
         }
 
@@ -162,6 +174,10 @@ public class EntityMovement : MonoBehaviour {
         _dashStartPos = transform.position.x;
         while(Math.Abs(transform.position.x - _dashStartPos) < _dashDistance && !leftCollide && !rightCollide && !midair)
         {
+            if (Math.Abs(transform.position.x - _dashStartPos) < _dashDistance / 2)
+            {
+                _hasJump = false;
+            }
             yield return null;
         }
         dash = false;
