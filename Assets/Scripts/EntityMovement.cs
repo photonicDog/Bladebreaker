@@ -49,6 +49,8 @@ public class EntityMovement : MonoBehaviour {
     public bool leftCollide;
     public bool rightCollide;
 
+    private float _dashStartPos;
+
 
     // Start is called before the first frame update
     void Awake() {
@@ -92,7 +94,14 @@ public class EntityMovement : MonoBehaviour {
         if ((leftCollide && velocity.x < 0) || (rightCollide && velocity.x > 0)) 
             velocity *= new Vector2(0, 1);
 
-        transform.position = (transform.position + (Vector3) velocity + groundComp + wallComp);
+        Vector3 newPos = (transform.position + (Vector3)velocity + groundComp + wallComp);
+
+        if (_isDashing && Math.Abs(_dashStartPos - newPos.x) > _dashDistance)
+        {
+            newPos.x = _dashStartPos + _facing * _dashDistance;
+        }
+
+        transform.position = newPos;
     }
 
     private void MidairPhysics() {
@@ -145,7 +154,11 @@ public class EntityMovement : MonoBehaviour {
 
     private IEnumerator DashCoroutine() {
         _isDashing = true;
-        yield return new WaitForSeconds(_dashDistance);
+        _dashStartPos = transform.position.x;
+        while(Math.Abs(transform.position.x - _dashStartPos) < _dashDistance && !leftCollide && !rightCollide)
+        {
+            yield return null;
+        }
         dash = false;
         _isDashing = false;
         _dashKill = true;
@@ -208,7 +221,7 @@ public class EntityMovement : MonoBehaviour {
         
         if (topRightRay || bottomRightRay) {
             rightCollide = true;
-            Debug.Log("Colliding right!");
+            //Debug.Log("Colliding right!");
             if (topRightRay && topRightRay.point.x > _coll.bounds.max.x) {
                 return new Vector2((_coll.bounds.max.x - topRightRay.point.x), 0);
             }
