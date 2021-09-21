@@ -69,6 +69,12 @@ public class EntityMovement : MonoBehaviour {
         _frameVelocity = new Vector2(0, 0);
         groundComp = FloorRaycast();
         wallComp = WallRaycast();
+
+        if(!midair)
+        {
+            fastfall = false;
+        }
+
         if (jump && _hasJump) {
             _frameVelocity += new Vector2(0, _jumpHeight);
             _jumpDecayCurrent = _jumpDecay;
@@ -98,7 +104,7 @@ public class EntityMovement : MonoBehaviour {
 
         if (_isDashing && Math.Abs(_dashStartPos - newPos.x) > _dashDistance)
         {
-            newPos.x = _dashStartPos + _facing * _dashDistance;
+            newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
         }
 
         transform.position = newPos;
@@ -120,7 +126,6 @@ public class EntityMovement : MonoBehaviour {
         
         if (fastfall) {
             _frameVelocity += new Vector2(0, -_jumpHeight);
-            fastfall = false;
         }
 
         _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity);
@@ -155,7 +160,7 @@ public class EntityMovement : MonoBehaviour {
     private IEnumerator DashCoroutine() {
         _isDashing = true;
         _dashStartPos = transform.position.x;
-        while(Math.Abs(transform.position.x - _dashStartPos) < _dashDistance && !leftCollide && !rightCollide)
+        while(Math.Abs(transform.position.x - _dashStartPos) < _dashDistance && !leftCollide && !rightCollide && !midair)
         {
             yield return null;
         }
@@ -172,6 +177,9 @@ public class EntityMovement : MonoBehaviour {
 
         RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY), Vector2.down, rayDistance, terrain);
         RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY), Vector2.down, rayDistance, terrain);
+
+        //Debug.DrawRay(new Vector3(bottomY, leftXBound), Vector3.left*rayDistance, Color.green, 1f);
+        //Debug.DrawRay(new Vector3(bottomY, rightXBound), Vector3.right*rayDistance, Color.green, 1f);
 
         if (leftRay || rightRay) {
             _hasJump = true;
@@ -196,10 +204,10 @@ public class EntityMovement : MonoBehaviour {
         float centerX = _coll.bounds.center.x;
         float rayDistance = 1.51f;
         
-        Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.left*rayDistance, Color.green, 1f);
-        Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.right*rayDistance, Color.green, 1f);
-        Debug.DrawRay(new Vector3(centerX, topBound), Vector3.left*rayDistance, Color.green, 1f);
-        Debug.DrawRay(new Vector3(centerX, topBound), Vector3.right*rayDistance, Color.green, 1f);
+        //Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.left*rayDistance, Color.green, 1f);
+        //Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.right*rayDistance, Color.green, 1f);
+        //Debug.DrawRay(new Vector3(centerX, topBound), Vector3.left*rayDistance, Color.green, 1f);
+        //Debug.DrawRay(new Vector3(centerX, topBound), Vector3.right*rayDistance, Color.green, 1f);
 
         RaycastHit2D topLeftRay = Physics2D.Raycast(new Vector2(centerX, topBound), Vector2.left, rayDistance, terrain);
         RaycastHit2D bottomLeftRay = Physics2D.Raycast(new Vector2(centerX, bottomBound), Vector2.left, rayDistance, terrain);
