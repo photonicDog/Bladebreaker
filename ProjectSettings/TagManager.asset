@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Terrain
   layers:
   - Default
   - TransparentFX
@@ -11,9 +12,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Terrain
+  - Platform
+  - Player
   - 
   - 
   - 
@@ -40,4 +41,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2413518337
+    locked: 0
+  - name: Terrain
+    uniqueID: 2658801711
+    locked: 0
+  - name: Particle Effects
+    uniqueID: 1539328543
+    locked: 0
+  - name: Entities
+    uniqueID: 3538583819
     locked: 0

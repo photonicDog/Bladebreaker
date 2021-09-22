@@ -97,7 +97,6 @@ namespace Assets.Scripts.Controllers
             AddScore(10 * CurrentCombo * GetCurrentMultiplier());
             CurrentCombo = 0;
         }
-
         public int GetCurrentMultiplier()
         {
             // This maths scales the multiplier increment with the highest combo that counts for the multiplier
