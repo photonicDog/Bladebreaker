@@ -150,7 +150,13 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 269580257}
+  - {fileID: 2116949016}
+  - {fileID: 1120873048}
+  - {fileID: 839381133}
+  - {fileID: 1568507425}
+  - {fileID: 414787703}
   m_Father: {fileID: 1600531959}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
