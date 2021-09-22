@@ -269,6 +269,11 @@ public class EntityMovement : MonoBehaviour {
         return Vector2.zero;
     }
 
+    public void PushEntity(Vector2 impulse)
+    {
+        velocity += impulse;
+    }
+
     private Vector2 VelocityLimit(Vector2 input, float limit) {
         if (Mathf.Abs(input.x) > limit) {
             return new Vector2(Mathf.Sign(input.x) * limit, input.y);
