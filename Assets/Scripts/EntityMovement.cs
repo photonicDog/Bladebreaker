@@ -19,6 +19,9 @@ public class EntityMovement : MonoBehaviour {
 
     [SerializeField] private float _maxVelocity;
 
+    [SerializeField] private float _horizontalCollisionRange;
+    [SerializeField] private float _colliderWidthOffset;
+
 
     public Vector2 velocity;
     public Vector2 _frameVelocity;
@@ -51,7 +54,7 @@ public class EntityMovement : MonoBehaviour {
     public bool rightCollide;
 
     private float _dashStartPos;
-
+    private Vector3 _newPos;
 
     // Start is called before the first frame update
     void Awake() {
@@ -68,10 +71,8 @@ public class EntityMovement : MonoBehaviour {
         Vector3 groundComp = Vector3.zero;
         Vector3 wallComp = Vector3.zero;
         _frameVelocity = new Vector2(0, 0);
-        groundComp = FloorRaycast();
-        wallComp = WallRaycast();
 
-        if(!midair)
+        if (!midair)
         {
             fastfall = false;
         }
@@ -101,14 +102,20 @@ public class EntityMovement : MonoBehaviour {
         if ((leftCollide && velocity.x < 0) || (rightCollide && velocity.x > 0)) 
             velocity *= new Vector2(0, 1);
 
-        Vector3 newPos = (transform.position + (Vector3)velocity + groundComp + wallComp);
 
-        if (_isDashing && Math.Abs(_dashStartPos - newPos.x) > _dashDistance)
+        _newPos = (transform.position + (Vector3)velocity);
+
+        if (_isDashing && Math.Abs(_dashStartPos - _newPos.x) > _dashDistance && !rightCollide && !leftCollide)
         {
-            newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
+            _newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
         }
 
-        transform.position = newPos;
+        transform.position = _newPos;
+
+        groundComp = FloorRaycast();
+        wallComp = WallRaycast();
+
+        transform.position += groundComp + wallComp;
     }
 
     private void MidairPhysics() {
@@ -186,20 +193,22 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private Vector3 FloorRaycast() {
-        float leftXBound = _coll.bounds.min.x;
-        float rightXBound = _coll.bounds.max.x;
-        float bottomY = _coll.bounds.center.y;
+        float leftXBound = _coll.bounds.min.x + _colliderWidthOffset + velocity.x;
+        float rightXBound = _coll.bounds.max.x - _colliderWidthOffset + velocity.x;
+        float bottomY = _coll.bounds.center.y + velocity.y;
         float rayDistance = 2f;
 
         RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY), Vector2.down, rayDistance, terrain);
         RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY), Vector2.down, rayDistance, terrain);
 
-        //Debug.DrawRay(new Vector3(bottomY, leftXBound), Vector3.left*rayDistance, Color.green, 1f);
-        //Debug.DrawRay(new Vector3(bottomY, rightXBound), Vector3.right*rayDistance, Color.green, 1f);
+        Debug.DrawRay(new Vector3(leftXBound, bottomY), Vector3.down*rayDistance, Color.red, 0f);
+        Debug.DrawRay(new Vector3(rightXBound, bottomY), Vector3.down*rayDistance, Color.red, 0f);
 
         if (leftRay || rightRay) {
             _hasJump = true;
             midair = false;
+            fastfall = false;
+            velocity.y = 0;
             if (leftRay && leftRay.point.y > _coll.bounds.min.y) {
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
             }
@@ -215,20 +224,21 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private Vector2 WallRaycast() {
-        float bottomBound = _coll.bounds.min.y + 0.25f;
-        float topBound = _coll.bounds.max.y - 0.25f;
-        float centerX = _coll.bounds.center.x;
-        float rayDistance = 1.51f;
+        float bottomBound = _coll.bounds.min.y + 0.25f + velocity.y;
+        float topBound = _coll.bounds.max.y - 0.25f + velocity.y;
+        float leftX = _coll.bounds.min.x + velocity.x;
+        float rightX = _coll.bounds.max.x + velocity.x;
+        float rayDistance = Math.Max(_coll.bounds.size.x, _horizontalCollisionRange);
         
-        //Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.left*rayDistance, Color.green, 1f);
-        //Debug.DrawRay(new Vector3(centerX, bottomBound), Vector3.right*rayDistance, Color.green, 1f);
-        //Debug.DrawRay(new Vector3(centerX, topBound), Vector3.left*rayDistance, Color.green, 1f);
-        //Debug.DrawRay(new Vector3(centerX, topBound), Vector3.right*rayDistance, Color.green, 1f);
+        Debug.DrawRay(new Vector3(rightX, bottomBound), Vector3.left*rayDistance, Color.blue, 0f);
+        Debug.DrawRay(new Vector3(leftX, bottomBound), Vector3.right*rayDistance, Color.blue, 0f);
+        Debug.DrawRay(new Vector3(rightX, topBound), Vector3.left*rayDistance, Color.blue, 0f);
+        Debug.DrawRay(new Vector3(leftX, topBound), Vector3.right*rayDistance, Color.blue, 0f);
 
-        RaycastHit2D topLeftRay = Physics2D.Raycast(new Vector2(centerX, topBound), Vector2.left, rayDistance, terrain);
-        RaycastHit2D bottomLeftRay = Physics2D.Raycast(new Vector2(centerX, bottomBound), Vector2.left, rayDistance, terrain);
-        RaycastHit2D topRightRay = Physics2D.Raycast(new Vector2(centerX, topBound), Vector2.right, rayDistance, terrain);
-        RaycastHit2D bottomRightRay = Physics2D.Raycast(new Vector2(centerX, bottomBound), Vector2.right, rayDistance, terrain);
+        RaycastHit2D topLeftRay = Physics2D.Raycast(new Vector2(rightX, topBound), Vector2.left, rayDistance, terrain);
+        RaycastHit2D bottomLeftRay = Physics2D.Raycast(new Vector2(rightX, bottomBound), Vector2.left, rayDistance, terrain);
+        RaycastHit2D topRightRay = Physics2D.Raycast(new Vector2(leftX, topBound), Vector2.right, rayDistance, terrain);
+        RaycastHit2D bottomRightRay = Physics2D.Raycast(new Vector2(leftX, bottomBound), Vector2.right, rayDistance, terrain);
 
         if (topLeftRay || bottomLeftRay) {
             leftCollide = true;
@@ -245,12 +255,11 @@ public class EntityMovement : MonoBehaviour {
         
         if (topRightRay || bottomRightRay) {
             rightCollide = true;
-            //Debug.Log("Colliding right!");
-            if (topRightRay && topRightRay.point.x > _coll.bounds.max.x) {
-                return new Vector2((_coll.bounds.max.x - topRightRay.point.x), 0);
+            if (topRightRay && topRightRay.point.x < _coll.bounds.max.x) {
+                return new Vector2((topRightRay.point.x - _coll.bounds.max.x), 0);
             }
-            if (bottomRightRay && bottomRightRay.point.x > _coll.bounds.max.x) {
-                return new Vector2((_coll.bounds.max.x - bottomRightRay.point.x), 0);
+            if (bottomRightRay && bottomRightRay.point.x < _coll.bounds.max.x) {
+                return new Vector2((bottomRightRay.point.x - _coll.bounds.max.x), 0);
             }
         }
         else {
