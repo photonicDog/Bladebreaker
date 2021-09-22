@@ -274,6 +274,11 @@ public class EntityMovement : MonoBehaviour {
         velocity += impulse;
     }
 
+    public void FloatEntity(float lift)
+    {
+        velocity.y = lift;
+    }
+
     private Vector2 VelocityLimit(Vector2 input, float limit) {
         if (Mathf.Abs(input.x) > limit) {
             return new Vector2(Mathf.Sign(input.x) * limit, input.y);
