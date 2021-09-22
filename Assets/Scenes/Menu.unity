@@ -5567,6 +5567,7 @@ MonoBehaviour:
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
   _colliderWidthOffset: 0.1
+  _fastfallFrameDelay: 4
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
   _animation: {fileID: 1846884195}
