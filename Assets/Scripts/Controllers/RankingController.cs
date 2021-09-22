@@ -1,5 +1,6 @@
 using Assets.Scripts.Types.Enums;
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers
@@ -96,12 +97,11 @@ namespace Assets.Scripts.Controllers
             AddScore(10 * CurrentCombo * GetCurrentMultiplier());
             CurrentCombo = 0;
         }
-
-        public float GetCurrentMultiplier()
+        public int GetCurrentMultiplier()
         {
             // This maths scales the multiplier increment with the highest combo that counts for the multiplier
             // and the maximum multiplier the player should have itself
-            return Math.Min(1 + CurrentCombo * (MaxMultiplier - 1 / MaxComboForMaxMultiplier), MaxMultiplier);
+            return (int)Math.Min(math.floor(1 + CurrentCombo * (MaxMultiplier - 1 / MaxComboForMaxMultiplier)), MaxMultiplier);
         }
     }
 }
