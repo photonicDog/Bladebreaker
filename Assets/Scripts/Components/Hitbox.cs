@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Components
 {
-    public class Hitbox : Component
+    public class Hitbox : MonoBehaviour
     {
         [Header("Damage")]
         public byte Damage;
