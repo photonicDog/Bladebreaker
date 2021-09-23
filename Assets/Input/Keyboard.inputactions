@@ -56,7 +56,7 @@
                 {
                     "name": "LOOKUP",
                     "type": "Button",
-                    "id": "56130464-7bee-4b1a-83e3-a734f9a6259d",
+                    "id": "24ac3a43-47e2-43d1-888c-24c61f2691c8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -65,14 +65,6 @@
                     "name": "LOOKDOWN",
                     "type": "Button",
                     "id": "b86b1cb6-61c1-46f4-a068-e8cb15433b78",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "LOOK",
-                    "type": "Button",
-                    "id": "56130464-7bee-4b1a-83e3-a734f9a6259d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -188,39 +180,6 @@
                     "action": "LOOKUP",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "093ad7e0-b2d0-4d25-b206-46c6aae8bcd7",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LOOK",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "3813ca1d-44ec-4b4d-87c7-3fcd02a1fb57",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LOOK",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "be3f0d13-51cf-4128-8f92-30312ae8af9b",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LOOK",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

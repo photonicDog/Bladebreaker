@@ -20125,7 +20125,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1846884202}
         m_TargetAssemblyTypeName: EntityAttacker, Assembly-CSharp
-        m_MethodName: Look
+        m_MethodName: LookDown
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20135,8 +20135,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 56130464-7bee-4b1a-83e3-a734f9a6259d
-    m_ActionName: Gameplay/LOOK[/Keyboard/downArrow,/Keyboard/upArrow]
+    m_ActionId: b86b1cb6-61c1-46f4-a068-e8cb15433b78
+    m_ActionName: Gameplay/LOOKDOWN[/Keyboard/downArrow]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1846884202}
@@ -20151,26 +20151,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 56130464-7bee-4b1a-83e3-a734f9a6259d
-    m_ActionName: Gameplay/LOOK[/Keyboard/downArrow,/Keyboard/upArrow]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1846884202}
-        m_TargetAssemblyTypeName: EntityAttacker, Assembly-CSharp
-        m_MethodName: LookDown
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: b86b1cb6-61c1-46f4-a068-e8cb15433b78
-    m_ActionName: Gameplay/LOOKDOWN[/Keyboard/downArrow]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 24ac3a43-47e2-43d1-888c-24c61f2691c8
     m_ActionName: Gameplay/LOOKUP[/Keyboard/upArrow]
   m_NeverAutoSwitchControlSchemes: 0
