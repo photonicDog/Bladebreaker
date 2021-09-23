@@ -163,7 +163,7 @@ public class EntityMovement : MonoBehaviour {
         if (!attackFreeze) 
             _frameVelocity = new Vector2(_walkInput * _groundSpeed, 0);
         
-        if (dash) {
+        if (dash && !attackFreeze) {
             _frameVelocity += new Vector2(_dashSpeed * _facing, 0);
             if (!_isDashing) StartCoroutine(DashCoroutine());
         }
