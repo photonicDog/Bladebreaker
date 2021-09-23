@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class EntityAttacker : MonoBehaviour {
     public EntityAnimation entityAnimation;
+    public EntityMovement entityMovement;
 
     private bool _up;
     private bool _down;
@@ -16,6 +17,7 @@ public class EntityAttacker : MonoBehaviour {
     public void Attack(InputAction.CallbackContext context) {
         if (context.started) {
             entityAnimation.Attack();
+            entityMovement.attackFreeze = true;
         }
     }
 
