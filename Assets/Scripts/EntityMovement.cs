@@ -91,13 +91,6 @@ public class EntityMovement : MonoBehaviour {
         Vector3 wallComp = Vector3.zero;
         _frameVelocity = new Vector2(0, 0);
 
-        if (attackFreeze) {
-            _walkInput = 0;
-            jump = false;
-            fastfall = false;
-            _dashKill = true;
-        }
-
         if (!midair)
         {
             fastfall = false;
