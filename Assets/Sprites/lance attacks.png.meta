@@ -1,91 +1,121 @@
 fileFormatVersion: 2
-guid: 45980ee209b535d4cb2503e44a3f216a
+guid: 74eb0384c2707cf48aa197e0d2ba0382
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7047054661488829437
-    second: dagger attacks_0
+      213: 7981865094723988337
+    second: lance attacks_0
   - first:
-      213: 5531602120215935431
-    second: dagger attacks_1
+      213: 796759276337468219
+    second: lance attacks_1
   - first:
-      213: 7073014614876618329
-    second: dagger attacks_2
+      213: -6119762992690227621
+    second: lance attacks_2
   - first:
-      213: -4229390302728255941
-    second: dagger attacks_3
+      213: 9036525505918042143
+    second: lance attacks_3
   - first:
-      213: -7312823829607882282
-    second: dagger attacks_4
+      213: 8611851525619290783
+    second: lance attacks_4
   - first:
-      213: -7182850328920377506
-    second: dagger attacks_5
+      213: 5914034436771618763
+    second: lance attacks_5
   - first:
-      213: -6883148827005501486
-    second: dagger attacks_6
+      213: -4769741138594634724
+    second: lance attacks_6
   - first:
-      213: 2128137190912886635
-    second: dagger attacks_7
+      213: -1116199426722517168
+    second: lance attacks_7
   - first:
-      213: -7533575522175029805
-    second: dagger attacks_8
+      213: -5414224203402635387
+    second: lance attacks_8
   - first:
-      213: 1899552883514800649
-    second: dagger attacks_9
+      213: -6151131476866031828
+    second: lance attacks_9
   - first:
-      213: 5299951690263631204
-    second: dagger attacks_10
+      213: -641919718737032093
+    second: lance attacks_10
   - first:
-      213: 6163948824523499748
-    second: dagger attacks_11
+      213: -7118460223624500732
+    second: lance attacks_11
   - first:
-      213: -695679102517583735
-    second: dagger attacks_12
+      213: 8407570843664669634
+    second: lance attacks_12
   - first:
-      213: -1323639536000518589
-    second: dagger attacks_13
+      213: -6331785618896068510
+    second: lance attacks_13
   - first:
-      213: 1736747718494669758
-    second: dagger attacks_14
+      213: -6569230370721831698
+    second: lance attacks_14
   - first:
-      213: 8121239984975600486
-    second: dagger attacks_15
+      213: -1562619106278216612
+    second: lance attacks_15
   - first:
-      213: 8914647867201346766
-    second: dagger attacks_16
+      213: -8986076651258225143
+    second: lance attacks_16
   - first:
-      213: -2736736842615861034
-    second: dagger attacks_17
+      213: 8198521412234203709
+    second: lance attacks_17
   - first:
-      213: 1454354325030374221
-    second: dagger attacks_18
+      213: 7731415682224544689
+    second: lance attacks_18
   - first:
-      213: 9007014073103485773
-    second: dagger attacks_19
+      213: -8287422403508993882
+    second: lance attacks_19
   - first:
-      213: 3151582834073499937
-    second: dagger attacks_20
+      213: 8064652388378638548
+    second: lance attacks_20
   - first:
-      213: -9078023740969207356
-    second: dagger attacks_21
+      213: 1574708568444448374
+    second: lance attacks_21
   - first:
-      213: 5803216912056569278
-    second: dagger attacks_22
+      213: -8000920838432964539
+    second: lance attacks_22
   - first:
-      213: -1935291625563371858
-    second: dagger attacks_23
+      213: 7732257231540803856
+    second: lance attacks_23
   - first:
-      213: 8352076521129395013
-    second: dagger attacks_24
+      213: -651053885505691095
+    second: lance attacks_24
   - first:
-      213: 6053257237540332609
-    second: dagger attacks_25
+      213: -8603065969278928106
+    second: lance attacks_25
   - first:
-      213: 5912096754160964957
-    second: dagger attacks_26
+      213: -3154700684238250765
+    second: lance attacks_26
   - first:
-      213: 4611478507995608211
-    second: dagger attacks_27
+      213: 2348716152012175370
+    second: lance attacks_27
+  - first:
+      213: -6170705623172678709
+    second: lance attacks_28
+  - first:
+      213: 4972714333144915543
+    second: lance attacks_29
+  - first:
+      213: 9021131295005008827
+    second: lance attacks_30
+  - first:
+      213: 1420036510454303159
+    second: lance attacks_31
+  - first:
+      213: -1891719674709693288
+    second: lance attacks_32
+  - first:
+      213: 8257327762683163228
+    second: lance attacks_33
+  - first:
+      213: -2298285703348927799
+    second: lance attacks_34
+  - first:
+      213: -5783128994983918307
+    second: lance attacks_35
+  - first:
+      213: -5968699630948490604
+    second: lance attacks_36
+  - first:
+      213: 8052889566469219924
+    second: lance attacks_37
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -175,133 +205,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dagger attacks_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 840
-        width: 120
-        height: 120
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1583333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df36dc2b0ea2cc160800000000000000
-      internalID: 7047054661488829437
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dagger attacks_1
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 840
-        width: 120
-        height: 120
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1583333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c9b44612d234cc40800000000000000
-      internalID: 5531602120215935431
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dagger attacks_2
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 840
-        width: 120
-        height: 120
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1583333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 95efdda5155682260800000000000000
-      internalID: 7073014614876618329
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dagger attacks_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 720
-        width: 120
-        height: 120
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1583333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b36866d8def2e45c0800000000000000
-      internalID: -4229390302728255941
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dagger attacks_4
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 720
-        width: 120
-        height: 120
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1583333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d1e533d871a38a90800000000000000
-      internalID: -7312823829607882282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dagger attacks_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 720
-        width: 120
-        height: 120
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1583333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e5737e5aea3615c90800000000000000
-      internalID: -7182850328920377506
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dagger attacks_6
+      name: lance attacks_0
       rect:
         serializedVersion: 2
         x: 0
@@ -315,14 +219,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dfb03e3c942a70a0800000000000000
-      internalID: -6883148827005501486
+      spriteID: 17bec10930845ce60800000000000000
+      internalID: 7981865094723988337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_7
+      name: lance attacks_1
       rect:
         serializedVersion: 2
         x: 120
@@ -336,14 +240,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6709a1ff79a88d10800000000000000
-      internalID: 2128137190912886635
+      spriteID: b3397952758ae0b00800000000000000
+      internalID: 796759276337468219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_8
+      name: lance attacks_2
       rect:
         serializedVersion: 2
         x: 240
@@ -357,14 +261,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3dded282afc537790800000000000000
-      internalID: -7533575522175029805
+      spriteID: b561e176bfb321ba0800000000000000
+      internalID: -6119762992690227621
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_9
+      name: lance attacks_3
       rect:
         serializedVersion: 2
         x: 0
@@ -378,14 +282,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90af7f588419c5a10800000000000000
-      internalID: 1899552883514800649
+      spriteID: f108000f110386d70800000000000000
+      internalID: 9036525505918042143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_10
+      name: lance attacks_4
       rect:
         serializedVersion: 2
         x: 120
@@ -399,14 +303,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46515e06bf53d8940800000000000000
-      internalID: 5299951690263631204
+      spriteID: f9291f2c551738770800000000000000
+      internalID: 8611851525619290783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_11
+      name: lance attacks_5
       rect:
         serializedVersion: 2
         x: 240
@@ -420,14 +324,77 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e8e8634cceba8550800000000000000
-      internalID: 6163948824523499748
+      spriteID: bcf13318cfed21250800000000000000
+      internalID: 5914034436771618763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_12
+      name: lance attacks_6
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 480
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c14ef73a4b97ecdb0800000000000000
+      internalID: -4769741138594634724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_7
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 480
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05fa5b709867280f0800000000000000
+      internalID: -1116199426722517168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_8
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 480
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5871dd5d5cfccd4b0800000000000000
+      internalID: -5414224203402635387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_9
       rect:
         serializedVersion: 2
         x: 0
@@ -441,14 +408,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 980e6c8ca837856f0800000000000000
-      internalID: -695679102517583735
+      spriteID: c2f1daa038ac2aaa0800000000000000
+      internalID: -6151131476866031828
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_13
+      name: lance attacks_10
       rect:
         serializedVersion: 2
         x: 120
@@ -462,14 +429,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 346b60edadc71ade0800000000000000
-      internalID: -1323639536000518589
+      spriteID: 36c4c56ba617717f0800000000000000
+      internalID: -641919718737032093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_14
+      name: lance attacks_11
       rect:
         serializedVersion: 2
         x: 240
@@ -483,14 +450,98 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebb485929da2a1810800000000000000
-      internalID: 1736747718494669758
+      spriteID: 40a2d1f4426263d90800000000000000
+      internalID: -7118460223624500732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_15
+      name: lance attacks_12
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 360
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cb50981321bda470800000000000000
+      internalID: 8407570843664669634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_13
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 360
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 260e5cfd68af028a0800000000000000
+      internalID: -6331785618896068510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_14
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 360
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee4ea6978c765d4a0800000000000000
+      internalID: -6569230370721831698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 360
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5c6c03b336705ae0800000000000000
+      internalID: -1562619106278216612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_16
       rect:
         serializedVersion: 2
         x: 0
@@ -504,14 +555,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66b5b28fcb074b070800000000000000
-      internalID: 8121239984975600486
+      spriteID: 90e525d55ea0b4380800000000000000
+      internalID: -8986076651258225143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_16
+      name: lance attacks_17
       rect:
         serializedVersion: 2
         x: 120
@@ -525,14 +576,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eccda3ed00137bb70800000000000000
-      internalID: 8914647867201346766
+      spriteID: d3257ab69cff6c170800000000000000
+      internalID: 8198521412234203709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_17
+      name: lance attacks_18
       rect:
         serializedVersion: 2
         x: 240
@@ -546,14 +597,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d0582c6758250ad0800000000000000
-      internalID: -2736736842615861034
+      spriteID: 1bbd0e5a9918b4b60800000000000000
+      internalID: 7731415682224544689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_18
+      name: lance attacks_19
       rect:
         serializedVersion: 2
         x: 360
@@ -567,14 +618,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4b0df89d87ee2410800000000000000
-      internalID: 1454354325030374221
+      spriteID: 6a08b3f8b392dfc80800000000000000
+      internalID: -8287422403508993882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_19
+      name: lance attacks_20
       rect:
         serializedVersion: 2
         x: 480
@@ -588,14 +639,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4b074a04975ffc70800000000000000
-      internalID: 9007014073103485773
+      spriteID: 4d8705e6e966bef60800000000000000
+      internalID: 8064652388378638548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_20
+      name: lance attacks_21
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 240
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e25ee891d7ad510800000000000000
+      internalID: 1574708568444448374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_22
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 240
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 540ce2d53e407f090800000000000000
+      internalID: -8000920838432964539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_23
       rect:
         serializedVersion: 2
         x: 0
@@ -609,14 +702,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1297b29c3ebacbb20800000000000000
-      internalID: 3151582834073499937
+      spriteID: 0195fed1cfe7e4b60800000000000000
+      internalID: 7732257231540803856
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_21
+      name: lance attacks_24
       rect:
         serializedVersion: 2
         x: 120
@@ -630,14 +723,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9b7f84181640280800000000000000
-      internalID: -9078023740969207356
+      spriteID: 922abc8c0fdf6f6f0800000000000000
+      internalID: -651053885505691095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_22
+      name: lance attacks_25
       rect:
         serializedVersion: 2
         x: 240
@@ -651,14 +744,182 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebdcba5e80b298050800000000000000
-      internalID: 5803216912056569278
+      spriteID: 61bb0e9f415cb9880800000000000000
+      internalID: -8603065969278928106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_23
+      name: lance attacks_26
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fc1c4721704834d0800000000000000
+      internalID: -3154700684238250765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_27
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0878ee65e0589020800000000000000
+      internalID: 2348716152012175370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_28
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcb7945fdef3d5aa0800000000000000
+      internalID: -6170705623172678709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_29
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75e9894e651a20540800000000000000
+      internalID: 4972714333144915543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_30
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb3eee6ed1f713d70800000000000000
+      internalID: 9021131295005008827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_31
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b9c6bdbeabf4b310800000000000000
+      internalID: 1420036510454303159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_32
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89caf468af24fb5e0800000000000000
+      internalID: -1891719674709693288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_33
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 120
+        width: 120
+        height: 120
+      alignment: 9
+      pivot: {x: 0.5, y: 0.1583333}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5273b8d9dbe79270800000000000000
+      internalID: 8257327762683163228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lance attacks_34
       rect:
         serializedVersion: 2
         x: 0
@@ -672,14 +933,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea6c18925867425e0800000000000000
-      internalID: -1935291625563371858
+      spriteID: 9c247836459da10e0800000000000000
+      internalID: -2298285703348927799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_24
+      name: lance attacks_35
       rect:
         serializedVersion: 2
         x: 120
@@ -693,14 +954,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5434cc2485988e370800000000000000
-      internalID: 8352076521129395013
+      spriteID: d15c8b3c1d23ebfa0800000000000000
+      internalID: -5783128994983918307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_25
+      name: lance attacks_36
       rect:
         serializedVersion: 2
         x: 240
@@ -714,14 +975,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14467a1d26d710450800000000000000
-      internalID: 6053257237540332609
+      spriteID: 4926f462f4bea2da0800000000000000
+      internalID: -5968699630948490604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dagger attacks_26
+      name: lance attacks_37
       rect:
         serializedVersion: 2
         x: 360
@@ -735,29 +996,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d55118d9cacfb0250800000000000000
-      internalID: 5912096754160964957
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dagger attacks_27
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 0
-        width: 120
-        height: 120
-      alignment: 9
-      pivot: {x: 0.5, y: 0.1583333}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3943d6635434fff30800000000000000
-      internalID: 4611478507995608211
+      spriteID: 456e8d8056c91cf60800000000000000
+      internalID: 8052889566469219924
       vertices: []
       indices: 
       edges: []
