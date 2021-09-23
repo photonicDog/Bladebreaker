@@ -6457,6 +6457,7 @@ MonoBehaviour:
   fastfall: 0
   sprint: 0
   attackFreeze: 0
+  antigravity: 0
   leftCollide: 0
   rightCollide: 0
 --- !u!50 &347524560
@@ -20197,7 +20198,7 @@ MonoBehaviour:
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
   _colliderWidthOffset: 0.1
-  _fastfallFrameDelay: 4
+  _fastfallFrameDelay: 10
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
   _animation: {fileID: 1846884195}
@@ -20210,6 +20211,7 @@ MonoBehaviour:
   fastfall: 0
   sprint: 0
   attackFreeze: 0
+  antigravity: 0
   leftCollide: 0
   rightCollide: 0
 --- !u!114 &1846884202
