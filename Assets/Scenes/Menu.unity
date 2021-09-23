@@ -5381,6 +5381,7 @@ GameObject:
   - component: {fileID: 347524560}
   - component: {fileID: 347524559}
   - component: {fileID: 347524558}
+  - component: {fileID: 347524563}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -5500,13 +5501,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347524557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.38, y: 3.96, z: 0}
+  m_LocalPosition: {x: 7.35, y: -2.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1609552400}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347524563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347524557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46ef92fda7fa964e84730827942da23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  associatedPlatform: {fileID: 0}
+  startPosition: {x: 7.368659, y: -3.4183128, z: 0}
 --- !u!1 &414787702
 GameObject:
   m_ObjectHideFlags: 0
@@ -6236,7 +6251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609552399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 347524562}
@@ -6282,7 +6297,7 @@ SpriteRenderer:
   m_SortingLayerID: -756383477
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6303,7 +6318,7 @@ Animator:
   m_GameObject: {fileID: 1609552399}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: daedb14fc9806c5448cbe58c84cc03fb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 712e74035d588214db7f93860a4f4eab, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
