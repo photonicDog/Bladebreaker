@@ -82,13 +82,6 @@ public class EntityMovement : MonoBehaviour {
     private void FixedUpdate() {
         _frameVelocity = new Vector2(0, 0);
 
-        if (attackFreeze) {
-            _walkInput = 0;
-            jump = false;
-            fastfall = false;
-            _dashKill = true;
-        }
-
         if (!midair)
         {
             fastfall = false;
@@ -145,6 +138,9 @@ public class EntityMovement : MonoBehaviour {
         }
 
         if (!attackFreeze || !_attackFreezeEnd)
+            _frameVelocity += new Vector2(_walkInput * _airSpeed, 0);
+
+        if (!attackFreeze)
             _frameVelocity += new Vector2(_walkInput * _airSpeed, 0);
 
         if (jump) {
