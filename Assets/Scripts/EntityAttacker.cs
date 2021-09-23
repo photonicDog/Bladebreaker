@@ -16,6 +16,7 @@ public class EntityAttacker : MonoBehaviour {
     public void Attack(InputAction.CallbackContext context) {
         if (context.started) {
             entityAnimation.Attack();
+            entityMovement.attackFreeze = true;
         }
     }
 
