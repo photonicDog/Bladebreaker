@@ -293,6 +293,11 @@ public class EntityMovement : MonoBehaviour {
 
     public void PushEntity(Vector2 impulse)
     {
+        if (impulse.y > 0)
+        {
+            midair = true;
+            attackFreeze = false;
+        }
         velocity += impulse;
     }
 
