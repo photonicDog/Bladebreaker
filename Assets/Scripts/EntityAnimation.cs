@@ -32,9 +32,11 @@ public class EntityAnimation : MonoBehaviour {
         if (_em.midair && _em.velocity.y >= 0) {
             _anim.SetBool(JumpAnim, true);
             _anim.SetBool(FallAnim, false);
+            _anim.SetBool(GroundAnim, false);
         } else if (_em.midair) {
             _anim.SetBool(JumpAnim, false);
             _anim.SetBool(FallAnim, true);
+            _anim.SetBool(GroundAnim, false);
         }
         else {
             _anim.SetBool(JumpAnim, false);
