@@ -49,6 +49,7 @@ public class EntityMovement : MonoBehaviour {
     public bool sprint = false;
 
     public bool attackFreeze = false;
+    public bool antigravity = false;
 
     private LayerMask terrain;
     private LayerMask platform;
@@ -75,19 +76,12 @@ public class EntityMovement : MonoBehaviour {
         Vector3 wallComp = Vector3.zero;
         _frameVelocity = new Vector2(0, 0);
 
-        if (attackFreeze) {
-            _walkInput = 0;
-            jump = false;
-            fastfall = false;
-            _dashKill = true;
-        }
-
         if (!midair)
         {
             fastfall = false;
         }
 
-        if (jump && _hasJump) {
+        if (jump && _hasJump && !attackFreeze) {
             _frameVelocity += new Vector2(0, _jumpHeight);
             _jumpDecayCurrent = _jumpDecay;
             midair = true;
@@ -129,7 +123,12 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void MidairPhysics() {
-        _frameVelocity += new Vector2(_walkInput * _airSpeed, 0) + (Vector2.down * _gravity);
+        if (!antigravity) {
+            _frameVelocity += (Vector2.down * _gravity);
+        }
+
+        if (!attackFreeze)
+            _frameVelocity += new Vector2(_walkInput * _airSpeed, 0);
 
         if (jump) {
             if (_jumpDecayCurrent > 0) {
@@ -161,7 +160,9 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void GroundPhysics() {
-        _frameVelocity = new Vector2(_walkInput * _groundSpeed, 0);
+        if (!attackFreeze) 
+            _frameVelocity = new Vector2(_walkInput * _groundSpeed, 0);
+        
         if (dash) {
             _frameVelocity += new Vector2(_dashSpeed * _facing, 0);
             if (!_isDashing) StartCoroutine(DashCoroutine());
@@ -176,8 +177,7 @@ public class EntityMovement : MonoBehaviour {
             _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * 40);
         } else if (sprint) {
             _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * _sprintMod);
-        }
-        else {
+        } else {
             _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity);
         }
 
