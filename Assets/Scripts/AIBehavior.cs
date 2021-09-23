@@ -5,7 +5,8 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "AIBehavior", menuName = "AI", order = 0)]
+
+    [CreateAssetMenu(fileName = "AIBehavior", menuName = "AI", order = 0)]
     public class AIBehavior : SerializedScriptableObject {
 
         [Header("Enemy Basics")]

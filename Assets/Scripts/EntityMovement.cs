@@ -57,6 +57,8 @@ public class EntityMovement : MonoBehaviour {
     public bool antigravity = false;
     public bool hitstun;
 
+    public bool attackFreeze = false;
+
     private LayerMask terrain;
     private LayerMask platform;
 
@@ -79,6 +81,13 @@ public class EntityMovement : MonoBehaviour {
 
     private void FixedUpdate() {
         _frameVelocity = new Vector2(0, 0);
+
+        if (attackFreeze) {
+            _walkInput = 0;
+            jump = false;
+            fastfall = false;
+            _dashKill = true;
+        }
 
         if (!midair)
         {
