@@ -42,6 +42,8 @@ public class EntityAI : SerializedMonoBehaviour {
 
     private float entityRandomSpeed;
 
+    private float entityRandomSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
