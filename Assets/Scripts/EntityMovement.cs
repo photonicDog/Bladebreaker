@@ -21,6 +21,7 @@ public class EntityMovement : MonoBehaviour {
 
     [SerializeField] private float _horizontalCollisionRange;
     [SerializeField] private float _colliderWidthOffset;
+    [SerializeField] private float _fastfallFrameDelay;
 
 
     public Vector2 velocity;
@@ -192,6 +193,18 @@ public class EntityMovement : MonoBehaviour {
         _dashKill = true;
     }
 
+    private IEnumerator FastfallCoroutine()
+    {
+        for(int i = 0; i < _fastfallFrameDelay; i++)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        if (midair)
+        {
+            fastfall = true;
+        }
+    }
+
     private Vector3 FloorRaycast() {
         float leftXBound = _coll.bounds.min.x + _colliderWidthOffset + velocity.x;
         float rightXBound = _coll.bounds.max.x - _colliderWidthOffset + velocity.x;
@@ -324,7 +337,7 @@ public class EntityMovement : MonoBehaviour {
 
     public void FastFall() {
         if (midair) {
-            fastfall = true;
+            StartCoroutine(FastfallCoroutine());
         }
     }
 

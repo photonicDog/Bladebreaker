@@ -8,6 +8,7 @@
         Dagger,
         Spear,
         Shotgun,
-        Revolver
+        Revolver,
+        None
     }
 }
