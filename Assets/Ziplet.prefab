@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4269948961361772366}
   - component: {fileID: 4269948961361772371}
   - component: {fileID: 4269948961361772372}
+  - component: {fileID: 2725640073866405045}
   m_Layer: 12
   m_Name: Ziplet
   m_TagString: Untagged
@@ -195,6 +196,54 @@ MonoBehaviour:
   attackingLayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &2725640073866405045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4269948961361772365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f64c5c0c70efe7a4bae53a1a6e95a918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: dropTable
+      Entry: 7
+      Data: 0|Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[Assets.Scripts.Types.Enums.WeaponType,
+        Assembly-CSharp],[System.Single, mscorlib]], Unity.CollabProxy.Editor
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Assets.Scripts.Types.Enums.WeaponType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  health: 10
 --- !u!1 &4269948962256789647
 GameObject:
   m_ObjectHideFlags: 0
