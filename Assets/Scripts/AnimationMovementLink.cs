@@ -8,7 +8,7 @@ public class AnimationMovementLink : MonoBehaviour
     public EntityMovement targetScript;
 
     public void PushEntityHorizontal(float impulse) {
-        targetScript.PushEntity(new Vector2(impulse, 0));
+        targetScript.PushEntity(new Vector2(targetScript._facing * impulse, 0));
     }
 
     public void PushEntityVertical(float impulse) {
