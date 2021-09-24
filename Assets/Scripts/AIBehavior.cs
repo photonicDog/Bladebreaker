@@ -7,8 +7,7 @@ using UnityEngine;
 
         [Header("Enemy Basics")]
         public bool canFly;
-        public float hurtsOnTouch;
-        
+
         [Header("Wander")]
         public bool canWander;
 

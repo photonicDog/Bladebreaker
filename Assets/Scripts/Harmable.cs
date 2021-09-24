@@ -6,6 +6,7 @@ public class Harmable : MonoBehaviour, IHarmable {
     private EntityMovement _em;
     private EntityAnimation _ea;
     private EntityAI _eai;
+    private IStats _stats;
     private bool _hasAI;
 
     public LayerMask attackingLayer;
@@ -14,10 +15,11 @@ public class Harmable : MonoBehaviour, IHarmable {
         _em = GetComponent<EntityMovement>();
         _ea = GetComponent<EntityAnimation>();
         _hasAI = TryGetComponent(out _eai);
+        TryGetComponent(out _stats);
     }
 
     public void Damage(Hitbox hitbox) {
-        Debug.Log("Ow! I was hurt for " + hitbox.Damage + " damage!");
+        _stats.ModifyHealth(-hitbox.Damage);
         _em.Hitstun(hitbox.HitStunDuration);
         if (_hasAI) _eai.Hitstun(hitbox.HitStunDuration);
         _em.PushEntity(new Vector2(
