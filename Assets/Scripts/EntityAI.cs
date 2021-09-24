@@ -35,6 +35,8 @@ public class EntityAI : SerializedMonoBehaviour {
     public int _behaviorQueueIndex = 0;
     private AIModuleBase currentModule;
 
+    private float entityRandomSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,8 @@ public class EntityAI : SerializedMonoBehaviour {
         if (AI.canWander) {
             currentlyWandering = true;
         }
+
+        entityRandomSpeed = Random.Range(0.90f, 1.1f);
     }
 
     // Update is called once per frame
@@ -69,7 +73,7 @@ public class EntityAI : SerializedMonoBehaviour {
             else {
                 Wander();
                 LeashCheck();
-                em.Walk(moveDirection.x);
+                em.Walk(moveDirection.x * entityRandomSpeed);
             }
         }
     }
@@ -113,7 +117,9 @@ public class EntityAI : SerializedMonoBehaviour {
         }
 
         LeashCheck();
-        em.Walk(moveDirection.x);
+        if (moveDirection.magnitude > 0.05f) {
+            em.Walk(moveDirection.x * entityRandomSpeed);
+        }
     }
 
     public void Walk(Vector2 direction) {

@@ -19,6 +19,10 @@ public class Harmable : MonoBehaviour, IHarmable {
     }
 
     public void Damage(Hitbox hitbox) {
+        if (TryGetComponent(out Inventory playerInventory)) {
+            playerInventory.WeaponDamage();
+        }
+        
         _stats.ModifyHealth(-hitbox.Damage);
         _em.Hitstun(hitbox.HitStunDuration);
         if (_hasAI) _eai.Hitstun(hitbox.HitStunDuration);

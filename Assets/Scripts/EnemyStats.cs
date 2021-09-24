@@ -38,7 +38,9 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
     void DropWeapon() {
         foreach (KeyValuePair<WeaponType, float> entry in dropTable) {
             if (Random.Range(0f, 1f) <= entry.Value) {
+                Weapon weapon = new Weapon(GameManager.Instance.WeaponData[entry.Key]);
                 GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[entry.Key], transform.position, quaternion.identity);
+                droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
                 droppedWeapon.GetComponent<EntityMovement>().PushEntity(new Vector2(0.5f, 1f));
                 
                 break;

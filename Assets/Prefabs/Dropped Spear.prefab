@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3606994850143032986}
   - component: {fileID: 2330022567615565245}
   - component: {fileID: -1744624137675491211}
-  - component: {fileID: 7705231277281594310}
   m_Layer: 13
   m_Name: Dropped Spear
   m_TagString: Untagged
@@ -117,22 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ee2d3c929d4b228f08b2e85f62de17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 7705231277281594310}
---- !u!114 &7705231277281594310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3354780359226986464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96a45dda74c5a01488fbde112557bc40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponType: 2
-  Durability: 16
-  DurabilityLostOnHit: 1
+  weapon:
+    WeaponType: 0
+    Durability: 0
+    DurabilityLostOnHit: 0
 --- !u!1 &7161652069587751660
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,6 @@ public class Inventory : SerializedMonoBehaviour {
     }
 
     public void EjectWeapon(Vector2 fling) {
-        ClearWeapons();
         Vector2 throwVector;
         
         if (fling != Vector2.zero) {
@@ -75,15 +74,21 @@ public class Inventory : SerializedMonoBehaviour {
             throwVector = new Vector2(0.25f, 1);
         }
 
-        if (weapon) {
+        if (weapon != null) {
             GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[weapon.WeaponType], transform.position, quaternion.identity);
-            droppedWeapon.GetComponent<EntityMovement>().PushEntity(new Vector2(0.5f, 1f));
+            droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
+            droppedWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
         }
         
+        ClearWeapons();
+    }
+
+    public void WeaponDamage() {
+        weapon.Durability -= weapon.DurabilityLostOnHit;
     }
 
     public void DurabilityCheck() {
-        if (weapon && weapon.Durability <= 0) {
+        if (weapon != null && weapon.Durability <= 0) {
             ClearWeapons();
         }
     }
@@ -98,6 +103,7 @@ public class Inventory : SerializedMonoBehaviour {
     public void SetWeapon(Weapon weaponSet) {
         ClearWeapons();
         weaponObjects[weaponSet.WeaponType].SetActive(true);
+        currentWeaponType = weaponSet.WeaponType;
         weapon = weaponSet;
         animator.SetInteger("WeaponID", (int)weaponSet.WeaponType);
     }

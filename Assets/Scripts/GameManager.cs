@@ -7,7 +7,8 @@ using Sirenix.Serialization;
 using UnityEngine;
 
 public class GameManager : SerializedMonoBehaviour {
-    
+
+    public Dictionary<WeaponType, WeaponObject> WeaponData;
     public Dictionary<WeaponType, GameObject> WeaponDrops;
 
     private static GameManager _instance;
