@@ -51,6 +51,9 @@ TagManager:
   - name: Particle Effects
     uniqueID: 1539328543
     locked: 0
+  - name: UI
+    uniqueID: 3234088197
+    locked: 0
   - name: Entities
     uniqueID: 3538583819
     locked: 0
