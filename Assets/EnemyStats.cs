@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Assets.Scripts.Components;
 using Assets.Scripts.Types.Enums;
 using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyStats : SerializedMonoBehaviour, IStats {
     public float health;
@@ -36,7 +38,9 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
     void DropWeapon() {
         foreach (KeyValuePair<WeaponType, float> entry in dropTable) {
             if (Random.Range(0f, 1f) <= entry.Value) {
-                //Spawn weapon entity using dictionary stored in GameObject
+                GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[entry.Key], transform.position, quaternion.identity);
+                droppedWeapon.GetComponent<EntityMovement>().PushEntity(new Vector2(0.5f, 1f));
+                
                 break;
             }
         }
