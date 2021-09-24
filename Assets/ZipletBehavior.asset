@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc897044f50147e79f0d0d00ce11e8b0, type: 3}
+  m_Name: ZipletBehavior
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  canFly: 0
+  hurtsOnTouch: 0
+  canWander: 1
+  behaviorCycle:
+  - index: 0
+    action: 1
+    time: 0
+    roamWhileWaiting: 0
+    plusOnBlock: 0
+    airAttack: 0
+    chargeDistance: 0
+    retreatDistance: 0
+    runSpeed: 1
+    stopDistance: 2
+  - index: 1
+    action: 2
+    time: 3
+    roamWhileWaiting: 0
+    plusOnBlock: 0
+    airAttack: 0
+    chargeDistance: 0
+    retreatDistance: 0
+    runSpeed: 0
+    stopDistance: 0
