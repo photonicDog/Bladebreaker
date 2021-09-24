@@ -275,17 +275,17 @@ public class EntityMovement : MonoBehaviour {
         float topY = _coll.bounds.max.y + velocity.y;
         float sizeX = _coll.bounds.size.x;
         float sizeY = _coll.bounds.size.y;
-        float rayDistance = 2f;
+        float rayDistance = _verticalCollisionRange;
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D platformClipRightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
         RaycastHit2D platformClipLeftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
         Physics2D.queriesStartInColliders = false;
 
-        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, terrain);
-        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, terrain);
-        RaycastHit2D leftPlatRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, platform);
-        RaycastHit2D rightPlatRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, platform);
+        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, _verticalCollisionRange, terrain);
+        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, _verticalCollisionRange, terrain);
+        RaycastHit2D leftPlatRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, _verticalCollisionRange, platform);
+        RaycastHit2D rightPlatRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, _verticalCollisionRange, platform);
 
         RaycastHit2D leftHeadRay = Physics2D.Raycast(new Vector2(leftXBound, centerY - 0.25f), Vector2.up, sizeY/2, terrain);
         RaycastHit2D rightHeadRay = Physics2D.Raycast(new Vector2(rightXBound, centerY - 0.25f), Vector2.up, sizeY/2, terrain);
@@ -293,8 +293,8 @@ public class EntityMovement : MonoBehaviour {
         _leftplatRay = leftPlatRay;
         _rightplatRay = rightPlatRay;
 
-        Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down * rayDistance, Color.red, 0f);
-        Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down * rayDistance, Color.red, 0f);
+        Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down * _verticalCollisionRange, Color.red, 0f);
+        Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down * _verticalCollisionRange, Color.red, 0f);
         Debug.DrawRay(new Vector3(leftXBound + 0.25f, bottomY + 0.25f), Vector2.up * sizeY/2, Color.green, 0f);
         Debug.DrawRay(new Vector3(rightXBound - 0.25f, bottomY + 0.25f), Vector2.up * sizeY/2, Color.green, 0f);
         Debug.DrawRay(new Vector3(leftXBound + 0.25f, centerY - 0.25f), Vector2.up * sizeY/2, Color.blue, 0f);
