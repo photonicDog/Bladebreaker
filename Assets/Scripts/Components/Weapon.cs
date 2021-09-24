@@ -1,8 +1,10 @@
+using System;
 using Assets.Scripts.Types.Enums;
 using UnityEngine;
 
 namespace Assets.Scripts.Components
 {
+    [Serializable]
     public class Weapon : MonoBehaviour
     {
         [Header("Weapon")]

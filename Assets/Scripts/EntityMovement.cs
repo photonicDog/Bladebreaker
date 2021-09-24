@@ -75,8 +75,6 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        Vector3 groundComp = Vector3.zero;
-        Vector3 wallComp = Vector3.zero;
         _frameVelocity = new Vector2(0, 0);
 
         if (!midair)
@@ -119,8 +117,8 @@ public class EntityMovement : MonoBehaviour {
 
         transform.position = _newPos;
 
-        groundComp = FloorRaycast();
-        wallComp = WallRaycast();
+        Vector3 groundComp = FloorRaycast();
+        Vector3 wallComp = WallRaycast();
 
         transform.position += groundComp + wallComp;
     }
@@ -230,9 +228,10 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private Vector3 FloorRaycast() {
-        float leftXBound = _coll.bounds.min.x + _colliderWidthOffset + velocity.x;
-        float rightXBound = _coll.bounds.max.x - _colliderWidthOffset + velocity.x;
-        float bottomY = _coll.bounds.center.y + velocity.y;
+        Bounds bounds = _coll.bounds;
+        float leftXBound = bounds.min.x + _colliderWidthOffset + velocity.x;
+        float rightXBound = bounds.max.x - _colliderWidthOffset + velocity.x;
+        float bottomY = bounds.center.y + velocity.y;
         float rayDistance = _verticalCollisionRange;
 
         RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY), Vector2.down, rayDistance, terrain);
@@ -261,11 +260,12 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private Vector2 WallRaycast() {
-        float bottomBound = _coll.bounds.min.y + 0.25f + velocity.y;
-        float topBound = _coll.bounds.max.y - 0.25f + velocity.y;
-        float leftX = _coll.bounds.min.x + velocity.x;
-        float rightX = _coll.bounds.max.x + velocity.x;
-        float rayDistance = Math.Max(_coll.bounds.size.x, _horizontalCollisionRange);
+        Bounds bounds = _coll.bounds;
+        float bottomBound = bounds.min.y + 0.25f + velocity.y;
+        float topBound = bounds.max.y - 0.25f + velocity.y;
+        float leftX = bounds.min.x + velocity.x;
+        float rightX = bounds.max.x + velocity.x;
+        float rayDistance = Math.Max(bounds.size.x, _horizontalCollisionRange);
         
         Debug.DrawRay(new Vector3(rightX, bottomBound), Vector3.left*rayDistance, Color.blue, 0f);
         Debug.DrawRay(new Vector3(leftX, bottomBound), Vector3.right*rayDistance, Color.blue, 0f);

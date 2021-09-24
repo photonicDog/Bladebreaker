@@ -19,8 +19,8 @@ TagManager:
   - PlayerHitbox
   - EnemyHitbox
   - Enemy
-  - 
-  - 
+  - Pickup
+  - ZeroViolence
   - 
   - 
   - 

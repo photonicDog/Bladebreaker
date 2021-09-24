@@ -5,19 +5,24 @@ using UnityEngine.InputSystem;
 
 public class EntityInput : MonoBehaviour {
     private EntityMovement _em;
+    private Inventory _inventory;
 
-    public bool _dashStart;
-    public bool _dashConfirm;
+    private bool _dashStart;
+    private bool _dashConfirm;
 
-    // Start is called before the first frame update
+    private Vector2 currentMoveInput;
+    
     void Awake() {
         _em = GetComponent<EntityMovement>();
+        _inventory = GetComponent<Inventory>();
     }
     
     public void Walk(InputAction.CallbackContext context) {
+        currentMoveInput = new Vector2(context.ReadValue<float>(), currentMoveInput.y);
         if (context.canceled) {
+            currentMoveInput = new Vector2(0, currentMoveInput.y);
             _em.Stop();
-            if ((!_dashStart||_dashConfirm)) {
+            if (!_dashStart||_dashConfirm) {
                 _dashStart = false;
                 _dashConfirm = false;
             }
@@ -38,6 +43,22 @@ public class EntityInput : MonoBehaviour {
             }
         }
     }
+    
+    public void LookUp(InputAction.CallbackContext context) {
+        if (context.started) {
+            currentMoveInput = new Vector2(currentMoveInput.x, 1);
+        } else if (context.canceled) {
+            currentMoveInput = new Vector2(currentMoveInput.y, 0);
+        }
+    }
+
+    public void LookDown(InputAction.CallbackContext context) {
+        if (context.started) {
+            currentMoveInput = new Vector2(currentMoveInput.x, -1);
+        } else if (context.canceled) {
+            currentMoveInput = new Vector2(currentMoveInput.y, 0);
+        }
+    }
 
     public void Jump(InputAction.CallbackContext context) {
         if (context.started) _em.Jump();
@@ -53,8 +74,8 @@ public class EntityInput : MonoBehaviour {
         }
     }
 
-    public void Attack() {
-        
+    public void Select(InputAction.CallbackContext context) {
+        if (context.started) _inventory.SelectLogic(currentMoveInput);
     }
     
     IEnumerator DashCheck() {
