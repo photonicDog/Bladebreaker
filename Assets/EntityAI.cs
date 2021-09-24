@@ -91,6 +91,10 @@ public class EntityAI : SerializedMonoBehaviour {
     }
     
     void PlayerDetectedBehavior() {
+        if (!logicEnabled) {
+            moveDirection = Vector2.zero;
+            return;
+        }
         if (currentModule == null) {
             currentModule = AI.behaviorCycle[_behaviorQueueIndex].Build();
             currentModule.Start(this);
@@ -136,5 +140,16 @@ public class EntityAI : SerializedMonoBehaviour {
     
     void FlyWander() {
         
+    }
+
+    public void Hitstun(float time) {
+        moveDirection = Vector2.zero;
+        logicEnabled = false;
+        StartCoroutine(HitstunTimer(time));
+    }
+
+    IEnumerator HitstunTimer(float time) {
+        yield return new WaitForSeconds(time);
+        logicEnabled = true;
     }
 }

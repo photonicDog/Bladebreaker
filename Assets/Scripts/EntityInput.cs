@@ -45,7 +45,12 @@ public class EntityInput : MonoBehaviour {
     }
 
     public void FastFall(InputAction.CallbackContext context) {
-        if (context.started) _em.FastFall();
+        if (context.started) {
+            _em.FastFall();
+            _em.downHeld = true;
+        } else if (context.canceled) {
+            _em.downHeld = false;
+        }
     }
 
     public void Attack() {

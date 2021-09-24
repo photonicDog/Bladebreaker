@@ -16,9 +16,9 @@ TagManager:
   - Platform
   - Player
   - Debug
-  - 
-  - 
-  - 
+  - PlayerHitbox
+  - EnemyHitbox
+  - Enemy
   - 
   - 
   - 

@@ -12,6 +12,6 @@ namespace Assets.Scripts.Components
         public float VerticalKnockback;
 
         [Header("Hit Stun")]
-        public byte HitStunDuration;
+        public float HitStunDuration;
     }
 }

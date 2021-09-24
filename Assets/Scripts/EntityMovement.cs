@@ -48,9 +48,11 @@ public class EntityMovement : MonoBehaviour {
     public bool jump = false;
     public bool fastfall = false;
     public bool sprint = false;
+    public bool downHeld = false;
 
     public bool attackFreeze = false;
     public bool antigravity = false;
+    public bool hitstun;
 
     private LayerMask terrain;
     private LayerMask platform;
@@ -210,11 +212,11 @@ public class EntityMovement : MonoBehaviour {
 
     private IEnumerator FastfallCoroutine()
     {
-        for(int i = 0; i < _fastfallFrameDelay; i++)
-        {
+        for(int i = 0; i < _fastfallFrameDelay; i++) {
+            if (!downHeld) break;
             yield return new WaitForEndOfFrame();
         }
-        if (midair)
+        if (midair && downHeld)
         {
             fastfall = true;
         }
@@ -319,6 +321,17 @@ public class EntityMovement : MonoBehaviour {
         velocity.y = lift;
     }
 
+    public void Hitstun(float time) {
+        velocity = Vector2.zero;
+        hitstun = true;
+        StartCoroutine(HitstunTimer(time));
+    }
+
+    IEnumerator HitstunTimer(float time) {
+        yield return new WaitForSeconds(time);
+        hitstun = false;
+    }
+
     private Vector2 VelocityLimit(Vector2 input, float limit) {
         if (Mathf.Abs(input.x) > limit) {
             return new Vector2(Mathf.Sign(input.x) * limit, input.y);
@@ -329,6 +342,7 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Walk(float input) {
+        if (hitstun) return;
         walk = true;
         _walkInput = input;
         int sign = Math.Sign(input);
@@ -338,6 +352,7 @@ public class EntityMovement : MonoBehaviour {
     }
     
     public void Sprint(float input) {
+        if (hitstun) return;
         _walkInput = input*_sprintMod;
         int sign = Math.Sign(input);
         if (sign != 0) {
@@ -347,12 +362,14 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Dash() {
+        if (hitstun) return;
         if (!midair) {
             dash = true; 
         }
     }
 
     public void Jump() {
+        if (hitstun) return;
         if (_hasJump) {
             jump = true;
         }
@@ -363,6 +380,7 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void FastFall() {
+        if (hitstun) return;
         if (midair) {
             StartCoroutine(FastfallCoroutine());
         }

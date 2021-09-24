@@ -20,7 +20,7 @@ namespace AIModules {
         public override void Do() {
             _entityAI.Attack();
 
-            if ((playerTransform.position - _entityAI.transform.position).magnitude < attackRange) {
+            if ((playerTransform.position - _entityAI.transform.position).magnitude > attackRange) {
                 End();
             }
         }

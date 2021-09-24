@@ -21,6 +21,10 @@ public class EntityAnimation : MonoBehaviour {
     private static readonly int DownAnim = Animator.StringToHash("DownHeld");
     private static readonly int GroundAnim = Animator.StringToHash("Grounded");
 
+    [SerializeField] private bool canJump;
+    [SerializeField] private bool canDash;
+    [SerializeField] private bool canSprint;
+        
     private void Update() {
         if (_em.walk) {
             _anim.SetBool(WalkAnim, true);
@@ -28,7 +32,13 @@ public class EntityAnimation : MonoBehaviour {
         else {
             _anim.SetBool(WalkAnim, false);
         }
+        
+        if (canJump) JumpAnimations();
+        if (canDash) _anim.SetBool(DashAnim, _em.dash);
+        if (canSprint) _anim.SetBool(SprintAnim, _em.sprint);
+    }
 
+    private void JumpAnimations() {
         if (_em.midair && _em.velocity.y >= 0) {
             _anim.SetBool(JumpAnim, true);
             _anim.SetBool(FallAnim, false);
@@ -43,12 +53,6 @@ public class EntityAnimation : MonoBehaviour {
             _anim.SetBool(FallAnim, false);
             _anim.SetBool(GroundAnim, true);
         }
-        
-        _anim.SetBool(DashAnim, _em.dash);
-        _anim.SetBool(SprintAnim, _em.sprint);
-        
-        
-
     }
 
     public void Attack() {

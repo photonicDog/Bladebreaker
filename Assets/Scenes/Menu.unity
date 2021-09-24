@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 138867069}
   - component: {fileID: 138867068}
   - component: {fileID: 138867067}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Base Attack Finisher Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,10 +507,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60b1549a0c76b4e94b10900f0eb323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  HorizontalKnockback: 0
-  VerticalKnockback: 0
-  HitStunDuration: 0
+  Damage: 5
+  HorizontalKnockback: 1
+  VerticalKnockback: 1
+  HitStunDuration: 0.25
 --- !u!61 &138867068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5752,7 +5752,7 @@ GameObject:
   - component: {fileID: 276277520}
   - component: {fileID: 276277519}
   - component: {fileID: 276277518}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Base Attack Dash Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5785,10 +5785,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60b1549a0c76b4e94b10900f0eb323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  HorizontalKnockback: 0
-  VerticalKnockback: 0
-  HitStunDuration: 0
+  Damage: 5
+  HorizontalKnockback: 1
+  VerticalKnockback: 1
+  HitStunDuration: 0.25
 --- !u!61 &276277519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6011,7 +6011,8 @@ GameObject:
   - component: {fileID: 347524559}
   - component: {fileID: 347524558}
   - component: {fileID: 347524563}
-  m_Layer: 0
+  - component: {fileID: 347524564}
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6034,6 +6035,9 @@ MonoBehaviour:
   _em: {fileID: 347524559}
   _spr: {fileID: 1609552401}
   _weaponry: {fileID: 0}
+  canJump: 0
+  canDash: 0
+  canSprint: 0
 --- !u!114 &347524559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6058,7 +6062,7 @@ MonoBehaviour:
   _gravity: 0.05
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
-  _verticalCollisionRange: 1.25
+  _verticalCollisionRange: 1.15
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 0
   velocity: {x: 0, y: 0}
@@ -6072,8 +6076,10 @@ MonoBehaviour:
   jump: 0
   fastfall: 0
   sprint: 0
+  downHeld: 0
   attackFreeze: 0
   antigravity: 0
+  hitstun: 0
   leftCollide: 0
   rightCollide: 0
 --- !u!50 &347524560
@@ -6171,6 +6177,21 @@ MonoBehaviour:
   detectionRadius: 8.506077
   currentlyWandering: 0
   _behaviorQueueIndex: 0
+--- !u!114 &347524564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347524557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bcb3ba4d3c346979302c5b7d09458b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackingLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &404979700
 GameObject:
   m_ObjectHideFlags: 0
@@ -6813,7 +6834,7 @@ GameObject:
   - component: {fileID: 843076732}
   - component: {fileID: 843076731}
   - component: {fileID: 843076730}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Base Attack Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6846,10 +6867,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60b1549a0c76b4e94b10900f0eb323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  HorizontalKnockback: 0
-  VerticalKnockback: 0
-  HitStunDuration: 0
+  Damage: 5
+  HorizontalKnockback: 1
+  VerticalKnockback: 1
+  HitStunDuration: 0.25
 --- !u!61 &843076731
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7021,7 +7042,7 @@ GameObject:
   - component: {fileID: 903686153}
   - component: {fileID: 903686152}
   - component: {fileID: 903686151}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Base Attack Air Finisher Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7054,10 +7075,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60b1549a0c76b4e94b10900f0eb323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  HorizontalKnockback: 0
-  VerticalKnockback: 0
-  HitStunDuration: 0
+  Damage: 5
+  HorizontalKnockback: 1
+  VerticalKnockback: 1
+  HitStunDuration: 0.25
 --- !u!61 &903686152
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7826,7 +7847,7 @@ GameObject:
   - component: {fileID: 1358676591}
   - component: {fileID: 1358676590}
   - component: {fileID: 1358676589}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Down Air Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7859,10 +7880,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60b1549a0c76b4e94b10900f0eb323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
-  HorizontalKnockback: 0
-  VerticalKnockback: 0
-  HitStunDuration: 0
+  Damage: 5
+  HorizontalKnockback: 0.1
+  VerticalKnockback: -1
+  HitStunDuration: 0.25
 --- !u!61 &1358676590
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8040,7 +8061,7 @@ GameObject:
   - component: {fileID: 1501240012}
   - component: {fileID: 1501240011}
   - component: {fileID: 1501240010}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: Base Attack Launcher Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8073,10 +8094,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60b1549a0c76b4e94b10900f0eb323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  Damage: 5
   HorizontalKnockback: 0
-  VerticalKnockback: 0
-  HitStunDuration: 0
+  VerticalKnockback: 2
+  HitStunDuration: 0.25
 --- !u!61 &1501240011
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8817,6 +8838,9 @@ MonoBehaviour:
   _em: {fileID: 1846884201}
   _spr: {fileID: 1600531961}
   _weaponry: {fileID: 1413466344}
+  canJump: 1
+  canDash: 1
+  canSprint: 1
 --- !u!4 &1846884196
 Transform:
   m_ObjectHideFlags: 0
@@ -9082,8 +9106,10 @@ MonoBehaviour:
   jump: 0
   fastfall: 0
   sprint: 0
+  downHeld: 0
   attackFreeze: 0
   antigravity: 0
+  hitstun: 0
   leftCollide: 0
   rightCollide: 0
 --- !u!114 &1846884202
