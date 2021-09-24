@@ -5417,8 +5417,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a870ee49fb7ac74b8523cc73749a67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundSpeed: 0.013
-  _airSpeed: 0.013
+  _groundSpeed: 0.006
+  _airSpeed: 0.003
   _dashSpeed: 0.5
   _dashDistance: 3
   _jumpHeight: 0.15
@@ -5429,6 +5429,7 @@ MonoBehaviour:
   _gravity: 0.05
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
+  _verticalCollisionRange: 1.25
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 0
   velocity: {x: 0, y: 0}
@@ -5480,7 +5481,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.5, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5491,7 +5492,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.5, y: 2}
   m_EdgeRadius: 0
 --- !u!4 &347524562
 Transform:
@@ -5501,7 +5502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347524557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.35, y: -2.95, z: 0}
+  m_LocalPosition: {x: 9.8, y: 3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1609552400}
@@ -5520,8 +5521,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46ef92fda7fa964e84730827942da23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  associatedPlatform: {fileID: 0}
-  startPosition: {x: 7.368659, y: -3.4183128, z: 0}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  logicEnabled: 1
+  playerDetected: 0
+  em: {fileID: 347524559}
+  ea: {fileID: 347524558}
+  AI: {fileID: 11400000, guid: 687ec9ace76d5744fb263eb298f0dd0e, type: 2}
+  wanderRadiusCenter: {x: 12.195665, y: -2.2668533, z: 0}
+  wanderRadiusBounds: 13.05
+  leashRadiusCenter: {x: 11.190044, y: -1.0821388, z: 0}
+  leashRadiusBounds: 17.876032
+  detectionRadius: 7.956932
 --- !u!1 &414787702
 GameObject:
   m_ObjectHideFlags: 0
@@ -6298,7 +6316,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -6879,6 +6897,7 @@ MonoBehaviour:
   _gravity: 0.05
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
+  _verticalCollisionRange: 2
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 10
   velocity: {x: 0, y: 0}
@@ -7557,7 +7576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sharedProfile: {fileID: 11400000, guid: 72ea9a8bd32dc8b47b4585cd7dc82c8d, type: 2}
-  isGlobal: 1
+  isGlobal: 0
   blendDistance: 0
   weight: 1
   priority: 0

@@ -20,6 +20,7 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _maxVelocity;
 
     [SerializeField] private float _horizontalCollisionRange;
+    [SerializeField] private float _verticalCollisionRange;
     [SerializeField] private float _colliderWidthOffset;
     [SerializeField] private float _fastfallFrameDelay;
 
@@ -218,7 +219,7 @@ public class EntityMovement : MonoBehaviour {
         float leftXBound = _coll.bounds.min.x + _colliderWidthOffset + velocity.x;
         float rightXBound = _coll.bounds.max.x - _colliderWidthOffset + velocity.x;
         float bottomY = _coll.bounds.center.y + velocity.y;
-        float rayDistance = 2f;
+        float rayDistance = _verticalCollisionRange;
 
         RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY), Vector2.down, rayDistance, terrain);
         RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY), Vector2.down, rayDistance, terrain);
