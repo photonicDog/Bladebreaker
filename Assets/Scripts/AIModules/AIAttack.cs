@@ -5,7 +5,9 @@ namespace AIModules {
     public class AIAttack : AIModuleBase {
         
         private Transform playerTransform;
-        public AIAttack(float time, bool airAttack) : base(time) {
+        private float attackRange;
+        public AIAttack(float time, float attackRange) : base(time) {
+            this.attackRange = attackRange;
         }
 
         public override void Start(EntityAI _entityAI) {
@@ -17,6 +19,10 @@ namespace AIModules {
 
         public override void Do() {
             _entityAI.Attack();
+
+            if ((playerTransform.position - _entityAI.transform.position).magnitude < attackRange) {
+                End();
+            }
         }
         
         private async void WaitForEnd() {

@@ -30,18 +30,28 @@ MonoBehaviour:
     time: 0
     roamWhileWaiting: 0
     plusOnBlock: 0
-    airAttack: 0
+    attackRange: 0
     chargeDistance: 0
     retreatDistance: 0
     runSpeed: 1
     stopDistance: 2
+    conditionalType: 0
+    target: 0
+    failure: 0
+    chance: 0
+    distance: 0
   - index: 1
     action: 2
     time: 3
     roamWhileWaiting: 0
     plusOnBlock: 0
-    airAttack: 0
+    attackRange: 2.5
     chargeDistance: 0
     retreatDistance: 0
     runSpeed: 0
     stopDistance: 0
+    conditionalType: 0
+    target: 0
+    failure: 0
+    chance: 0
+    distance: 0

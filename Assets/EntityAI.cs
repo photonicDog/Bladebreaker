@@ -98,7 +98,8 @@ public class EntityAI : SerializedMonoBehaviour {
         else {
             currentModule.Do();
             if (currentModule.ended) {
-                _behaviorQueueIndex++;
+                if (currentModule.GetType() != typeof(AIModuleConditional)) 
+                    _behaviorQueueIndex++;
                 if (_behaviorQueueIndex >= AI.behaviorCycle.Count) {
                     _behaviorQueueIndex = 0;
                 }

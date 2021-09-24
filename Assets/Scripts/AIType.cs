@@ -4,5 +4,6 @@ public enum AIType {
     ATTACK,
     CHARGE,
     RETREAT,
-    GUARD
+    GUARD,
+    CONDITIONAL
 }
