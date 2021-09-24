@@ -169,6 +169,11 @@ public class EntityMovement : MonoBehaviour {
             if (!_isDashing) StartCoroutine(DashCoroutine());
         }
 
+        if (attackFreeze && sprint)
+        {
+            StartCoroutine(SprintStopIfAttackingCoroutine());
+        }
+
         if (_dashKill) {
             velocity = new Vector2(_facing * _sprintMod * _groundFriction, velocity.y);
             _dashKill = false;
@@ -213,6 +218,13 @@ public class EntityMovement : MonoBehaviour {
         {
             fastfall = true;
         }
+    }
+
+    // Stops sprint after one frame to allow dash attack that replies on sprint boolean
+    private IEnumerator SprintStopIfAttackingCoroutine()
+    {
+        yield return new WaitForEndOfFrame();
+        sprint = false;
     }
 
     private Vector3 FloorRaycast() {
@@ -294,6 +306,11 @@ public class EntityMovement : MonoBehaviour {
 
     public void PushEntity(Vector2 impulse)
     {
+        if (impulse.y > 0)
+        {
+            midair = true;
+            attackFreeze = false;
+        }
         velocity += impulse;
     }
 

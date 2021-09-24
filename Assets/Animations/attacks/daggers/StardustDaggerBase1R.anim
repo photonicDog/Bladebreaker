@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ZipletIdle
+  m_Name: StardustDaggerBase1R
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,16 +20,23 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
-    - time: 0.41666666
-      value: {fileID: -3522790190007016262, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
-    - time: 0.8333333
-      value: {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
+      value: {fileID: -7688906849008755333, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
+    - time: 0.16666667
+      value: {fileID: -7688906849008755333, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 12
+  - curve:
+    - time: 0
+      value: {fileID: 7073014614876618329, guid: 45980ee209b535d4cb2503e44a3f216a, type: 3}
+    - time: 0.16666667
+      value: {fileID: 7073014614876618329, guid: 45980ee209b535d4cb2503e44a3f216a, type: 3}
+    attribute: m_Sprite
+    path: Daggers
+    classID: 212
+    script: {fileID: 0}
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -43,16 +50,24 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+    - serializedVersion: 2
+      path: 4185523253
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
-    - {fileID: -3522790190007016262, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
-    - {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
+    - {fileID: -7688906849008755333, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
+    - {fileID: -7688906849008755333, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
+    - {fileID: 7073014614876618329, guid: 45980ee209b535d4cb2503e44a3f216a, type: 3}
+    - {fileID: 7073014614876618329, guid: 45980ee209b535d4cb2503e44a3f216a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.9166666
+    m_StopTime: 0.18333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
