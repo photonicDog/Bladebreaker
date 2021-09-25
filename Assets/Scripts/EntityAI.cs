@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AIModules;
+using Assets.Scripts.Components;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +12,7 @@ public class EntityAI : SerializedMonoBehaviour {
     public bool playerDetected;
     public EntityMovement em;
     public EntityAnimation ea;
+    public Harmable harm;
     
     private Vector3 startPosition;
     public AIBehavior AI;
@@ -26,11 +28,11 @@ public class EntityAI : SerializedMonoBehaviour {
 
     public bool currentlyWandering;
 
-
     private Vector2 moveDirection = Vector2.left;
     private bool leashBounded;
 
     private GameObject player;
+    private Harmable playerHarm;
 
     public int _behaviorQueueIndex = 0;
     private AIModuleBase currentModule;
@@ -41,6 +43,7 @@ public class EntityAI : SerializedMonoBehaviour {
     void Start()
     {
         player = GameObject.FindWithTag("Player");
+        playerHarm = player.GetComponent<Harmable>();
 
         if (AI.canWander) {
             currentlyWandering = true;
@@ -104,16 +107,21 @@ public class EntityAI : SerializedMonoBehaviour {
             currentModule.Start(this);
         }
         else {
-            currentModule.Do();
             if (currentModule.ended) {
-                if (currentModule.GetType() != typeof(AIModuleConditional)) 
+                if (currentModule.GetType().BaseType != typeof(AIModuleConditional)) 
                     _behaviorQueueIndex++;
                 if (_behaviorQueueIndex >= AI.behaviorCycle.Count) {
                     _behaviorQueueIndex = 0;
                 }
                 
+                Debug.Log(name + " AI set to " + _behaviorQueueIndex);
+                
                 currentModule = null;
             }
+            else {
+                currentModule.Do();
+            }
+
         }
 
         LeashCheck();
@@ -141,6 +149,19 @@ public class EntityAI : SerializedMonoBehaviour {
         }
         if (transform.position.x < wanderRadiusCenter.x - wanderRadiusBounds/2) {
             moveDirection = new Vector2(Mathf.Abs(moveDirection.x), moveDirection.y);
+        }
+    }
+
+    public void TryDamage(Harmable input, Hitbox hitbox) {
+        if (currentModule.GetType() == typeof(AIGuard)) {
+            //TODO: Guard effect
+            ((AIGuard) currentModule).GuardHit();
+            playerHarm.Damage(0, 1f, 0.5f, 0.5f, this.transform);
+            
+        } else
+        {
+            ea.Hurt();
+            input.Damage(hitbox);
         }
     }
     

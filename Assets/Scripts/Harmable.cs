@@ -19,23 +19,31 @@ public class Harmable : MonoBehaviour, IHarmable {
     }
 
     public void Damage(Hitbox hitbox) {
+        Damage(hitbox.Damage, 
+            hitbox.HitStunDuration, 
+            hitbox.HorizontalKnockback, 
+            hitbox.VerticalKnockback, 
+            hitbox.transform.parent.transform);
+    }
+
+    public void Damage(byte Damage, float HitStunDuration, float HorizontalKnockback, float VerticalKnockback, Transform source) {
         if (TryGetComponent(out Inventory playerInventory)) {
             playerInventory.WeaponDamage();
         }
         
-        _stats.ModifyHealth(-hitbox.Damage);
-        _em.Hitstun(hitbox.HitStunDuration);
-        if (_hasAI) _eai.Hitstun(hitbox.HitStunDuration);
+        _stats.ModifyHealth(-Damage);
+        _em.Hitstun(HitStunDuration);
+        if (_hasAI) _eai.Hitstun(HitStunDuration);
         _em.PushEntity(new Vector2(
-            hitbox.HorizontalKnockback * Mathf.Sign(hitbox.transform.parent.transform.localScale.x), 
-            hitbox.VerticalKnockback));
+            HorizontalKnockback * Mathf.Sign(source.localScale.x), 
+            VerticalKnockback));
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (attackingLayer == (attackingLayer | (1 << other.gameObject.layer))) {
             Hitbox hitbox;
             if (other.gameObject.TryGetComponent(out hitbox)) {
-                Damage(hitbox);
+                if (_hasAI) _eai.TryDamage(this, hitbox);
             }
         }
     }

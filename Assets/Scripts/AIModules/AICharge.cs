@@ -1,10 +1,23 @@
+using UnityEngine;
+
 namespace AIModules {
     public class AICharge : AIModuleBase {
-        public AICharge(float time, float chargeDistance) : base(time) {
+        private EntityMovement _em;
+        private EntityAnimation _ea;
+        private float chargeDistanceX;
+        private float chargeDistanceY;
+        
+        public AICharge(float time, float chargeDistanceX, float chargeDistanceY) : base(time) {
+            this.chargeDistanceX = chargeDistanceX;
+            this.chargeDistanceY = chargeDistanceY;
         }
 
         public override void Start(EntityAI _entityAI) {
-            throw new System.NotImplementedException();
+            _em = _entityAI.GetComponent<EntityMovement>();
+            _ea = _entityAI.GetComponent<EntityAnimation>();
+            
+            _em.PushEntity(new Vector2(chargeDistanceX * _em._facing, chargeDistanceY));
+            End();
         }
 
         public override void Do() {
@@ -12,7 +25,7 @@ namespace AIModules {
         }
 
         public override void End() {
-            throw new System.NotImplementedException();
+            ended = true;
         }
     }
 }

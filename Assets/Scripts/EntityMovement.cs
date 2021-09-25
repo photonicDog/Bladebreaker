@@ -391,4 +391,9 @@ public class EntityMovement : MonoBehaviour {
         _walkInput = 0;
         sprint = false;
     }
+
+    public void FullStop() {
+        Stop();
+        velocity = Vector2.zero;
+    }
 }

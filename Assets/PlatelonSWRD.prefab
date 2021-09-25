@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4269948961361772372}
   - component: {fileID: 2725640073866405045}
   m_Layer: 12
-  m_Name: Ziplet
+  m_Name: PlatelonSWRD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25, y: -1.5}
+  m_Offset: {x: -0.052666664, y: -0.7495029}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -62,7 +62,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.25, y: 2}
+  m_Size: {x: 2.1966724, y: 3.5009942}
   m_EdgeRadius: 0
 --- !u!50 &4269948961361772368
 Rigidbody2D:
@@ -236,19 +236,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
+      Data: 0
     - Name: 
       Entry: 13
       Data: 
@@ -283,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4269948962256789647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.6, y: 3.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4269948961361772370}
@@ -329,7 +317,7 @@ SpriteRenderer:
   m_SortingLayerID: -756383477
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
+  m_Sprite: {fileID: -8945316169431815176, guid: 58f90facad67d0843abc76727b23cf27, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -350,7 +338,7 @@ Animator:
   m_GameObject: {fileID: 4269948962256789647}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 801fe13c00919c34f8fd5469259394e7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 712e74035d588214db7f93860a4f4eab, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

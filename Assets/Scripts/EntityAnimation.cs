@@ -20,6 +20,10 @@ public class EntityAnimation : MonoBehaviour {
     private static readonly int UpAnim = Animator.StringToHash("UpHeld");
     private static readonly int DownAnim = Animator.StringToHash("DownHeld");
     private static readonly int GroundAnim = Animator.StringToHash("Grounded");
+    private static readonly int GuardAnim = Animator.StringToHash("Guard");
+    private static readonly int LungeAnim = Animator.StringToHash("Lunge");
+    private static readonly int HurtAnim = Animator.StringToHash("Hurt");
+    private static readonly int StunAnim = Animator.StringToHash("Stun");
 
     [SerializeField] private bool canJump;
     [SerializeField] private bool canDash;
@@ -61,6 +65,27 @@ public class EntityAnimation : MonoBehaviour {
 
     public void Look(bool up, bool press) {
         _anim.SetBool(up?UpAnim:DownAnim, press);
+    }
+
+    public void Guard(bool active) {
+        _anim.SetBool(GuardAnim, active);
+    }
+    
+    public void Lunge(bool active) {
+        _anim.SetTrigger(LungeAnim);
+    }
+    
+    public void Hurt() {
+        _anim.SetTrigger(HurtAnim);
+        Stun(true);
+    }
+    
+    public void StopHurt() {
+        Stun(false);
+    }
+
+    public void Stun(bool active) {
+        _anim.SetBool(StunAnim, active);
     }
 
     public void SetFlip(bool flip) {

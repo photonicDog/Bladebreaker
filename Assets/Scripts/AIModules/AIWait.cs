@@ -11,6 +11,8 @@ namespace AIModules {
 
         public override void Start(EntityAI _entityAI) {
             this._entityAI = _entityAI;
+            _entityAI.Stop();
+            _entityAI.em.FullStop();
             WaitForEnd();
         }
 
@@ -23,7 +25,7 @@ namespace AIModules {
         private async void WaitForEnd() {
             float ctime = Time.realtimeSinceStartup;
 
-            while (ctime + 3f > Time.realtimeSinceStartup) {
+            while (ctime + time > Time.realtimeSinceStartup) {
                 await Task.Yield();
             }
 

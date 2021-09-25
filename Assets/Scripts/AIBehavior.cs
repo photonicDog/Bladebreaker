@@ -11,5 +11,5 @@ using UnityEngine;
         [Header("Wander")]
         public bool canWander;
 
-        [Header("Behavior Lists")] public List<AIAction> behaviorCycle;
+        [Header("Behavior Lists")] [ListDrawerSettings(ShowIndexLabels = true)] public List<AIAction> behaviorCycle;
     }
