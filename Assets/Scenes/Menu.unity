@@ -7111,11 +7111,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4269948961361772370, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.15637
+      value: 40.18
       objectReference: {fileID: 0}
     - target: {fileID: 4269948961361772370, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.556316
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4269948961361772370, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7157,6 +7157,34 @@ PrefabInstance:
       propertyPath: harm
       value: 
       objectReference: {fileID: 616661251}
+    - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
+      propertyPath: detectionRadius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
+      propertyPath: leashRadiusBounds
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
+      propertyPath: wanderRadiusBounds
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
+      propertyPath: leashRadiusCenter.x
+      value: 39.65226
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
+      propertyPath: leashRadiusCenter.y
+      value: 1.1441224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
+      propertyPath: wanderRadiusCenter.x
+      value: 40.47753
+      objectReference: {fileID: 0}
+    - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
+      propertyPath: wanderRadiusCenter.y
+      value: -0.84819055
+      objectReference: {fileID: 0}
     - target: {fileID: 4269948961361772371, guid: e031ac863c8472d40b0d914d3f24048b, type: 3}
       propertyPath: serializationData.Prefab
       value: 
