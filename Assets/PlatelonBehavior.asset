@@ -15,132 +15,148 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: behaviorCycle
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[AIModules.AIModuleBase, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 1|AIModules.AIWalk, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: runSpeed
+      Entry: 4
+      Data: 1
+    - Name: stopDistance
+      Entry: 4
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|AIModules.AIIfChance, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 2
+    - Name: failure
+      Entry: 3
+      Data: 3
+    - Name: chance
+      Entry: 4
+      Data: 0.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|AIModules.AIGuard, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 2
+    - Name: ended
+      Entry: 5
+      Data: true
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: target
+      Entry: 3
+      Data: 3
+    - Name: failure
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|AIModules.AIAttack, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 1
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: attackRange
+      Entry: 4
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|AIModules.AICharge, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: chargeDistanceX
+      Entry: 4
+      Data: -0.5
+    - Name: chargeDistanceY
+      Entry: 4
+      Data: 0.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|AIModules.AIRetreat, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: retreatDistance
+      Entry: 4
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   canFly: 0
   canWander: 1
-  behaviorCycle:
-  - action: 1
-    time: 0
-    roamWhileWaiting: 0
-    attackRange: 0
-    chargeDistanceX: 0
-    chargeDistanceY: 0
-    retreatDistance: 0
-    runSpeed: 1
-    stopDistance: 4
-    conditionalType: 0
-    target: 0
-    failure: 0
-    chance: 0
-    distance: 0
-    plusOnBlock: 0
-  - action: 5
-    time: 0
-    roamWhileWaiting: 0
-    attackRange: 0
-    chargeDistanceX: 0
-    chargeDistanceY: 0
-    retreatDistance: 0
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 1
-    target: 2
-    failure: 4
-    chance: 0.5
-    distance: 0
-    plusOnBlock: 0
-  - action: 5
-    time: 1
-    roamWhileWaiting: 0
-    attackRange: 0
-    chargeDistanceX: 0
-    chargeDistanceY: 0
-    retreatDistance: 0
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 3
-    target: 4
-    failure: 0
-    chance: 0
-    distance: 0
-    plusOnBlock: 1
-  - action: 5
-    time: 0
-    roamWhileWaiting: 0
-    attackRange: 0
-    chargeDistanceX: 0
-    chargeDistanceY: 0
-    retreatDistance: 0
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 0
-    target: 6
-    failure: 0
-    chance: 0
-    distance: 0
-    plusOnBlock: 0
-  - action: 2
-    time: 1
-    roamWhileWaiting: 0
-    attackRange: 2
-    chargeDistanceX: 0
-    chargeDistanceY: 0
-    retreatDistance: 0
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 0
-    target: 0
-    failure: 0
-    chance: 0
-    distance: 0
-    plusOnBlock: 0
-  - action: 0
-    time: 1
-    roamWhileWaiting: 0
-    attackRange: 0
-    chargeDistanceX: 0
-    chargeDistanceY: 0
-    retreatDistance: 0
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 0
-    target: 0
-    failure: 0
-    chance: 0
-    distance: 0
-    plusOnBlock: 0
-  - action: 3
-    time: 0
-    roamWhileWaiting: 0
-    attackRange: 0
-    chargeDistanceX: -0.5
-    chargeDistanceY: 0.5
-    retreatDistance: 0
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 0
-    target: 0
-    failure: 0
-    chance: 0
-    distance: 0
-    plusOnBlock: 0
-  - action: 4
-    time: 0
-    roamWhileWaiting: 0
-    attackRange: 0
-    chargeDistanceX: 0
-    chargeDistanceY: 0
-    retreatDistance: 3
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 0
-    target: 0
-    failure: 0
-    chance: 0
-    distance: 0
-    plusOnBlock: 0
