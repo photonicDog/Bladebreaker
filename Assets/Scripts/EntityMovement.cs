@@ -329,6 +329,7 @@ public class EntityMovement : MonoBehaviour {
 
     IEnumerator HitstunTimer(float time) {
         yield return new WaitForSeconds(time);
+        _animation.StopHurt();
         hitstun = false;
     }
 

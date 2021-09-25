@@ -32,6 +32,7 @@ public class Harmable : MonoBehaviour, IHarmable {
         }
         
         _stats.ModifyHealth(-Damage);
+        _ea.Hurt();
         _em.Hitstun(HitStunDuration);
         if (_hasAI) _eai.Hitstun(HitStunDuration);
         _em.PushEntity(new Vector2(
