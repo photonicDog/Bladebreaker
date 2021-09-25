@@ -25,6 +25,8 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _colliderWidthOffset;
     [SerializeField] private float _fastfallFrameDelay;
 
+    [SerializeField] private bool _freeMove;
+    
     private RaycastHit2D _leftplatRay;
     private RaycastHit2D _rightplatRay;
 
