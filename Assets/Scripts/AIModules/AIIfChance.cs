@@ -1,13 +1,11 @@
-using UnityEngine;
+using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+using Random = UnityEngine.Random;
 
 namespace AIModules {
     public class AIIfChance : AIModuleConditional {
-        private int failure;
-        private float chance;
-        public AIIfChance(float time, int target, int failure, float chance) : base(time, target) {
-            this.failure = failure;
-            this.chance = chance;
-        }
+        [NonSerialized, OdinSerialize][ShowInInspector] private float chance;
         public override void Start(EntityAI _entityAI) {
             
             if (Random.Range(0f, 1f) < chance) {

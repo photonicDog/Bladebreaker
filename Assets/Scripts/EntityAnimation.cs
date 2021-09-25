@@ -88,6 +88,16 @@ public class EntityAnimation : MonoBehaviour {
         _anim.SetBool(StunAnim, active);
     }
 
+    public void SpoofDash(float time) {
+        if (canDash) StartCoroutine(DashCoroutine(time));
+    }
+
+    IEnumerator DashCoroutine(float time) {
+        _anim.SetBool(DashAnim, true);
+        yield return new WaitForSeconds(time);
+        _anim.SetBool(DashAnim, false);
+    }
+
     public void SetFlip(bool flip) {
         _spr.flipX = flip;
         if (_weaponry) _weaponry.transform.localScale = new Vector3(flip?-1:1, 1, 1);

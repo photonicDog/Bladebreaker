@@ -1,20 +1,21 @@
+using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace AIModules {
+    [Serializable]
     public class AICharge : AIModuleBase {
         private EntityMovement _em;
         private EntityAnimation _ea;
-        private float chargeDistanceX;
-        private float chargeDistanceY;
-        
-        public AICharge(float time, float chargeDistanceX, float chargeDistanceY) : base(time) {
-            this.chargeDistanceX = chargeDistanceX;
-            this.chargeDistanceY = chargeDistanceY;
-        }
+        [NonSerialized, OdinSerialize][ShowInInspector] private float chargeDistanceX;
+        [NonSerialized, OdinSerialize][ShowInInspector] private float chargeDistanceY;
 
         public override void Start(EntityAI _entityAI) {
             _em = _entityAI.GetComponent<EntityMovement>();
             _ea = _entityAI.GetComponent<EntityAnimation>();
+
+            _ea.SpoofDash(time);
             
             _em.PushEntity(new Vector2(chargeDistanceX * _em._facing, chargeDistanceY));
             End();

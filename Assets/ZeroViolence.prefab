@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4269948961361772372}
   - component: {fileID: 2725640073866405045}
   m_Layer: 12
-  m_Name: PlatelonSWRD
+  m_Name: ZeroViolence
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,13 +105,14 @@ MonoBehaviour:
   _sprintMod: 1.28
   _jumpDecay: 0.06
   _groundFriction: 0.12
-  _airResistance: 0.12
+  _airResistance: 0
   _gravity: 0.05
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
-  _verticalCollisionRange: 1.15
+  _verticalCollisionRange: 2
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 0
+  _freeMove: 0
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
   _animation: {fileID: 4269948961361772366}
@@ -145,8 +146,8 @@ MonoBehaviour:
   _em: {fileID: 4269948961361772367}
   _spr: {fileID: 4269948962256789649}
   _weaponry: {fileID: 0}
-  canJump: 0
-  canDash: 0
+  canJump: 1
+  canDash: 1
   canSprint: 0
 --- !u!114 &4269948961361772371
 MonoBehaviour:
@@ -174,12 +175,12 @@ MonoBehaviour:
   em: {fileID: 4269948961361772367}
   ea: {fileID: 4269948961361772366}
   harm: {fileID: 4269948961361772372}
-  AI: {fileID: 11400000, guid: 890735b02d96311419c1eeafa2027a8a, type: 2}
+  AI: {fileID: 11400000, guid: 759d389bb0faa6549abcb75278ae9194, type: 2}
   wanderRadiusCenter: {x: 0, y: 0, z: 0}
   wanderRadiusBounds: 0
-  leashRadiusCenter: {x: 0, y: 0, z: 0}
-  leashRadiusBounds: 0
-  detectionRadius: 0
+  leashRadiusCenter: {x: 32.79412, y: 0.5914426, z: 0}
+  leashRadiusBounds: 40
+  detectionRadius: 18.89
   currentlyWandering: 0
   _behaviorQueueIndex: 0
 --- !u!114 &4269948961361772372
@@ -244,7 +245,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  health: 10
+  health: 50
 --- !u!1 &4269948962256789647
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4269948962256789647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.18, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4269948961361772370}
@@ -318,7 +319,7 @@ SpriteRenderer:
   m_SortingLayerID: -756383477
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -8945316169431815176, guid: 58f90facad67d0843abc76727b23cf27, type: 3}
+  m_Sprite: {fileID: 6764495640266641749, guid: a029713f8dccf3f449b6406b98ed6fb0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -339,7 +340,7 @@ Animator:
   m_GameObject: {fileID: 4269948962256789647}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 712e74035d588214db7f93860a4f4eab, type: 2}
+  m_Controller: {fileID: 9100000, guid: de393a777c090164c833dc4b1a4581da, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
