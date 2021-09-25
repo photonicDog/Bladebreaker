@@ -6,6 +6,7 @@ namespace Assets.Scripts.Types.Enums
         Silver,
         Gold,
         Insane,
-        Overdrive
+        Overdrive,
+        None
     }
 }

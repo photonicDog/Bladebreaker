@@ -65,5 +65,10 @@ namespace Assets.Scripts.Controllers.UI
             StopAllCoroutines();
             _currentSize = 0;
         }
+
+        public bool IsMeterEmpty()
+        {
+            return _currentSize <= 0;
+        }
     }
 }
