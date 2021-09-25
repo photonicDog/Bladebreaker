@@ -5,9 +5,6 @@ namespace AIModules {
     public class AIGuard : AIModuleConditional {
         private int target;
         private bool guardHit;
-        public AIGuard(float time, int target, bool plusOnBlock) : base(time, target) {
-            this.target = target;
-        }
 
         private Transform playerTransform;
         
@@ -44,7 +41,7 @@ namespace AIModules {
 
         public override void End() {
             _entityAI.ea.Guard(false);
-            if (!guardHit) _entityAI._behaviorQueueIndex++;
+            if (!guardHit) _entityAI._behaviorQueueIndex = failure;
             ended = true;
         }
     }

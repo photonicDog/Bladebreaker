@@ -1,14 +1,16 @@
+using System;
 using System.Threading.Tasks;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace AIModules {
+    
+    [Serializable]
     public class AIAttack : AIModuleBase {
         
         private Transform playerTransform;
-        private float attackRange;
-        public AIAttack(float time, float attackRange) : base(time) {
-            this.attackRange = attackRange;
-        }
+        [NonSerialized, OdinSerialize][ShowInInspector] private float attackRange;
 
         public override void Start(EntityAI _entityAI) {
             this._entityAI = _entityAI;
@@ -28,7 +30,7 @@ namespace AIModules {
         private async void WaitForEnd() {
             float ctime = Time.realtimeSinceStartup;
 
-            while (ctime + 3f > Time.realtimeSinceStartup) {
+            while (ctime + time > Time.realtimeSinceStartup) {
                 await Task.Yield();
             }
 

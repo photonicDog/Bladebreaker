@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using AIModules;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AIBehavior", menuName = "AI", order = 0)]
@@ -10,6 +13,6 @@ using UnityEngine;
 
         [Header("Wander")]
         public bool canWander;
-
-        [Header("Behavior Lists")] [ListDrawerSettings(ShowIndexLabels = true)] public List<AIAction> behaviorCycle;
+        
+        [NonSerialized, OdinSerialize] [Header("Behavior Lists NEW")] [ListDrawerSettings(ShowIndexLabels = true)] public List<AIModuleBase> behaviorCycle;
     }

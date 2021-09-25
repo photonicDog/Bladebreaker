@@ -1,13 +1,13 @@
+using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace AIModules {
     public class AIRetreat : AIModuleBase {
-        private float retreatDistance;
+        [NonSerialized, OdinSerialize][ShowInInspector] private float retreatDistance;
         
         private Transform playerTransform;
-        public AIRetreat(float time, float retreatDistance) : base(time) {
-            this.retreatDistance = retreatDistance;
-        }
 
         public override void Start(EntityAI _entityAI) {
             this._entityAI = _entityAI;

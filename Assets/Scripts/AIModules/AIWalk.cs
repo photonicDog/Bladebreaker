@@ -1,15 +1,14 @@
+using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace AIModules {
     public class AIWalk : AIModuleBase {
-        private float runSpeed;
-        private float stopDistance;
+        [NonSerialized, OdinSerialize][ShowInInspector] private float runSpeed;
+        [NonSerialized, OdinSerialize][ShowInInspector] private float stopDistance;
 
         private Transform playerTransform;
-        public AIWalk(float time, float runSpeed, float stopDistance) : base(time) {
-            this.runSpeed = runSpeed;
-            this.stopDistance = stopDistance;
-        }
 
         public override void Start(EntityAI _entityAI) {
             this._entityAI = _entityAI;

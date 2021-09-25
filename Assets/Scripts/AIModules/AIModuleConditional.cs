@@ -1,8 +1,12 @@
+using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
+
 namespace AIModules {
+    [Serializable]
     public abstract class AIModuleConditional : AIModuleBase {
-        protected int target;
-        protected AIModuleConditional(float time, int target) : base(time) {
-            this.target = target;
-        }
+
+        [NonSerialized, OdinSerialize][ShowInInspector] protected int target;
+        [NonSerialized, OdinSerialize][ShowInInspector] protected int failure;
     }
 }

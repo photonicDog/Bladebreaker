@@ -36,6 +36,7 @@ public class EntityAI : SerializedMonoBehaviour {
 
     public int _behaviorQueueIndex = 0;
     private AIModuleBase currentModule;
+    private List<AIModuleBase> modules;
 
     private float entityRandomSpeed;
 
@@ -44,6 +45,7 @@ public class EntityAI : SerializedMonoBehaviour {
     {
         player = GameObject.FindWithTag("Player");
         playerHarm = player.GetComponent<Harmable>();
+        modules = new List<AIModuleBase>(AI.behaviorCycle);
 
         if (AI.canWander) {
             currentlyWandering = true;
@@ -63,7 +65,7 @@ public class EntityAI : SerializedMonoBehaviour {
             PlayerDetectedBehavior();
         }
 
-        if (Vector2.Distance(player.transform.position, transform.position) < detectionRadius/2) {
+        if (Vector2.Distance(player.transform.position, transform.position) < detectionRadius) {
             playerDetected = true;
         }
     }
@@ -102,8 +104,10 @@ public class EntityAI : SerializedMonoBehaviour {
             moveDirection = Vector2.zero;
             return;
         }
+
+        em._facing = 1 * (int)Mathf.Sign((player.transform.position - transform.position).x);
         if (currentModule == null) {
-            currentModule = AI.behaviorCycle[_behaviorQueueIndex].Build();
+            currentModule = modules[_behaviorQueueIndex];
             currentModule.Start(this);
         }
         else {
@@ -114,8 +118,8 @@ public class EntityAI : SerializedMonoBehaviour {
                     _behaviorQueueIndex = 0;
                 }
                 
-                Debug.Log(name + " AI set to " + _behaviorQueueIndex);
-                
+                Debug.Log(name + " AI set to " + modules[_behaviorQueueIndex].GetType());
+                currentModule.ended = false;
                 currentModule = null;
             }
             else {

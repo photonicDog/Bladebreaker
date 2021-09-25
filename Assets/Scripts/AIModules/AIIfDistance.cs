@@ -1,16 +1,14 @@
+using System;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace AIModules {
     public class AIIfDistance : AIModuleConditional {
-        private int failure;
-        private float distance;
+        [NonSerialized, OdinSerialize][ShowInInspector] private float distance;
 
         private Transform playerTransform;
-
-        public AIIfDistance(float time, int target, int failure, float distance) : base(time, target) {
-            this.failure = failure;
-            this.distance = distance;
-        }
+        
         public override void Start(EntityAI _entityAI) {
             playerTransform = GameObject.FindWithTag("Player").transform;
 

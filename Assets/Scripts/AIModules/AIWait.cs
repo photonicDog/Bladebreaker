@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using System.Threading.Tasks;
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using UnityEngine;
 
 namespace AIModules {
     public class AIWait : AIModuleBase {
-        private bool roamWhileWaiting;
-        public AIWait(float time, bool roamWhileWaiting) : base(time) {
-            this.roamWhileWaiting = roamWhileWaiting;
-        }
-
+        [NonSerialized, OdinSerialize][ShowInInspector] private bool roamWhileWaiting;
         public override void Start(EntityAI _entityAI) {
             this._entityAI = _entityAI;
             _entityAI.Stop();
-            _entityAI.em.FullStop();
+            //_entityAI.em.FullStop();
             WaitForEnd();
         }
 
