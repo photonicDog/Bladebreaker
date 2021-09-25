@@ -8,6 +8,7 @@
         Hammer,
         Scythe,
         Shotgun,
-        Revolver
+        Revolver,
+        None
     }
 }
