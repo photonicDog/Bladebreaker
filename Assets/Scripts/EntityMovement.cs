@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -51,6 +52,7 @@ public class EntityMovement : MonoBehaviour {
     public bool downHeld = false;
 
     public bool attackFreeze = false;
+    [ShowInInspector] private bool _attackFreezeEnd = false;
     public bool antigravity = false;
     public bool hitstun;
 
@@ -115,6 +117,10 @@ public class EntityMovement : MonoBehaviour {
             _newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
         }
 
+        if (attackFreeze) {
+            _attackFreezeEnd = true;
+        }
+
         transform.position = _newPos;
 
         Vector3 groundComp = FloorRaycast();
@@ -128,7 +134,7 @@ public class EntityMovement : MonoBehaviour {
             _frameVelocity += (Vector2.down * _gravity);
         }
 
-        if (!attackFreeze)
+        if (!attackFreeze || !_attackFreezeEnd)
             _frameVelocity += new Vector2(_walkInput * _airSpeed, 0);
 
         if (jump) {
@@ -225,6 +231,7 @@ public class EntityMovement : MonoBehaviour {
     {
         yield return new WaitForEndOfFrame();
         sprint = false;
+        walk = true;
     }
 
     private Vector3 FloorRaycast() {
@@ -388,6 +395,7 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Stop() {
+        _attackFreezeEnd = false;
         walk = false;
         _walkInput = 0;
         sprint = false;

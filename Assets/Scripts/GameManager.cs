@@ -11,6 +11,11 @@ public class GameManager : SerializedMonoBehaviour {
     public Dictionary<WeaponType, WeaponObject> WeaponData;
     public Dictionary<WeaponType, GameObject> WeaponDrops;
 
+    public List<Checkpoint> checkpoints;
+    public int checkpointMarker;
+
+    public IStats playerStats;
+
     private static GameManager _instance;
     public static GameManager Instance {
         get { return _instance; }
