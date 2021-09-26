@@ -13,6 +13,7 @@ namespace AIModules {
         [NonSerialized, OdinSerialize][ShowInInspector] private float attackRange;
 
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             this._entityAI = _entityAI;
             playerTransform = GameObject.FindWithTag("Player").transform;
             WaitForEnd();
@@ -22,7 +23,7 @@ namespace AIModules {
         public override void Do() {
             _entityAI.Attack();
 
-            if ((playerTransform.position - _entityAI.transform.position).magnitude > attackRange) {
+            if (Mathf.Abs(playerTransform.position.x - _entityAI.transform.position.x) > attackRange) {
                 End();
             }
         }
@@ -33,7 +34,7 @@ namespace AIModules {
             while (ctime + time > Time.realtimeSinceStartup) {
                 await Task.Yield();
             }
-
+            
             End();
         }
 

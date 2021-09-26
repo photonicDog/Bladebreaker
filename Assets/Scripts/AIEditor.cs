@@ -12,24 +12,24 @@ using UnityEngine;
             
             //Wander
             Handles.color = Color.magenta;
-            Handles.DrawWireCube(myObj.wanderRadiusCenter, Vector3.one*myObj.wanderRadiusBounds);
-            Handles.PositionHandle(myObj.wanderRadiusCenter, quaternion.identity);
+            Handles.DrawWireCube(myObj.wanderRadiusCenterOffset + objTransform.position, Vector3.one*myObj.wanderRadiusBounds);
             myObj.wanderRadiusBounds = Handles.ScaleSlider(myObj.wanderRadiusBounds, 
-                myObj.wanderRadiusCenter,
+                myObj.wanderRadiusCenterOffset + objTransform.position,
                 Vector3.right, 
                 Quaternion.identity, 
                 4f, 0.25f);
-            myObj.wanderRadiusCenter = Handles.DoPositionHandle(myObj.wanderRadiusCenter, quaternion.identity);
+            myObj.wanderRadiusCenterOffset = Handles.PositionHandle(myObj.wanderRadiusCenterOffset + objTransform.position, Quaternion.identity) - objTransform.position;
+
 
             Handles.color = Color.red;
-            Handles.DrawWireCube(myObj.leashRadiusCenter, Vector3.one*myObj.leashRadiusBounds);
-            Handles.PositionHandle(myObj.leashRadiusCenter, quaternion.identity);
+            Handles.DrawWireCube(myObj.leashRadiusCenterOffset + objTransform.position, Vector3.one*myObj.leashRadiusBounds);
             myObj.leashRadiusBounds = Handles.ScaleSlider(myObj.leashRadiusBounds, 
-                myObj.leashRadiusCenter,
+                myObj.leashRadiusCenterOffset + objTransform.position,
                 Vector3.right, 
                 Quaternion.identity, 
                 4f, 0.25f);
-            myObj.leashRadiusCenter = Handles.DoPositionHandle(myObj.leashRadiusCenter, quaternion.identity);
+            myObj.leashRadiusCenterOffset = Handles.DoPositionHandle(myObj.leashRadiusCenterOffset + objTransform.position, quaternion.identity) - objTransform.position;
+
             
             Handles.color = Color.green;
             Handles.DrawWireDisc(objTransform.position, Vector3.forward, myObj.detectionRadius);

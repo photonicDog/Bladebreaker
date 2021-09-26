@@ -1,0 +1,262 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc897044f50147e79f0d0d00ce11e8b0, type: 3}
+  m_Name: BronklerBehavior
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 0}
+    - {fileID: 0}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: behaviorCycle
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[AIModules.AIModuleBase, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 11
+    - Name: 
+      Entry: 7
+      Data: 1|AIModules.AIIfDistance, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 1
+    - Name: failure
+      Entry: 3
+      Data: 7
+    - Name: distance
+      Entry: 4
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|AIModules.AIWalk, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: runSpeed
+      Entry: 4
+      Data: 1
+    - Name: stopDistance
+      Entry: 4
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|AIModules.AIWait, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0.2
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: roamWhileWaiting
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|AIModules.AIAttack, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0.25
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: attackRange
+      Entry: 4
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|AIModules.AIWait, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0.4
+    - Name: ended
+      Entry: 5
+      Data: true
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: roamWhileWaiting
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|AIModules.AIJump, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: jumpDistanceX
+      Entry: 4
+      Data: -0.6
+    - Name: jumpDistanceY
+      Entry: 4
+      Data: 0.05
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|AIModules.AIGoto, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 0
+    - Name: failure
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|AIModules.AIIfChance, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 6
+    - Name: failure
+      Entry: 3
+      Data: 1
+    - Name: chance
+      Entry: 4
+      Data: 0.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 9|AIModules.AICharge, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 4
+    - Name: ended
+      Entry: 5
+      Data: true
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: attackRange
+      Entry: 4
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 10|AIModules.AIWait, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 1
+    - Name: ended
+      Entry: 5
+      Data: true
+    - Name: _entityAI
+      Entry: 10
+      Data: 1
+    - Name: roamWhileWaiting
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 11|AIModules.AIJump, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: jumpDistanceX
+      Entry: 4
+      Data: -0.4
+    - Name: jumpDistanceY
+      Entry: 4
+      Data: 0.05
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  canFly: 0
+  canWander: 1

@@ -10,6 +10,7 @@ namespace AIModules {
         private Transform playerTransform;
 
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             this._entityAI = _entityAI;
             playerTransform = GameObject.FindWithTag("Player").transform;
             _entityAI.Walk(Vector2.zero);

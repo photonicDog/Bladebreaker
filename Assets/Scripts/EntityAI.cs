@@ -18,13 +18,15 @@ public class EntityAI : SerializedMonoBehaviour {
     public AIBehavior AI;
     
     [Header("AI Parameters")]
-    public Vector3 wanderRadiusCenter;
+    [HideInInspector] public Vector3 wanderRadiusCenter;
+    public Vector3 wanderRadiusCenterOffset;
     public float wanderRadiusBounds;
     
-    public Vector3 leashRadiusCenter;
+    [HideInInspector] public Vector3 leashRadiusCenter;
+    public Vector3 leashRadiusCenterOffset;
     public float leashRadiusBounds;
 
-    public float detectionRadius;
+    public float detectionRadius = 5;
 
     public bool currentlyWandering;
 
@@ -43,6 +45,8 @@ public class EntityAI : SerializedMonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
+        leashRadiusCenter = leashRadiusCenterOffset + transform.position;
+        wanderRadiusCenter = wanderRadiusCenterOffset + transform.position;
         player = GameObject.FindWithTag("Player");
         playerHarm = player.GetComponent<Harmable>();
         modules = new List<AIModuleBase>(AI.behaviorCycle);

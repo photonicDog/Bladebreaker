@@ -10,6 +10,7 @@ namespace AIModules {
         private Transform playerTransform;
         
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             playerTransform = GameObject.FindWithTag("Player").transform;
 
             float currentDistance = (_entityAI.transform.position - playerTransform.position).magnitude;

@@ -16,6 +16,7 @@ namespace AIModules {
         [NonSerialized, OdinSerialize][ShowInInspector] private float jumpDistanceY;
 
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             _em = _entityAI.GetComponent<EntityMovement>();
             _ea = _entityAI.GetComponent<EntityAnimation>();
 

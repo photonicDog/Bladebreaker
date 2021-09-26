@@ -9,6 +9,7 @@ namespace AIModules {
         private Transform playerTransform;
         
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             this._entityAI = _entityAI;
             playerTransform = GameObject.FindWithTag("Player").transform;
             _entityAI.Stop();
@@ -40,8 +41,10 @@ namespace AIModules {
         }
 
         public override void End() {
-            _entityAI.ea.Guard(false);
-            if (!guardHit) _entityAI._behaviorQueueIndex = failure;
+            if (_entityAI) {
+                _entityAI.ea.Guard(false);
+                if (!guardHit) _entityAI._behaviorQueueIndex = failure;
+            }
             ended = true;
         }
     }

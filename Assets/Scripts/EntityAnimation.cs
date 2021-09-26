@@ -71,7 +71,7 @@ public class EntityAnimation : MonoBehaviour {
         _anim.SetBool(GuardAnim, active);
     }
     
-    public void Lunge(bool active) {
+    public void Lunge() {
         _anim.SetTrigger(LungeAnim);
     }
     

@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -8,21 +9,43 @@ namespace AIModules {
     public class AICharge : AIModuleBase {
         private EntityMovement _em;
         private EntityAnimation _ea;
-        [NonSerialized, OdinSerialize][ShowInInspector] private float chargeDistanceX;
-        [NonSerialized, OdinSerialize][ShowInInspector] private float chargeDistanceY;
+
+        private bool _attacking;
+        private EntityAI _entityAI;
+        
+        private Transform playerTransform;
+        [NonSerialized, OdinSerialize][ShowInInspector] private float attackRange;
 
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             _em = _entityAI.GetComponent<EntityMovement>();
             _ea = _entityAI.GetComponent<EntityAnimation>();
+            this._entityAI = _entityAI;
 
-            _ea.SpoofDash(time);
+            playerTransform = GameObject.FindWithTag("Player").transform;
             
-            _em.PushEntity(new Vector2(chargeDistanceX * _em._facing, chargeDistanceY));
-            End();
+            WaitForEnd();
         }
 
         public override void Do() {
-            throw new System.NotImplementedException();
+            Vector2 playerVector = (playerTransform.position - _entityAI.transform.position);
+            if (Mathf.Abs(playerVector.x) < attackRange && Mathf.Abs(playerVector.y) < attackRange) {
+                _ea.Lunge();
+                End();
+            }
+            
+            _entityAI.Walk(playerVector.normalized * 2);
+        }
+        
+        private async void WaitForEnd() {
+            float ctime = Time.realtimeSinceStartup;
+
+            while (ctime + time > Time.realtimeSinceStartup) {
+                if (_attacking) break;
+                await Task.Yield();
+            }
+
+            if (!_attacking) End();
         }
 
         public override void End() {
