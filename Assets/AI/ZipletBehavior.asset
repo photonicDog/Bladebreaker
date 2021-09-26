@@ -15,7 +15,8 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 0}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -38,8 +39,8 @@ MonoBehaviour:
       Entry: 5
       Data: false
     - Name: _entityAI
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: runSpeed
       Entry: 4
       Data: 1
@@ -54,16 +55,16 @@ MonoBehaviour:
       Data: 2|AIModules.AIAttack, Assembly-CSharp
     - Name: time
       Entry: 4
-      Data: 0
+      Data: 0.4
     - Name: ended
       Entry: 5
       Data: false
     - Name: _entityAI
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: attackRange
       Entry: 4
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 8
       Data: 

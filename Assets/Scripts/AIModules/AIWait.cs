@@ -9,6 +9,7 @@ namespace AIModules {
     public class AIWait : AIModuleBase {
         [NonSerialized, OdinSerialize][ShowInInspector] private bool roamWhileWaiting;
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             this._entityAI = _entityAI;
             _entityAI.Stop();
             //_entityAI.em.FullStop();

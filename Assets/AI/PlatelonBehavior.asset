@@ -91,7 +91,7 @@ MonoBehaviour:
       Data: 3
     - Name: failure
       Entry: 3
-      Data: 5
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -100,37 +100,34 @@ MonoBehaviour:
       Data: 4|AIModules.AIAttack, Assembly-CSharp
     - Name: time
       Entry: 4
-      Data: 1
+      Data: 0.5
     - Name: ended
       Entry: 5
       Data: false
     - Name: _entityAI
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 0
     - Name: attackRange
       Entry: 4
-      Data: 4
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 5|AIModules.AICharge, Assembly-CSharp
+      Data: 5|AIModules.AIWait, Assembly-CSharp
     - Name: time
       Entry: 4
-      Data: 0
+      Data: 0.5
     - Name: ended
       Entry: 5
       Data: false
     - Name: _entityAI
-      Entry: 6
-      Data: 
-    - Name: chargeDistanceX
-      Entry: 4
-      Data: -0.5
-    - Name: chargeDistanceY
-      Entry: 4
-      Data: 0.5
+      Entry: 10
+      Data: 0
+    - Name: roamWhileWaiting
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
@@ -148,7 +145,7 @@ MonoBehaviour:
       Data: 0
     - Name: retreatDistance
       Entry: 4
-      Data: 6
+      Data: 8
     - Name: 
       Entry: 8
       Data: 

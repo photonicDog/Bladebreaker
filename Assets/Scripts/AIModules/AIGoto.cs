@@ -5,6 +5,7 @@ namespace AIModules {
 
 
         public override void Start(EntityAI _entityAI) {
+            ended = false;
             _entityAI._behaviorQueueIndex = target;
             End();
         }
