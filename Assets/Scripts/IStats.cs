@@ -1,4 +1,4 @@
 public interface IStats {
-        public void ModifyHealth(byte modify); 
+        public void ModifyHealth(int modify); 
         void Die();
 }

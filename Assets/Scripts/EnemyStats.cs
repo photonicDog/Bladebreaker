@@ -25,7 +25,7 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
         }
     }
 
-    public void ModifyHealth(byte modify) {
+    public void ModifyHealth(int modify) {
         health += modify;
     }
 
