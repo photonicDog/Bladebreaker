@@ -42,14 +42,22 @@ public class FightRoom : MonoBehaviour {
         wallParent.SetActive(enable);
     }
 
+    public void Complete() {
+        End();
+        endTime = Time.realtimeSinceStartupAsDouble;
+        completionSpeed = endTime - startTime;
+        //TODO: Send to score based on optimalCompletionSpeed
+    }
+
     public void End()
     {
         _camera.UnlockCamera();
         Walls(false);
-        endTime = Time.realtimeSinceStartupAsDouble;
         choreographer.EndChoreography();
+    }
 
-        completionSpeed = endTime - startTime;
-        //TODO: Send to score based on optimalCompletionSpeed
+    public void Reset() {
+        End();
+        activated = false;
     }
 }

@@ -24,10 +24,12 @@ public class EntityAnimation : MonoBehaviour {
     private static readonly int LungeAnim = Animator.StringToHash("Lunge");
     private static readonly int HurtAnim = Animator.StringToHash("Hurt");
     private static readonly int StunAnim = Animator.StringToHash("Stun");
+    private static readonly int DieAnim = Animator.StringToHash("Die");
 
     [SerializeField] private bool canJump;
     [SerializeField] private bool canDash;
     [SerializeField] private bool canSprint;
+    [SerializeField] private bool canDie;
         
     private void Update() {
         if (_em.walk) {
@@ -90,6 +92,10 @@ public class EntityAnimation : MonoBehaviour {
 
     public void SpoofDash(float time) {
         if (canDash) StartCoroutine(DashCoroutine(time));
+    }
+
+    public void Die() {
+        if (canDie) _anim.SetTrigger(DieAnim);
     }
 
     IEnumerator DashCoroutine(float time) {

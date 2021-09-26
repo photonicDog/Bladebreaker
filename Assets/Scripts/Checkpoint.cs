@@ -15,6 +15,6 @@ public class Checkpoint : MonoBehaviour
     }
 
     public void TeleportToCheckpoint() {
-        //GameManager.Instance.playerStats.transform.position = this.transform.position;
+        GameManager.Instance.player.transform.position = transform.position;
     }
 }

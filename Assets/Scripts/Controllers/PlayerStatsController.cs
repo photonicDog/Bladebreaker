@@ -31,10 +31,12 @@ namespace Assets.Scripts.Controllers
         private RankingController _rankingController;
         private SaveDataManager _saveDataManager;
         private float _levelStartTime;
+        private EntityAnimation _ea;
 
         void Awake()
         {
             _inventory = GetComponent<Inventory>();
+            _ea = GetComponent<EntityAnimation>();
             _weapon = _inventory.currentWeaponType;
             _levelStartTime = Time.realtimeSinceStartup;
             Secrets = new int[3] { 0, 0, 0 };
@@ -158,8 +160,8 @@ namespace Assets.Scripts.Controllers
             }
         }
 
-        public void Die()
-        {
+        public void Die() {
+            _ea.Die();
             Deaths += 1;
             _uiController.LoseAllHealth();
             if (Lives - 1 < 0)
@@ -169,7 +171,7 @@ namespace Assets.Scripts.Controllers
             {
                 Lives -= 1;
                 _uiController.LoseLife();
-                //TODO: Reset to checkpoint
+                GameManager.Instance.DieAndReset();
             }
         }
 
