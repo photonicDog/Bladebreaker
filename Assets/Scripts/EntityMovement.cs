@@ -66,8 +66,6 @@ public class EntityMovement : MonoBehaviour {
     public bool antigravity = false;
     public bool hitstun;
 
-    public bool attackFreeze = false;
-
     private LayerMask terrain;
     private LayerMask platform;
 
@@ -275,7 +273,6 @@ public class EntityMovement : MonoBehaviour {
         float topY = _coll.bounds.max.y + velocity.y;
         float sizeX = _coll.bounds.size.x;
         float sizeY = _coll.bounds.size.y;
-        float rayDistance = _verticalCollisionRange;
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D platformClipRightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
@@ -311,7 +308,7 @@ public class EntityMovement : MonoBehaviour {
             if (leftRay) {
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
             }
-            if (rightRay && rightRay.point.y > _coll.bounds.min.y)
+            if (rightRay)
             {
                 return new Vector2(0, (rightRay.point.y - _coll.bounds.min.y));
             }
