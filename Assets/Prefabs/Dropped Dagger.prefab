@@ -100,6 +100,8 @@ MonoBehaviour:
   fastfall: 0
   sprint: 0
   downHeld: 0
+  allowPlatformNoclip: 0
+  platformDrop: 0
   attackFreeze: 0
   antigravity: 0
   hitstun: 0
@@ -119,8 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon:
     WeaponType: 0
-    Durability: 0
-    DurabilityLostOnHit: 0
+    Durability: 255
+    DurabilityLostOnHit: 24
 --- !u!1 &7161652069587751660
 GameObject:
   m_ObjectHideFlags: 0
