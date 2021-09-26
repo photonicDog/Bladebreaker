@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4269948961361772365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.72, y: 0.45, z: 0}
+  m_LocalPosition: {x: 12.72, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4269948962256789648}
@@ -51,7 +51,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25, y: -1.5}
+  m_Offset: {x: -0.25, y: -1.0282538}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -62,7 +62,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.25, y: 2}
+  m_Size: {x: 3.25, y: 2.9434924}
   m_EdgeRadius: 0
 --- !u!50 &4269948961361772368
 Rigidbody2D:
@@ -83,7 +83,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &4269948961361772367
 MonoBehaviour:
@@ -109,7 +109,7 @@ MonoBehaviour:
   _gravity: 0.05
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
-  _verticalCollisionRange: 1.15
+  _verticalCollisionRange: 1.5
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 0
   _freeMove: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   _em: {fileID: 4269948961361772367}
   _spr: {fileID: 4269948962256789649}
   _weaponry: {fileID: 0}
-  canJump: 0
+  canJump: 1
   canDash: 0
   canSprint: 0
 --- !u!114 &4269948961361772371
@@ -175,14 +175,14 @@ MonoBehaviour:
   em: {fileID: 4269948961361772367}
   ea: {fileID: 4269948961361772366}
   harm: {fileID: 4269948961361772372}
-  AI: {fileID: 11400000, guid: 687ec9ace76d5744fb263eb298f0dd0e, type: 2}
+  AI: {fileID: 11400000, guid: b9ae8d05d66a4b648b01e740189a6f00, type: 2}
   wanderRadiusCenter: {x: 0, y: 0, z: 0}
   wanderRadiusCenterOffset: {x: 0, y: 0, z: 0}
   wanderRadiusBounds: 5
   leashRadiusCenter: {x: 0, y: 0, z: 0}
   leashRadiusCenterOffset: {x: 0, y: 0, z: 0}
   leashRadiusBounds: 8
-  detectionRadius: 5
+  detectionRadius: 12
   currentlyWandering: 0
   _behaviorQueueIndex: 0
 --- !u!114 &4269948961361772372
@@ -275,7 +275,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4269948962256789647}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.11, y: 3.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4269948961361772370}
@@ -321,9 +321,9 @@ SpriteRenderer:
   m_SortingLayerID: -756383477
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6690430328440785196, guid: e37eb8193feda6446a87f8a1287e924f, type: 3}
+  m_Sprite: {fileID: 6161844490219503334, guid: 598931330c7ab4343adfa7bbd8c55af9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}

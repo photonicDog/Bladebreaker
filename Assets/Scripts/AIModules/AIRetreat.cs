@@ -13,21 +13,23 @@ namespace AIModules {
             ended = false;
             this._entityAI = _entityAI;
             playerTransform = GameObject.FindWithTag("Player").transform;
-            _entityAI.Walk(Vector2.zero);
+            _entityAI.Stop();
         }
 
         public override void Do() {
             Vector2 playerVector = (playerTransform.position - _entityAI.transform.position);
-            if (Mathf.Abs(playerVector.x) > retreatDistance || Mathf.Abs(playerVector.y) > retreatDistance) {
+            if (Mathf.Abs(playerVector.x) > retreatDistance) {
                 End();
             }
+            
+            _entityAI.Walk(-playerVector.normalized);
             
             if (_entityAI.AI.canFly) {
                 
             }
             
             else {
-                _entityAI.Walk(-playerVector.normalized);
+                
             }
         }
 
