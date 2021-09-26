@@ -29,9 +29,6 @@ public class EntityMovement : MonoBehaviour {
     
     private RaycastHit2D _leftplatRay;
     private RaycastHit2D _rightplatRay;
-
-
-    [SerializeField] private bool _freeMove;
     
     public Vector2 velocity;
     public Vector2 _frameVelocity;
