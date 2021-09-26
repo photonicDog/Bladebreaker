@@ -11078,7 +11078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4857233470068873433, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_Points.m_Paths.Array.size
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: -4857233470068873433, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -11602,7 +11602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2617854536201204384, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_OutlineShapes.Array.size
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2617854536201204384, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_OutlineShapes.Array.data[5].m_Points.Array.size
@@ -15425,7 +15425,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496352000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.6, y: 4.19, z: 0}
+  m_LocalPosition: {x: 235.09, y: -11.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1498852124}

@@ -277,7 +277,7 @@ public class EntityMovement : MonoBehaviour {
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D platformClipRightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
-        RaycastHit2D platformChipLeftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
+        RaycastHit2D platformClipLeftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
         Physics2D.queriesStartInColliders = false;
 
         RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, terrain);
@@ -298,7 +298,7 @@ public class EntityMovement : MonoBehaviour {
         Debug.DrawRay(new Vector3(leftXBound + 0.25f, centerY - 0.25f), Vector2.up * sizeY/2, Color.blue, 0f);
         Debug.DrawRay(new Vector3(rightXBound - 0.25f, centerY - 0.25f), Vector2.up * sizeY/2, Color.blue, 0f);
 
-        allowPlatformNoclip = (platformChipLeftRay || platformClipRightRay);
+        allowPlatformNoclip = (platformClipLeftRay || platformClipRightRay) && !standingOnPlatform;
 
         if ((leftRay || rightRay) && velocity.y <= 0) {
             standingOnPlatform = false;
@@ -306,7 +306,7 @@ public class EntityMovement : MonoBehaviour {
             midair = false;
             fastfall = false;
             velocity.y = 0;
-            if (leftRay && leftRay.point.y > _coll.bounds.min.y) {
+            if (leftRay) {
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
             }
             if (rightRay && rightRay.point.y > _coll.bounds.min.y)
@@ -329,9 +329,12 @@ public class EntityMovement : MonoBehaviour {
             {
                 return new Vector2(0, (rightPlatRay.point.y - _coll.bounds.min.y));
             }
-        } else if ((leftHeadRay || rightHeadRay) && velocity.y > 0 && midair) {
+        } else if ((leftHeadRay || rightHeadRay) && velocity.y > 0 && midair)
+        {
+            standingOnPlatform = false;
             midair = true;
             velocity.y = 0;
+            return Vector2.zero;
         }
         else if (allowPlatformNoclip)
         {
@@ -339,7 +342,9 @@ public class EntityMovement : MonoBehaviour {
             midair = true;
             return Vector2.zero;
         }
-        else if (!leftRay && !rightRay) {
+        else if (!leftRay && !rightRay)
+        {
+            standingOnPlatform = false;
             midair = true;
             return Vector2.zero;
         }
