@@ -161,6 +161,7 @@ namespace Assets.Scripts.Controllers
         public void Die()
         {
             Deaths += 1;
+            _uiController.LoseAllHealth();
             if (Lives - 1 < 0)
             {
                 GameOver();

@@ -32,6 +32,9 @@ public class EntityMovement : MonoBehaviour {
     
     private RaycastHit2D _leftplatRay;
     private RaycastHit2D _rightplatRay;
+
+    private RaycastHit2D _leftRay;
+    private RaycastHit2D _rightRay;
     
     public Vector2 velocity;
     public Vector2 _frameVelocity;
@@ -59,7 +62,9 @@ public class EntityMovement : MonoBehaviour {
     public bool downHeld = false;
     public bool allowPlatformNoclip = false;
     public bool platformDrop = false;
+    public bool inGround = false;
     public bool standingOnPlatform = false;
+    public bool levelFinish;
 
     public bool attackFreeze = false;
     [ShowInInspector] private bool _attackFreezeEnd = false;
@@ -84,10 +89,17 @@ public class EntityMovement : MonoBehaviour {
         
         terrain = LayerMask.GetMask("Terrain");
         platform = LayerMask.GetMask("Platform");
+        levelFinish = false;
     }
 
     private void FixedUpdate() {
         _frameVelocity = new Vector2(0, 0);
+
+        if (levelFinish)
+        {
+            walk = true;
+            _walkInput = 1;
+        }
 
         if (!midair)
         {
@@ -142,6 +154,7 @@ public class EntityMovement : MonoBehaviour {
         }
 
         transform.position += groundComp + wallComp;
+        inGround = false;
     }
 
     private void MidairPhysics() {
@@ -304,6 +317,8 @@ public class EntityMovement : MonoBehaviour {
 
         _leftplatRay = leftPlatRay;
         _rightplatRay = rightPlatRay;
+        _leftRay = leftRay;
+        _rightRay = rightRay;
 
         Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down * _verticalCollisionRange, Color.red, 0f);
         Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down * _verticalCollisionRange, Color.red, 0f);
@@ -316,10 +331,12 @@ public class EntityMovement : MonoBehaviour {
 
         if ((leftRay || rightRay) && velocity.y <= 0) {
             standingOnPlatform = false;
+            inGround = true;
             _hasJump = true;
             midair = false;
             fastfall = false;
             velocity.y = 0;
+            inGround = (_leftRay.point.y > _coll.bounds.min.y + 0.125f || _rightRay.point.y > _coll.bounds.min.y + 0.125f);
             if (leftRay) {
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
             }
@@ -331,10 +348,12 @@ public class EntityMovement : MonoBehaviour {
         else if (((_leftplatRay && !platformDrop) || (_rightplatRay && !platformDrop)) && !allowPlatformNoclip && velocity.y <= 0)
         {
             standingOnPlatform = true;
+            inGround = true;
             _hasJump = true;
             midair = false;
             fastfall = false;
             velocity.y = 0;
+            inGround = (_leftplatRay.point.y > _coll.bounds.min.y + 0.125f || _rightplatRay.point.y > _coll.bounds.min.y + 0.125f);
             if (leftPlatRay && leftPlatRay.point.y > _coll.bounds.min.y)
             {
                 return new Vector2(0, (leftPlatRay.point.y - _coll.bounds.min.y));
@@ -383,7 +402,7 @@ public class EntityMovement : MonoBehaviour {
         RaycastHit2D topRightRay = Physics2D.Raycast(new Vector2(leftX, topBound), Vector2.right, rayDistance, terrain);
         RaycastHit2D bottomRightRay = Physics2D.Raycast(new Vector2(leftX, bottomBound), Vector2.right, rayDistance, terrain);
 
-        if (topLeftRay || bottomLeftRay) {
+        if ((topLeftRay || bottomLeftRay) && !(inGround)) {
             leftCollide = true;
             if (topLeftRay && topLeftRay.point.x > _coll.bounds.min.x) {
                 return new Vector2((topLeftRay.point.x - _coll.bounds.min.x), 0);
@@ -396,7 +415,7 @@ public class EntityMovement : MonoBehaviour {
             leftCollide = false;
         }
         
-        if (topRightRay || bottomRightRay) {
+        if ((topRightRay || bottomRightRay) && !(inGround)) {
             rightCollide = true;
             if (topRightRay && topRightRay.point.x < _coll.bounds.max.x) {
                 return new Vector2((topRightRay.point.x - _coll.bounds.max.x), 0);
@@ -453,6 +472,7 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Walk(float input) {
+        if (levelFinish) return;
         if (hitstun) {
             _defer = StartCoroutine(DeferInput(input));
             return;
@@ -473,7 +493,9 @@ public class EntityMovement : MonoBehaviour {
         Walk(input);
     }
     
-    public void Sprint(float input) {
+    public void Sprint(float input)
+    {
+        if (levelFinish) return;
         if (hitstun) return;
         _walkInput = input*_sprintMod;
         int sign = Math.Sign(input);
@@ -483,14 +505,17 @@ public class EntityMovement : MonoBehaviour {
         sprint = true;
     }
 
-    public void Dash() {
+    public void Dash()
+    {
+        if (levelFinish) return;
         if (hitstun) return;
         if (!midair) {
             dash = true; 
         }
     }
 
-    public void Jump() {
+    public void Jump()
+    {
         if (hitstun) return;
         if (_hasJump) {
             jump = true;
@@ -501,7 +526,8 @@ public class EntityMovement : MonoBehaviour {
         jump = false;
     }
 
-    public void FastFall() {
+    public void FastFall()
+    {
         if (hitstun) return;
         StartCoroutine(KeepPlatformDrop());
         if (midair) {

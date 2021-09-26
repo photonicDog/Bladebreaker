@@ -6,6 +6,8 @@ using UnityEngine;
 public class FightRoom : MonoBehaviour {
     public SpawnerChoreographer choreographer;
     public GameObject wallParent;
+    public float FocusX;
+    private PlayerCamera _camera;
 
     private double startTime;
     private double endTime;
@@ -13,7 +15,13 @@ public class FightRoom : MonoBehaviour {
 
     [HideInInspector] public double completionSpeed;
     public double optimalCompletionSpeed;
-    
+
+    private void Awake()
+    {
+        _camera = Camera.main.GetComponent<PlayerCamera>();
+        FocusX = gameObject.GetComponentInChildren<BoxCollider2D>().bounds.center.x;
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Player") && !activated) {
             Debug.Log("Fightroom active");
@@ -23,7 +31,7 @@ public class FightRoom : MonoBehaviour {
     }
 
     void Begin() {
-        //Lock camera
+        _camera.LockCameraOnTarget(FocusX, 0);
         //Fight room fx
         startTime = Time.realtimeSinceStartupAsDouble;
         Walls(true);
@@ -34,7 +42,9 @@ public class FightRoom : MonoBehaviour {
         wallParent.SetActive(enable);
     }
 
-    public void End() {
+    public void End()
+    {
+        _camera.UnlockCamera();
         Walls(false);
         endTime = Time.realtimeSinceStartupAsDouble;
         choreographer.EndChoreography();

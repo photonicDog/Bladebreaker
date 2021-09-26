@@ -47,12 +47,13 @@ namespace Assets.Scripts.Controllers.UI
 
         void FixedUpdate()
         {
-            if (_healthChange < 0)
+            if ((_healthChange < 0 && _health <= 0) || (_healthChange > 0 && _health >= _maxHealth))
             {
-                if (_health - _healthChange < 0)
-                {
-                    _healthChange = _health;
-                }
+                _healthChange = 0;
+            }
+
+            if (_healthChange < 0 && _health > 0)
+            {
 
                 List<Transform> CurrentHeart = _hearts[(int)(Math.Ceiling((float)_health / 4)) - 1];
                 CurrentHeart[_health % 4].gameObject.SetActive(false);
@@ -60,7 +61,7 @@ namespace Assets.Scripts.Controllers.UI
                 _health -= 1;
             }
 
-            if (_healthChange > 0)
+            if (_healthChange > 0 && _health < _maxHealth)
             {
                 if (_health + _healthChange > _maxHealth)
                 {
