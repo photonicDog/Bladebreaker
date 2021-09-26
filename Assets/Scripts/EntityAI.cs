@@ -69,7 +69,7 @@ public class EntityAI : SerializedMonoBehaviour {
             PlayerDetectedBehavior();
         }
 
-        if (Vector2.Distance(player.transform.position, transform.position) < detectionRadius) {
+        if (Vector2.Distance(player.transform.position, transform.position) < detectionRadius/2) {
             playerDetected = true;
         }
     }

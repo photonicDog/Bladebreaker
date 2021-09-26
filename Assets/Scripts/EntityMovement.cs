@@ -25,11 +25,10 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _colliderWidthOffset;
     [SerializeField] private float _fastfallFrameDelay;
 
+    [SerializeField] private bool _freeMove;
+    
     private RaycastHit2D _leftplatRay;
     private RaycastHit2D _rightplatRay;
-
-
-    [SerializeField] private bool _freeMove;
     
     public Vector2 velocity;
     public Vector2 _frameVelocity;
@@ -57,6 +56,7 @@ public class EntityMovement : MonoBehaviour {
     public bool downHeld = false;
     public bool allowPlatformNoclip = false;
     public bool platformDrop = false;
+    public bool standingOnPlatform = false;
 
     public bool attackFreeze = false;
     [ShowInInspector] private bool _attackFreezeEnd = false;
@@ -84,8 +84,6 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        Vector3 groundComp = Vector3.zero;
-        Vector3 wallComp = Vector3.zero;
         _frameVelocity = new Vector2(0, 0);
 
         if (!midair)
@@ -132,10 +130,10 @@ public class EntityMovement : MonoBehaviour {
 
         transform.position = _newPos;
 
-        groundComp = FloorRaycast();
-        wallComp = WallRaycast();
+        Vector3 groundComp = FloorRaycast();
+        Vector3 wallComp = WallRaycast();
 
-        if(allowPlatformNoclip)
+        if(allowPlatformNoclip && standingOnPlatform)
         {
             _hasJump = false;
         }
@@ -272,47 +270,77 @@ public class EntityMovement : MonoBehaviour {
         float topY = _coll.bounds.max.y + velocity.y;
         float sizeX = _coll.bounds.size.x;
         float sizeY = _coll.bounds.size.y;
-        float rayDistance = _verticalCollisionRange;
-        float platformHeight = 1f;
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D platformClipRightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
-        RaycastHit2D platformChipLeftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
-
-        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, terrain);
-        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, terrain);
-        RaycastHit2D leftPlatRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, platform);
-        RaycastHit2D rightPlatRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, platform);
+        RaycastHit2D platformClipLeftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
         Physics2D.queriesStartInColliders = false;
+
+        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, _verticalCollisionRange, terrain);
+        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, _verticalCollisionRange, terrain);
+        RaycastHit2D leftPlatRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, _verticalCollisionRange, platform);
+        RaycastHit2D rightPlatRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, _verticalCollisionRange, platform);
+
+        RaycastHit2D leftHeadRay = Physics2D.Raycast(new Vector2(leftXBound, centerY - 0.25f), Vector2.up, sizeY/2, terrain);
+        RaycastHit2D rightHeadRay = Physics2D.Raycast(new Vector2(rightXBound, centerY - 0.25f), Vector2.up, sizeY/2, terrain);
 
         _leftplatRay = leftPlatRay;
         _rightplatRay = rightPlatRay;
 
-        Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down*rayDistance, Color.red, 0f);
-        Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down*rayDistance, Color.red, 0f);
-        Debug.DrawRay(new Vector3(leftXBound, bottomY + 0.25f), Vector2.up * sizeY, Color.green, 0f);
-        Debug.DrawRay(new Vector3(rightXBound, bottomY + 0.25f), Vector2.up * sizeY, Color.green, 0f);
+        Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down * _verticalCollisionRange, Color.red, 0f);
+        Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down * _verticalCollisionRange, Color.red, 0f);
+        Debug.DrawRay(new Vector3(leftXBound + 0.25f, bottomY + 0.25f), Vector2.up * sizeY/2, Color.green, 0f);
+        Debug.DrawRay(new Vector3(rightXBound - 0.25f, bottomY + 0.25f), Vector2.up * sizeY/2, Color.green, 0f);
+        Debug.DrawRay(new Vector3(leftXBound + 0.25f, centerY - 0.25f), Vector2.up * sizeY/2, Color.blue, 0f);
+        Debug.DrawRay(new Vector3(rightXBound - 0.25f, centerY - 0.25f), Vector2.up * sizeY/2, Color.blue, 0f);
 
-        allowPlatformNoclip = (platformChipLeftRay || platformClipRightRay);
+        allowPlatformNoclip = (platformClipLeftRay || platformClipRightRay) && !standingOnPlatform;
 
-        if ((leftRay || rightRay || (_leftplatRay && !platformDrop) || (_rightplatRay && !platformDrop)) && !allowPlatformNoclip) {
+        if ((leftRay || rightRay) && velocity.y <= 0) {
+            standingOnPlatform = false;
             _hasJump = true;
             midair = false;
             fastfall = false;
             velocity.y = 0;
-            if (leftRay && leftRay.point.y > _coll.bounds.min.y) {
+            if (leftRay) {
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
             }
-            if (rightRay && rightRay.point.y > _coll.bounds.min.y)
+            if (rightRay)
             {
                 return new Vector2(0, (rightRay.point.y - _coll.bounds.min.y));
             }
-        } else if (allowPlatformNoclip)
+        }
+        else if (((_leftplatRay && !platformDrop) || (_rightplatRay && !platformDrop)) && !allowPlatformNoclip && velocity.y <= 0)
         {
+            standingOnPlatform = true;
+            _hasJump = true;
+            midair = false;
+            fastfall = false;
+            velocity.y = 0;
+            if (leftPlatRay && leftPlatRay.point.y > _coll.bounds.min.y)
+            {
+                return new Vector2(0, (leftPlatRay.point.y - _coll.bounds.min.y));
+            }
+            if (rightPlatRay && rightPlatRay.point.y > _coll.bounds.min.y)
+            {
+                return new Vector2(0, (rightPlatRay.point.y - _coll.bounds.min.y));
+            }
+        } else if ((leftHeadRay || rightHeadRay) && velocity.y > 0 && midair)
+        {
+            standingOnPlatform = false;
+            midair = true;
+            velocity.y = 0;
+            return Vector2.zero;
+        }
+        else if (allowPlatformNoclip)
+        {
+            standingOnPlatform = true;
             midair = true;
             return Vector2.zero;
         }
-        else if (!leftRay && !rightRay) {
+        else if (!leftRay && !rightRay)
+        {
+            standingOnPlatform = false;
             midair = true;
             return Vector2.zero;
         }
@@ -320,11 +348,12 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private Vector2 WallRaycast() {
-        float bottomBound = _coll.bounds.min.y + 0.25f + velocity.y;
-        float topBound = _coll.bounds.max.y - 0.25f + velocity.y;
-        float leftX = _coll.bounds.min.x + velocity.x;
-        float rightX = _coll.bounds.max.x + velocity.x;
-        float rayDistance = Math.Max(_coll.bounds.size.x, _horizontalCollisionRange);
+        Bounds bounds = _coll.bounds;
+        float bottomBound = bounds.min.y + 0.25f + velocity.y;
+        float topBound = bounds.max.y - 0.25f + velocity.y;
+        float leftX = bounds.min.x + velocity.x;
+        float rightX = bounds.max.x + velocity.x;
+        float rayDistance = Math.Max(bounds.size.x, _horizontalCollisionRange);
         
         //Debug.DrawRay(new Vector3(rightX, bottomBound), Vector3.left*rayDistance, Color.blue, 0f);
         //Debug.DrawRay(new Vector3(leftX, bottomBound), Vector3.right*rayDistance, Color.blue, 0f);
