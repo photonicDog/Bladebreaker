@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class EntityAttacker : MonoBehaviour {
     public EntityAnimation entityAnimation;
-    public EntityMovement entityMovement;
 
     private bool _up;
     private bool _down;

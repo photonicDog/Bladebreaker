@@ -20,7 +20,15 @@ public class EntityAnimation : MonoBehaviour {
     private static readonly int UpAnim = Animator.StringToHash("UpHeld");
     private static readonly int DownAnim = Animator.StringToHash("DownHeld");
     private static readonly int GroundAnim = Animator.StringToHash("Grounded");
+    private static readonly int GuardAnim = Animator.StringToHash("Guard");
+    private static readonly int LungeAnim = Animator.StringToHash("Lunge");
+    private static readonly int HurtAnim = Animator.StringToHash("Hurt");
+    private static readonly int StunAnim = Animator.StringToHash("Stun");
 
+    [SerializeField] private bool canJump;
+    [SerializeField] private bool canDash;
+    [SerializeField] private bool canSprint;
+        
     private void Update() {
         if (_em.walk) {
             _anim.SetBool(WalkAnim, true);
@@ -28,7 +36,13 @@ public class EntityAnimation : MonoBehaviour {
         else {
             _anim.SetBool(WalkAnim, false);
         }
+        
+        if (canJump) JumpAnimations();
+        if (canDash) _anim.SetBool(DashAnim, _em.dash);
+        if (canSprint) _anim.SetBool(SprintAnim, _em.sprint);
+    }
 
+    private void JumpAnimations() {
         if (_em.midair && _em.velocity.y >= 0) {
             _anim.SetBool(JumpAnim, true);
             _anim.SetBool(FallAnim, false);
@@ -43,12 +57,6 @@ public class EntityAnimation : MonoBehaviour {
             _anim.SetBool(FallAnim, false);
             _anim.SetBool(GroundAnim, true);
         }
-        
-        _anim.SetBool(DashAnim, _em.dash);
-        _anim.SetBool(SprintAnim, _em.sprint);
-        
-        
-
     }
 
     public void Attack() {
@@ -57,6 +65,37 @@ public class EntityAnimation : MonoBehaviour {
 
     public void Look(bool up, bool press) {
         _anim.SetBool(up?UpAnim:DownAnim, press);
+    }
+
+    public void Guard(bool active) {
+        _anim.SetBool(GuardAnim, active);
+    }
+    
+    public void Lunge() {
+        _anim.SetTrigger(LungeAnim);
+    }
+    
+    public void Hurt() {
+        _anim.SetTrigger(HurtAnim);
+        Stun(true);
+    }
+    
+    public void StopHurt() {
+        Stun(false);
+    }
+
+    public void Stun(bool active) {
+        _anim.SetBool(StunAnim, active);
+    }
+
+    public void SpoofDash(float time) {
+        if (canDash) StartCoroutine(DashCoroutine(time));
+    }
+
+    IEnumerator DashCoroutine(float time) {
+        _anim.SetBool(DashAnim, true);
+        yield return new WaitForSeconds(time);
+        _anim.SetBool(DashAnim, false);
     }
 
     public void SetFlip(bool flip) {

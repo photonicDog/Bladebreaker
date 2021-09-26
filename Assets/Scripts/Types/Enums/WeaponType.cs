@@ -3,10 +3,10 @@
     public enum WeaponType
     {
         Sword,
-        Hammer,
-        Scythe,
         Dagger,
         Spear,
+        Hammer,
+        Scythe,
         Shotgun,
         Revolver,
         None

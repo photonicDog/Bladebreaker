@@ -16,11 +16,11 @@ TagManager:
   - Platform
   - Player
   - Debug
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerHitbox
+  - EnemyHitbox
+  - Enemy
+  - Pickup
+  - ZeroViolence
   - 
   - 
   - 
@@ -51,12 +51,12 @@ TagManager:
   - name: Particle Effects
     uniqueID: 1539328543
     locked: 0
-  - name: UI
-    uniqueID: 3234088197
-    locked: 0
   - name: Entities
     uniqueID: 3538583819
     locked: 0
   - name: Debug
     uniqueID: 4062170189
+    locked: 0
+  - name: UI
+    uniqueID: 3374811063
     locked: 0

@@ -1,0 +1,208 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc897044f50147e79f0d0d00ce11e8b0, type: 3}
+  m_Name: KoldsteelAI
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 0}
+    - {fileID: 553816404321112606, guid: adb514a259c885747bcec634956d17b8, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: behaviorCycle
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[AIModules.AIModuleBase, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 8
+    - Name: 
+      Entry: 7
+      Data: 1|AIModules.AIIfDistance, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 1
+    - Name: failure
+      Entry: 3
+      Data: 3
+    - Name: distance
+      Entry: 4
+      Data: 11
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|AIModules.AIIfDistance, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 7
+    - Name: failure
+      Entry: 3
+      Data: 2
+    - Name: distance
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|AIModules.AIIfChance, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 5
+    - Name: failure
+      Entry: 3
+      Data: 3
+    - Name: chance
+      Entry: 4
+      Data: 0.5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|AIModules.AIWait, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 1
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: roamWhileWaiting
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|AIModules.AIGoto, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: target
+      Entry: 3
+      Data: 0
+    - Name: failure
+      Entry: 3
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 6|AIModules.AIJumpaPort, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0.6
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: teleportDistance
+      Entry: 4
+      Data: 3
+    - Name: puff
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|AIModules.AIAttack, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 1
+    - Name: ended
+      Entry: 5
+      Data: true
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: attackRange
+      Entry: 4
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|AIModules.AIRetreat, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 4
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: retreatDistance
+      Entry: 4
+      Data: 11
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  canFly: 0
+  canWander: 0

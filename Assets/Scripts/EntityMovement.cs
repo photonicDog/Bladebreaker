@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _maxVelocity;
 
     [SerializeField] private float _horizontalCollisionRange;
+    [SerializeField] private float _verticalCollisionRange;
     [SerializeField] private float _colliderWidthOffset;
     [SerializeField] private float _fastfallFrameDelay;
 
@@ -27,6 +29,8 @@ public class EntityMovement : MonoBehaviour {
     private RaycastHit2D _rightplatRay;
 
 
+    [SerializeField] private bool _freeMove;
+    
     public Vector2 velocity;
     public Vector2 _frameVelocity;
 
@@ -50,11 +54,14 @@ public class EntityMovement : MonoBehaviour {
     public bool jump = false;
     public bool fastfall = false;
     public bool sprint = false;
+    public bool downHeld = false;
     public bool allowPlatformNoclip = false;
     public bool platformDrop = false;
 
     public bool attackFreeze = false;
+    [ShowInInspector] private bool _attackFreezeEnd = false;
     public bool antigravity = false;
+    public bool hitstun;
 
     private LayerMask terrain;
     private LayerMask platform;
@@ -119,6 +126,10 @@ public class EntityMovement : MonoBehaviour {
             _newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
         }
 
+        if (attackFreeze) {
+            _attackFreezeEnd = true;
+        }
+
         transform.position = _newPos;
 
         groundComp = FloorRaycast();
@@ -137,7 +148,7 @@ public class EntityMovement : MonoBehaviour {
             _frameVelocity += (Vector2.down * _gravity);
         }
 
-        if (!attackFreeze)
+        if (!attackFreeze || !_attackFreezeEnd)
             _frameVelocity += new Vector2(_walkInput * _airSpeed, 0);
 
         if (jump) {
@@ -219,11 +230,11 @@ public class EntityMovement : MonoBehaviour {
 
     private IEnumerator FastfallCoroutine()
     {
-        for(int i = 0; i < _fastfallFrameDelay; i++)
-        {
+        for(int i = 0; i < _fastfallFrameDelay; i++) {
+            if (!downHeld) break;
             yield return new WaitForEndOfFrame();
         }
-        if (midair)
+        if (midair && downHeld)
         {
             fastfall = true;
         }
@@ -234,6 +245,7 @@ public class EntityMovement : MonoBehaviour {
     {
         yield return new WaitForEndOfFrame();
         sprint = false;
+        walk = true;
     }
 
     private IEnumerator KeepPlatformDrop()
@@ -260,7 +272,7 @@ public class EntityMovement : MonoBehaviour {
         float topY = _coll.bounds.max.y + velocity.y;
         float sizeX = _coll.bounds.size.x;
         float sizeY = _coll.bounds.size.y;
-        float rayDistance = 2f;
+        float rayDistance = _verticalCollisionRange;
         float platformHeight = 1f;
 
         Physics2D.queriesStartInColliders = true;
@@ -368,6 +380,18 @@ public class EntityMovement : MonoBehaviour {
         velocity.y = lift;
     }
 
+    public void Hitstun(float time) {
+        velocity = Vector2.zero;
+        hitstun = true;
+        StartCoroutine(HitstunTimer(time));
+    }
+
+    IEnumerator HitstunTimer(float time) {
+        yield return new WaitForSeconds(time);
+        _animation.StopHurt();
+        hitstun = false;
+    }
+
     private Vector2 VelocityLimit(Vector2 input, float limit) {
         if (Mathf.Abs(input.x) > limit) {
             return new Vector2(Mathf.Sign(input.x) * limit, input.y);
@@ -378,6 +402,7 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Walk(float input) {
+        if (hitstun) return;
         walk = true;
         _walkInput = input;
         int sign = Math.Sign(input);
@@ -387,6 +412,7 @@ public class EntityMovement : MonoBehaviour {
     }
     
     public void Sprint(float input) {
+        if (hitstun) return;
         _walkInput = input*_sprintMod;
         int sign = Math.Sign(input);
         if (sign != 0) {
@@ -396,12 +422,14 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Dash() {
+        if (hitstun) return;
         if (!midair) {
             dash = true; 
         }
     }
 
     public void Jump() {
+        if (hitstun) return;
         if (_hasJump) {
             jump = true;
         }
@@ -411,8 +439,8 @@ public class EntityMovement : MonoBehaviour {
         jump = false;
     }
 
-    public void FastFall()
-    {
+    public void FastFall() {
+        if (hitstun) return;
         StartCoroutine(KeepPlatformDrop());
         if (midair) {
             StartCoroutine(FastfallCoroutine());
@@ -420,8 +448,14 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Stop() {
+        _attackFreezeEnd = false;
         walk = false;
         _walkInput = 0;
         sprint = false;
+    }
+
+    public void FullStop() {
+        Stop();
+        velocity = Vector2.zero;
     }
 }
