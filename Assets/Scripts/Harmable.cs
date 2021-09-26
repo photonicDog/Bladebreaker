@@ -9,6 +9,7 @@ public class Harmable : MonoBehaviour, IHarmable {
     private EntityAI _eai;
     private IStats _stats;
     private bool _hasAI;
+    public bool iFrame = false;
 
     public LayerMask attackingLayer;
 
@@ -20,6 +21,14 @@ public class Harmable : MonoBehaviour, IHarmable {
     }
 
     public void Damage(Hitbox hitbox) {
+        if ((hitbox.Player) && hitbox.transform.parent.parent.parent.TryGetComponent(out Inventory playerInventory)) {
+//            Debug.Log("A");
+            playerInventory.WeaponDamage();
+            if (_em.midair) {
+                _em.Antigravity();
+                playerInventory.GetComponent<EntityMovement>().Antigravity();
+            }
+        }
         Damage(hitbox.Damage, 
             hitbox.HitStunDuration, 
             hitbox.HorizontalKnockback, 
@@ -28,9 +37,8 @@ public class Harmable : MonoBehaviour, IHarmable {
     }
 
     public void Damage(byte Damage, float HitStunDuration, float HorizontalKnockback, float VerticalKnockback, Transform source) {
-        if (TryGetComponent(out Inventory playerInventory)) {
-            playerInventory.WeaponDamage();
-        }
+        if (iFrame) return;
+
         
         _stats.ModifyHealth(-Damage);
         _ea.Hurt();
@@ -46,6 +54,7 @@ public class Harmable : MonoBehaviour, IHarmable {
             Hitbox hitbox;
             if (other.gameObject.TryGetComponent(out hitbox)) {
                 if (_hasAI) _eai.TryDamage(this, hitbox);
+                else _em.GetComponent<IHarmable>().Damage(hitbox);
             }
         }
     }
