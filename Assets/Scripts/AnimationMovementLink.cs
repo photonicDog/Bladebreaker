@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AnimationMovementLink : MonoBehaviour
 {
-    //TODO: add facing check to the horizontal push method so it works left and right correctly
     public EntityMovement targetScript;
 
     public void PushEntityHorizontal(float impulse) {
