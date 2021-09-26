@@ -122,7 +122,7 @@ public class EntityAI : SerializedMonoBehaviour {
                     _behaviorQueueIndex = 0;
                 }
                 
-                Debug.Log(name + " AI set to " + modules[_behaviorQueueIndex].GetType());
+//                Debug.Log(name + " AI set to " + modules[_behaviorQueueIndex].GetType());
                 currentModule.ended = false;
                 currentModule = null;
             }
@@ -161,7 +161,7 @@ public class EntityAI : SerializedMonoBehaviour {
     }
 
     public void TryDamage(Harmable input, Hitbox hitbox) {
-        if (currentModule.GetType() == typeof(AIGuard)) {
+        if (currentModule != null && currentModule.GetType() == typeof(AIGuard)) {
             //TODO: Guard effect
             ((AIGuard) currentModule).GuardHit();
             playerHarm.Damage(0, 1f, 0.5f, 0.5f, this.transform);

@@ -26,6 +26,9 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _fastfallFrameDelay;
 
     [SerializeField] private bool _freeMove;
+
+    private Coroutine _defer;
+    private Coroutine _antigrav;
     
     private RaycastHit2D _leftplatRay;
     private RaycastHit2D _rightplatRay;
@@ -238,6 +241,21 @@ public class EntityMovement : MonoBehaviour {
         }
     }
 
+    public void Antigravity() {
+        if (_antigrav == null) _antigrav = StartCoroutine(AntigravityCoroutine());
+        else {
+            StopCoroutine(_antigrav);
+            antigravity = false;
+            _antigrav = StartCoroutine(AntigravityCoroutine());
+        }
+    }
+
+    IEnumerator AntigravityCoroutine() {
+        if (velocity.y < 0) velocity = new Vector2(velocity.x, 0);
+        antigravity = true;
+        yield return new WaitForSeconds(1f);
+        antigravity = false;
+    }
     // Stops sprint after one frame to allow dash attack that replies on sprint boolean
     private IEnumerator SprintStopIfAttackingCoroutine()
     {
@@ -417,6 +435,10 @@ public class EntityMovement : MonoBehaviour {
 
     IEnumerator HitstunTimer(float time) {
         yield return new WaitForSeconds(time);
+
+        while (midair) {
+            yield return new WaitForEndOfFrame();
+        }
         _animation.StopHurt();
         hitstun = false;
     }
@@ -431,13 +453,24 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Walk(float input) {
-        if (hitstun) return;
+        if (hitstun) {
+            _defer = StartCoroutine(DeferInput(input));
+            return;
+        }
         walk = true;
         _walkInput = input;
         int sign = Math.Sign(input);
         if (sign != 0) {
             _facing = sign;
         }
+    }
+
+    IEnumerator DeferInput(float input) {
+        while (hitstun) {
+            yield return new WaitForEndOfFrame();
+        }
+
+        Walk(input);
     }
     
     public void Sprint(float input) {
@@ -477,6 +510,10 @@ public class EntityMovement : MonoBehaviour {
     }
 
     public void Stop() {
+        if (_defer != null) {
+            StopCoroutine(_defer);
+            _defer = null;
+        }
         _attackFreezeEnd = false;
         walk = false;
         _walkInput = 0;

@@ -35,11 +35,14 @@ namespace Assets.Scripts.Controllers
         void Awake()
         {
             _inventory = GetComponent<Inventory>();
-            _uiController = UIController.Instance;
-            _rankingController = RankingController.Instance;
             _weapon = _inventory.currentWeaponType;
             _levelStartTime = Time.realtimeSinceStartup;
             Secrets = new int[3] { 0, 0, 0 };
+        }
+
+        private void Start() {
+            _uiController = UIController.Instance;
+            _rankingController = RankingController.Instance;
         }
 
         void Update()

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Components;
+using Assets.Scripts.Controllers;
 using Assets.Scripts.Types.Enums;
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
@@ -18,9 +19,13 @@ public class Inventory : SerializedMonoBehaviour {
     public WeaponPickup standingOn;
 
     private LayerMask pickupLayer;
+    private PlayerStatsController _psc;
+    private EntityMovement _em;
 
     private void Awake() {
         pickupLayer = LayerMask.NameToLayer("Pickup");
+        _psc = GetComponent<PlayerStatsController>();
+        _em = GetComponent<EntityMovement>();
     }
 
     private void Update() {
@@ -52,7 +57,7 @@ public class Inventory : SerializedMonoBehaviour {
             PickUpWeapon();
         }
         else {
-            EjectWeapon(fling);
+            if (weapon != null) EjectWeapon(fling);
         }
     }
 
@@ -66,12 +71,18 @@ public class Inventory : SerializedMonoBehaviour {
 
     public void EjectWeapon(Vector2 fling) {
         Vector2 throwVector;
+        Debug.Log(fling);
+        
+        if (fling == Vector2.down && !_em.midair) {
+            EatWeapon();
+            return;
+        }
         
         if (fling != Vector2.zero) {
             throwVector = fling;
         }
         else {
-            throwVector = new Vector2(0.25f, 1);
+            throwVector = new Vector2(-0.25f * _em._facing, 0.25f);
         }
 
         if (weapon != null) {
@@ -81,6 +92,16 @@ public class Inventory : SerializedMonoBehaviour {
         }
         
         ClearWeapons();
+    }
+
+    public void EatWeapon() {
+        if (weapon.Durability == 255) {
+            _psc.GainLives(1);
+        }
+        else {
+            _psc.ModifyHealth(Mathf.CeilToInt((weapon.Durability / 255f) * 4));
+            ClearWeapons(); 
+        }
     }
 
     public void WeaponDamage() {

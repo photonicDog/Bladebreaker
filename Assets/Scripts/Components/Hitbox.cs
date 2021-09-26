@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.Components
 {
@@ -13,5 +14,12 @@ namespace Assets.Scripts.Components
 
         [Header("Hit Stun")]
         public float HitStunDuration;
+        public bool Player;
+
+        private void OnTriggerEnter2D(Collider2D other) {
+            if (Player && other.gameObject.layer == LayerMask.NameToLayer("EnemyHitbox")) {
+                other.gameObject.SetActive(false);
+            }
+        }
     }
 }

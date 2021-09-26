@@ -28,7 +28,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
       Data: 1|AIModules.AIWalk, Assembly-CSharp
@@ -43,7 +43,7 @@ MonoBehaviour:
       Data: 0
     - Name: runSpeed
       Entry: 4
-      Data: 1
+      Data: 0.6
     - Name: stopDistance
       Entry: 4
       Data: 4
@@ -52,19 +52,55 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|AIModules.AIAttack, Assembly-CSharp
+      Data: 2|AIModules.AIWait, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0.25
+    - Name: ended
+      Entry: 5
+      Data: true
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: roamWhileWaiting
+      Entry: 5
+      Data: false
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|AIModules.AIAttack, Assembly-CSharp
     - Name: time
       Entry: 4
       Data: 0.4
+    - Name: ended
+      Entry: 5
+      Data: true
+    - Name: _entityAI
+      Entry: 10
+      Data: 0
+    - Name: attackRange
+      Entry: 4
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|AIModules.AIWait, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0.25
     - Name: ended
       Entry: 5
       Data: false
     - Name: _entityAI
       Entry: 10
       Data: 0
-    - Name: attackRange
-      Entry: 4
-      Data: 5
+    - Name: roamWhileWaiting
+      Entry: 5
+      Data: false
     - Name: 
       Entry: 8
       Data: 
