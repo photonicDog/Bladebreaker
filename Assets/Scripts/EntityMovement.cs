@@ -25,6 +25,10 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _colliderWidthOffset;
     [SerializeField] private float _fastfallFrameDelay;
 
+    private RaycastHit2D _leftplatRay;
+    private RaycastHit2D _rightplatRay;
+
+
     [SerializeField] private bool _freeMove;
     
     public Vector2 velocity;
@@ -51,6 +55,8 @@ public class EntityMovement : MonoBehaviour {
     public bool fastfall = false;
     public bool sprint = false;
     public bool downHeld = false;
+    public bool allowPlatformNoclip = false;
+    public bool platformDrop = false;
 
     public bool attackFreeze = false;
     [ShowInInspector] private bool _attackFreezeEnd = false;
@@ -78,6 +84,8 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        Vector3 groundComp = Vector3.zero;
+        Vector3 wallComp = Vector3.zero;
         _frameVelocity = new Vector2(0, 0);
 
         if (!midair)
@@ -124,8 +132,13 @@ public class EntityMovement : MonoBehaviour {
 
         transform.position = _newPos;
 
-        Vector3 groundComp = FloorRaycast();
-        Vector3 wallComp = WallRaycast();
+        groundComp = FloorRaycast();
+        wallComp = WallRaycast();
+
+        if(allowPlatformNoclip)
+        {
+            _hasJump = false;
+        }
 
         transform.position += groundComp + wallComp;
     }
@@ -235,20 +248,54 @@ public class EntityMovement : MonoBehaviour {
         walk = true;
     }
 
+    private IEnumerator KeepPlatformDrop()
+    {
+        platformDrop = true;
+
+        RaycastHit2D platformDetectRay = Physics2D.Raycast(new Vector2(_coll.bounds.center.x, _coll.bounds.min.y), Vector2.down, _coll.size.y, platform);
+
+        while ((_leftplatRay || _rightplatRay) || platformDetectRay)
+        {
+            platformDetectRay = Physics2D.Raycast(new Vector2(_coll.bounds.center.x, _coll.bounds.min.y), Vector2.down, _coll.size.y, platform);
+            yield return new WaitForEndOfFrame();
+        }
+
+        platformDrop = false;
+    }
+
     private Vector3 FloorRaycast() {
-        Bounds bounds = _coll.bounds;
-        float leftXBound = bounds.min.x + _colliderWidthOffset + velocity.x;
-        float rightXBound = bounds.max.x - _colliderWidthOffset + velocity.x;
-        float bottomY = bounds.center.y + velocity.y;
+        float leftXBound = _coll.bounds.min.x + _colliderWidthOffset + velocity.x;
+        float rightXBound = _coll.bounds.max.x - _colliderWidthOffset + velocity.x;
+        float midXBound = _coll.bounds.center.x + velocity.x;
+        float bottomY = _coll.bounds.min.y + velocity.y;
+        float centerY = _coll.bounds.center.y + velocity.y;
+        float topY = _coll.bounds.max.y + velocity.y;
+        float sizeX = _coll.bounds.size.x;
+        float sizeY = _coll.bounds.size.y;
         float rayDistance = _verticalCollisionRange;
+        float platformHeight = 1f;
 
-        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY), Vector2.down, rayDistance, terrain);
-        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY), Vector2.down, rayDistance, terrain);
+        Physics2D.queriesStartInColliders = true;
+        RaycastHit2D platformClipRightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
+        RaycastHit2D platformChipLeftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
 
-        Debug.DrawRay(new Vector3(leftXBound, bottomY), Vector3.down*rayDistance, Color.red, 0f);
-        Debug.DrawRay(new Vector3(rightXBound, bottomY), Vector3.down*rayDistance, Color.red, 0f);
+        RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, terrain);
+        RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, terrain);
+        RaycastHit2D leftPlatRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, platform);
+        RaycastHit2D rightPlatRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, platform);
+        Physics2D.queriesStartInColliders = false;
 
-        if (leftRay || rightRay) {
+        _leftplatRay = leftPlatRay;
+        _rightplatRay = rightPlatRay;
+
+        Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down*rayDistance, Color.red, 0f);
+        Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down*rayDistance, Color.red, 0f);
+        Debug.DrawRay(new Vector3(leftXBound, bottomY + 0.25f), Vector2.up * sizeY, Color.green, 0f);
+        Debug.DrawRay(new Vector3(rightXBound, bottomY + 0.25f), Vector2.up * sizeY, Color.green, 0f);
+
+        allowPlatformNoclip = (platformChipLeftRay || platformClipRightRay);
+
+        if ((leftRay || rightRay || (_leftplatRay && !platformDrop) || (_rightplatRay && !platformDrop)) && !allowPlatformNoclip) {
             _hasJump = true;
             midair = false;
             fastfall = false;
@@ -256,11 +303,16 @@ public class EntityMovement : MonoBehaviour {
             if (leftRay && leftRay.point.y > _coll.bounds.min.y) {
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
             }
-            if (rightRay && rightRay.point.y > _coll.bounds.min.y) {
+            if (rightRay && rightRay.point.y > _coll.bounds.min.y)
+            {
                 return new Vector2(0, (rightRay.point.y - _coll.bounds.min.y));
             }
+        } else if (allowPlatformNoclip)
+        {
+            midair = true;
+            return Vector2.zero;
         }
-        else {
+        else if (!leftRay && !rightRay) {
             midair = true;
             return Vector2.zero;
         }
@@ -268,17 +320,16 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private Vector2 WallRaycast() {
-        Bounds bounds = _coll.bounds;
-        float bottomBound = bounds.min.y + 0.25f + velocity.y;
-        float topBound = bounds.max.y - 0.25f + velocity.y;
-        float leftX = bounds.min.x + velocity.x;
-        float rightX = bounds.max.x + velocity.x;
-        float rayDistance = Math.Max(bounds.size.x, _horizontalCollisionRange);
+        float bottomBound = _coll.bounds.min.y + 0.25f + velocity.y;
+        float topBound = _coll.bounds.max.y - 0.25f + velocity.y;
+        float leftX = _coll.bounds.min.x + velocity.x;
+        float rightX = _coll.bounds.max.x + velocity.x;
+        float rayDistance = Math.Max(_coll.bounds.size.x, _horizontalCollisionRange);
         
-        Debug.DrawRay(new Vector3(rightX, bottomBound), Vector3.left*rayDistance, Color.blue, 0f);
-        Debug.DrawRay(new Vector3(leftX, bottomBound), Vector3.right*rayDistance, Color.blue, 0f);
-        Debug.DrawRay(new Vector3(rightX, topBound), Vector3.left*rayDistance, Color.blue, 0f);
-        Debug.DrawRay(new Vector3(leftX, topBound), Vector3.right*rayDistance, Color.blue, 0f);
+        //Debug.DrawRay(new Vector3(rightX, bottomBound), Vector3.left*rayDistance, Color.blue, 0f);
+        //Debug.DrawRay(new Vector3(leftX, bottomBound), Vector3.right*rayDistance, Color.blue, 0f);
+        //Debug.DrawRay(new Vector3(rightX, topBound), Vector3.left*rayDistance, Color.blue, 0f);
+        //Debug.DrawRay(new Vector3(leftX, topBound), Vector3.right*rayDistance, Color.blue, 0f);
 
         RaycastHit2D topLeftRay = Physics2D.Raycast(new Vector2(rightX, topBound), Vector2.left, rayDistance, terrain);
         RaycastHit2D bottomLeftRay = Physics2D.Raycast(new Vector2(rightX, bottomBound), Vector2.left, rayDistance, terrain);
@@ -390,6 +441,7 @@ public class EntityMovement : MonoBehaviour {
 
     public void FastFall() {
         if (hitstun) return;
+        StartCoroutine(KeepPlatformDrop());
         if (midair) {
             StartCoroutine(FastfallCoroutine());
         }

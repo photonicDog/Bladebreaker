@@ -1,4 +1,4 @@
-public interface IStats { 
-        public void ModifyHealth(float modify); 
+public interface IStats {
+        public void ModifyHealth(byte modify); 
         void Die();
 }

@@ -1,6 +1,5 @@
 ﻿using Assets.Scripts.Controllers.UI;
 using Assets.Scripts.Types.Enums;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers
@@ -106,14 +105,24 @@ namespace Assets.Scripts.Controllers
             _livesController.SetLives(3);
         }
 
+        public void MaxLives()
+        {
+            _livesController.SetLives(_livesController.MaxLives);
+        }
+
         public void TakeDamage(int damageInHearts)
         {
             _healthController.LoseHearts(damageInHearts);
         }
 
-        public void Heal(int healthInHearts)
+        public void HealInHearts(int healthInHearts)
         {
             _healthController.HealHearts(healthInHearts);
+        }
+
+        public void HealInRawHealth(int health)
+        {
+            _healthController.Fill(health);
         }
 
         public void LoseAllHealth()
@@ -144,11 +153,18 @@ namespace Assets.Scripts.Controllers
         public void IncrementCombo()
         {
             _comboCountMultiplier.IncrementCombo();
+            _comboTimerController.RefreshMeter();
         }
 
         public void ResetCombo()
         {
             _comboCountMultiplier.ResetCombo();
+            _comboTimerController.ResetMeter();
+        }
+
+        public bool IsMeterEmpty()
+        {
+            return _comboTimerController.IsMeterEmpty();
         }
 
         public void RefillTimer()
