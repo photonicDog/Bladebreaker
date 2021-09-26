@@ -57,6 +57,7 @@ public class EntityMovement : MonoBehaviour {
     public bool downHeld = false;
     public bool allowPlatformNoclip = false;
     public bool platformDrop = false;
+    public bool standingOnPlatform = false;
 
     public bool attackFreeze = false;
     [ShowInInspector] private bool _attackFreezeEnd = false;
@@ -135,7 +136,7 @@ public class EntityMovement : MonoBehaviour {
         groundComp = FloorRaycast();
         wallComp = WallRaycast();
 
-        if(allowPlatformNoclip)
+        if(allowPlatformNoclip && standingOnPlatform)
         {
             _hasJump = false;
         }
@@ -272,30 +273,35 @@ public class EntityMovement : MonoBehaviour {
         float topY = _coll.bounds.max.y + velocity.y;
         float sizeX = _coll.bounds.size.x;
         float sizeY = _coll.bounds.size.y;
-        float rayDistance = _verticalCollisionRange;
-        float platformHeight = 1f;
+        float rayDistance = 2f;
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D platformClipRightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
         RaycastHit2D platformChipLeftRay = Physics2D.Raycast(new Vector2(leftXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
+        Physics2D.queriesStartInColliders = false;
 
         RaycastHit2D leftRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, terrain);
         RaycastHit2D rightRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, terrain);
         RaycastHit2D leftPlatRay = Physics2D.Raycast(new Vector2(leftXBound, centerY), Vector2.down, rayDistance, platform);
         RaycastHit2D rightPlatRay = Physics2D.Raycast(new Vector2(rightXBound, centerY), Vector2.down, rayDistance, platform);
-        Physics2D.queriesStartInColliders = false;
+
+        RaycastHit2D leftHeadRay = Physics2D.Raycast(new Vector2(leftXBound, centerY - 0.25f), Vector2.up, sizeY/2, terrain);
+        RaycastHit2D rightHeadRay = Physics2D.Raycast(new Vector2(rightXBound, centerY - 0.25f), Vector2.up, sizeY/2, terrain);
 
         _leftplatRay = leftPlatRay;
         _rightplatRay = rightPlatRay;
 
-        Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down*rayDistance, Color.red, 0f);
-        Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down*rayDistance, Color.red, 0f);
-        Debug.DrawRay(new Vector3(leftXBound, bottomY + 0.25f), Vector2.up * sizeY, Color.green, 0f);
-        Debug.DrawRay(new Vector3(rightXBound, bottomY + 0.25f), Vector2.up * sizeY, Color.green, 0f);
+        Debug.DrawRay(new Vector3(leftXBound, centerY), Vector3.down * rayDistance, Color.red, 0f);
+        Debug.DrawRay(new Vector3(rightXBound, centerY), Vector3.down * rayDistance, Color.red, 0f);
+        Debug.DrawRay(new Vector3(leftXBound + 0.25f, bottomY + 0.25f), Vector2.up * sizeY/2, Color.green, 0f);
+        Debug.DrawRay(new Vector3(rightXBound - 0.25f, bottomY + 0.25f), Vector2.up * sizeY/2, Color.green, 0f);
+        Debug.DrawRay(new Vector3(leftXBound + 0.25f, centerY - 0.25f), Vector2.up * sizeY/2, Color.blue, 0f);
+        Debug.DrawRay(new Vector3(rightXBound - 0.25f, centerY - 0.25f), Vector2.up * sizeY/2, Color.blue, 0f);
 
         allowPlatformNoclip = (platformChipLeftRay || platformClipRightRay);
 
-        if ((leftRay || rightRay || (_leftplatRay && !platformDrop) || (_rightplatRay && !platformDrop)) && !allowPlatformNoclip) {
+        if ((leftRay || rightRay) && velocity.y <= 0) {
+            standingOnPlatform = false;
             _hasJump = true;
             midair = false;
             fastfall = false;
@@ -307,8 +313,29 @@ public class EntityMovement : MonoBehaviour {
             {
                 return new Vector2(0, (rightRay.point.y - _coll.bounds.min.y));
             }
-        } else if (allowPlatformNoclip)
+        }
+        else if (((_leftplatRay && !platformDrop) || (_rightplatRay && !platformDrop)) && !allowPlatformNoclip && velocity.y <= 0)
         {
+            standingOnPlatform = true;
+            _hasJump = true;
+            midair = false;
+            fastfall = false;
+            velocity.y = 0;
+            if (leftPlatRay && leftPlatRay.point.y > _coll.bounds.min.y)
+            {
+                return new Vector2(0, (leftPlatRay.point.y - _coll.bounds.min.y));
+            }
+            if (rightPlatRay && rightPlatRay.point.y > _coll.bounds.min.y)
+            {
+                return new Vector2(0, (rightPlatRay.point.y - _coll.bounds.min.y));
+            }
+        } else if ((leftHeadRay || rightHeadRay) && velocity.y > 0 && midair) {
+            midair = true;
+            velocity.y = 0;
+        }
+        else if (allowPlatformNoclip)
+        {
+            standingOnPlatform = true;
             midair = true;
             return Vector2.zero;
         }
