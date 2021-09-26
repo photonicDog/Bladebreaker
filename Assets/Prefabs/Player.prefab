@@ -7316,10 +7316,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevelIndex: 0
-  MaxHealth: 0
-  Health: 0
-  MaxLives: 0
-  Lives: 0
+  MaxHealth: 24
+  Health: 24
+  MaxLives: 9
+  Lives: 3
   Score: 0
   MaxMultiplier: 5
   Multiplier: 0
@@ -7342,6 +7342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42308113c1119884692d833b14fd39a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volume: {fileID: 0}
+  _currentDoor: {fileID: 0}
 --- !u!1 &8917487551238067923
 GameObject:
   m_ObjectHideFlags: 0
