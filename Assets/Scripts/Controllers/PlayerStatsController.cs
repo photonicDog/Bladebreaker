@@ -116,7 +116,7 @@ namespace Assets.Scripts.Controllers
             return (int)Math.Min(math.floor(1 + Combo * (MaxMultiplier - 1 / MaxComboForMaxMultiplier)), MaxMultiplier);
         }
 
-        public void ModifyHealth(byte modify)
+        public void ModifyHealth(int modify)
         {
             if (Health + modify > MaxHealth)
             {
@@ -129,7 +129,7 @@ namespace Assets.Scripts.Controllers
             }
             else
             {
-                Health += modify;
+                Health += (byte)modify;
 
                 if (modify < 0)
                 {
