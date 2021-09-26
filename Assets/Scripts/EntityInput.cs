@@ -48,6 +48,10 @@ public class EntityInput : MonoBehaviour {
         if (context.started) _em.FastFall();
     }
 
+    public void Attack() {
+        
+    }
+    
     IEnumerator DashCheck() {
         int counter = 20;
         while (counter > 0) {
@@ -62,4 +66,5 @@ public class EntityInput : MonoBehaviour {
         }
         _dashStart = false;
     }
+    
 }

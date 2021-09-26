@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Components
 {
-    public class Weapon : Component
+    public class Weapon : MonoBehaviour
     {
         [Header("Weapon")]
         public WeaponType WeaponType;

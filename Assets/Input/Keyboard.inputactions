@@ -52,6 +52,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "LOOKUP",
+                    "type": "Button",
+                    "id": "24ac3a43-47e2-43d1-888c-24c61f2691c8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LOOKDOWN",
+                    "type": "Button",
+                    "id": "b86b1cb6-61c1-46f4-a068-e8cb15433b78",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -140,6 +156,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "FASTFALL",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2a46a186-6af0-4b06-83fd-fad5267e9eb7",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LOOKDOWN",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9cf0898d-eea8-4573-ab79-675e1cf8cecb",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LOOKUP",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
