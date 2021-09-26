@@ -125,6 +125,9 @@ MonoBehaviour:
   fastfall: 0
   sprint: 0
   downHeld: 0
+  allowPlatformNoclip: 0
+  platformDrop: 0
+  standingOnPlatform: 0
   attackFreeze: 0
   antigravity: 0
   hitstun: 0
@@ -177,10 +180,12 @@ MonoBehaviour:
   harm: {fileID: 4269948961361772372}
   AI: {fileID: 11400000, guid: 890735b02d96311419c1eeafa2027a8a, type: 2}
   wanderRadiusCenter: {x: 40.47753, y: -0.84819055, z: 0}
+  wanderRadiusCenterOffset: {x: 0, y: 0, z: 0}
   wanderRadiusBounds: 5
   leashRadiusCenter: {x: 39.65226, y: 1.1441224, z: 0}
+  leashRadiusCenterOffset: {x: 0, y: 0, z: 0}
   leashRadiusBounds: 10
-  detectionRadius: 5
+  detectionRadius: 10
   currentlyWandering: 0
   _behaviorQueueIndex: 0
 --- !u!114 &4269948961361772372
@@ -195,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcb3ba4d3c346979302c5b7d09458b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iFrame: 0
   attackingLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -238,19 +244,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
       Data: 0
-    - Name: $v
-      Entry: 4
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 

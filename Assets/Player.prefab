@@ -6912,6 +6912,9 @@ MonoBehaviour:
   fastfall: 0
   sprint: 0
   downHeld: 0
+  allowPlatformNoclip: 0
+  platformDrop: 0
+  standingOnPlatform: 0
   attackFreeze: 0
   antigravity: 0
   hitstun: 0

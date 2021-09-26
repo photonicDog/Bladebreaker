@@ -125,6 +125,9 @@ MonoBehaviour:
   fastfall: 0
   sprint: 0
   downHeld: 0
+  allowPlatformNoclip: 0
+  platformDrop: 0
+  standingOnPlatform: 0
   attackFreeze: 0
   antigravity: 0
   hitstun: 0
@@ -182,7 +185,7 @@ MonoBehaviour:
   leashRadiusCenter: {x: 0, y: 0, z: 0}
   leashRadiusCenterOffset: {x: 0, y: 0, z: 0}
   leashRadiusBounds: 8
-  detectionRadius: 12
+  detectionRadius: 10
   currentlyWandering: 0
   _behaviorQueueIndex: 0
 --- !u!114 &4269948961361772372
@@ -197,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcb3ba4d3c346979302c5b7d09458b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iFrame: 0
   attackingLayer:
     serializedVersion: 2
     m_Bits: 1024
