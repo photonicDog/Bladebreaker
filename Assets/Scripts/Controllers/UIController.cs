@@ -112,7 +112,7 @@ namespace Assets.Scripts.Controllers
 
         public void TakeDamage(int damageInHearts)
         {
-            _healthController.LoseHearts(damageInHearts);
+            _healthController.LoseHearts(-damageInHearts);
         }
 
         public void HealInHearts(int healthInHearts)
