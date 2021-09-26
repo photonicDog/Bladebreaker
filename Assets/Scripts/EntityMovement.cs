@@ -40,7 +40,7 @@ public class EntityMovement : MonoBehaviour {
     private BoxCollider2D _coll;
     [SerializeField] private EntityAnimation _animation;
 
-    private float _walkInput;
+    internal float _walkInput;
     public int _facing = 1;
     public bool midair = true;
     public bool _hasJump = true;
