@@ -20,38 +20,58 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes: []
+    SerializationNodes:
+    - Name: behaviorCycle
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[AIModules.AIModuleBase, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 1|AIModules.AIWalk, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: runSpeed
+      Entry: 4
+      Data: 1
+    - Name: stopDistance
+      Entry: 4
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|AIModules.AIAttack, Assembly-CSharp
+    - Name: time
+      Entry: 4
+      Data: 0
+    - Name: ended
+      Entry: 5
+      Data: false
+    - Name: _entityAI
+      Entry: 6
+      Data: 
+    - Name: attackRange
+      Entry: 4
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   canFly: 0
-  hurtsOnTouch: 0
   canWander: 1
-  behaviorCycle:
-  - index: 0
-    action: 1
-    time: 0
-    roamWhileWaiting: 0
-    plusOnBlock: 0
-    attackRange: 0
-    chargeDistance: 0
-    retreatDistance: 0
-    runSpeed: 1
-    stopDistance: 2
-    conditionalType: 0
-    target: 0
-    failure: 0
-    chance: 0
-    distance: 0
-  - index: 1
-    action: 2
-    time: 3
-    roamWhileWaiting: 0
-    plusOnBlock: 0
-    attackRange: 2.5
-    chargeDistance: 0
-    retreatDistance: 0
-    runSpeed: 0
-    stopDistance: 0
-    conditionalType: 0
-    target: 0
-    failure: 0
-    chance: 0
-    distance: 0
