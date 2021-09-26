@@ -70,7 +70,7 @@ namespace Assets.Scripts.Controllers.UI
                 int heartIndex;
                 int heartStateIndex = _health % 4 == 0 ? 0 : _health % 4;
 
-                if (heartStateIndex == 0) {
+                if (heartStateIndex == 0 && _health != _maxHealth) {
                     heartIndex = (int)(Math.Ceiling((float)_health / 4));
                 } else
                 {
