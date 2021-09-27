@@ -177,6 +177,12 @@ public class EntityAI : SerializedMonoBehaviour {
         
     }
 
+    public void ResetEverything() {
+        playerDetected = false;
+        _behaviorQueueIndex = 0;
+        transform.position = wanderRadiusCenter;
+    }
+
     public void Hitstun(float time) {
         moveDirection = Vector2.zero;
         logicEnabled = false;
