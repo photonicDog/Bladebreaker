@@ -106,7 +106,7 @@ MonoBehaviour:
   _jumpDecay: 0.06
   _groundFriction: 0.12
   _airResistance: 0.12
-  _gravity: 0.05
+  _gravity: 0.04
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
   _verticalCollisionRange: 1.15
@@ -127,7 +127,9 @@ MonoBehaviour:
   downHeld: 0
   allowPlatformNoclip: 0
   platformDrop: 0
+  inGround: 0
   standingOnPlatform: 0
+  levelFinish: 0
   attackFreeze: 0
   antigravity: 0
   hitstun: 0
@@ -252,7 +254,7 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-  health: 10
+  health: 25
 --- !u!1 &4269948962256789647
 GameObject:
   m_ObjectHideFlags: 0
