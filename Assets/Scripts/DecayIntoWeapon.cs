@@ -42,7 +42,7 @@ public class DecayIntoWeapon : MonoBehaviour {
         em.velocity = Vector2.zero;
         yield return new WaitForSeconds(0.1f);
         if (hit) {
-            pck.weapon.Durability -= pck.weapon.DurabilityLostOnHit * 4;
+            pck.weapon.Durability -= pck.weapon.DurabilityLostOnHit * 3;
             if (pck.weapon.Durability <= 0) {
                 Instantiate(explodeEffect, transform.position, quaternion.identity);
                 Instantiate(asplosion, transform.position, Quaternion.identity);

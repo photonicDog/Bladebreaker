@@ -112,6 +112,8 @@ MonoBehaviour:
   _verticalCollisionRange: 1.15
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 0
+  _bouncy: 0
+  _bounces: 0
   _freeMove: 0
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
