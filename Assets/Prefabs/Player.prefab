@@ -126,6 +126,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.1
   VerticalKnockback: 0.1
   HitStunDuration: 0.45
+  Player: 0
 --- !u!1 &8917487550095534062
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +253,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.1
   VerticalKnockback: 0.1
   HitStunDuration: 0.45
+  Player: 0
 --- !u!1 &8917487550175189125
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,6 +481,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.25
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550238365372
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +608,7 @@ MonoBehaviour:
   HorizontalKnockback: 1
   VerticalKnockback: 1
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550347635393
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,6 +735,7 @@ MonoBehaviour:
   HorizontalKnockback: 1
   VerticalKnockback: 1
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550371234340
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,6 +862,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.2
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550406046653
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,6 +989,7 @@ MonoBehaviour:
   HorizontalKnockback: 1
   VerticalKnockback: 1
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550459290706
 GameObject:
   m_ObjectHideFlags: 0
@@ -5927,6 +5934,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.1
   VerticalKnockback: 0.1
   HitStunDuration: 0.45
+  Player: 0
 --- !u!1 &8917487550578093537
 GameObject:
   m_ObjectHideFlags: 0
@@ -6154,6 +6162,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.2
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550660373170
 GameObject:
   m_ObjectHideFlags: 0
@@ -6280,6 +6289,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.25
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550668356912
 GameObject:
   m_ObjectHideFlags: 0
@@ -6406,6 +6416,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.2
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550686873497
 GameObject:
   m_ObjectHideFlags: 0
@@ -6532,6 +6543,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.1
   VerticalKnockback: 0.1
   HitStunDuration: 0.45
+  Player: 0
 --- !u!1 &8917487550805587236
 GameObject:
   m_ObjectHideFlags: 0
@@ -6658,6 +6670,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.25
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550807600072
 GameObject:
   m_ObjectHideFlags: 0
@@ -6784,6 +6797,7 @@ MonoBehaviour:
   HorizontalKnockback: 1
   VerticalKnockback: 1
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487550973113766
 GameObject:
   m_ObjectHideFlags: 0
@@ -7117,6 +7131,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 24ac3a43-47e2-43d1-888c-24c61f2691c8
     m_ActionName: Gameplay/LOOKUP[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 840d2bc9-4f40-4b62-8ee6-5e642702a46f
+    m_ActionName: UI/Navigate[/Keyboard/downArrow,/Keyboard/upArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96fbb0dd-cced-4db0-84d6-3114f09a0ab7
+    m_ActionName: UI/Act[/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -7141,6 +7163,7 @@ MonoBehaviour:
   canJump: 1
   canDash: 1
   canSprint: 1
+  canDie: 0
 --- !u!114 &8917487550973113774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7259,6 +7282,10 @@ MonoBehaviour:
     WeaponType: 0
     Durability: 0
     DurabilityLostOnHit: 0
+  fists:
+    WeaponType: 0
+    Durability: 0
+    DurabilityLostOnHit: 0
   standingOn: {fileID: 0}
 --- !u!114 &8917487550973113768
 MonoBehaviour:
@@ -7272,6 +7299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcb3ba4d3c346979302c5b7d09458b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iFrame: 0
   attackingLayer:
     serializedVersion: 2
     m_Bits: 2048
@@ -7440,6 +7468,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.25
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487551391873597
 GameObject:
   m_ObjectHideFlags: 0
@@ -7566,6 +7595,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.2
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487551491384106
 GameObject:
   m_ObjectHideFlags: 0
@@ -7794,6 +7824,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.2
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487551571454099
 GameObject:
   m_ObjectHideFlags: 0
@@ -7920,6 +7951,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.25
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487551649148453
 GameObject:
   m_ObjectHideFlags: 0
@@ -8046,6 +8078,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.1
   VerticalKnockback: 0.1
   HitStunDuration: 0.45
+  Player: 0
 --- !u!1 &8917487551750778124
 GameObject:
   m_ObjectHideFlags: 0
@@ -8172,6 +8205,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.5
   VerticalKnockback: 0.2
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487551763601420
 GameObject:
   m_ObjectHideFlags: 0
@@ -8298,6 +8332,7 @@ MonoBehaviour:
   HorizontalKnockback: 0
   VerticalKnockback: 2
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487551796440882
 GameObject:
   m_ObjectHideFlags: 0
@@ -8310,6 +8345,7 @@ GameObject:
   - component: {fileID: 8917487551796440893}
   - component: {fileID: 8917487551796440892}
   - component: {fileID: 8917487551796440894}
+  - component: {fileID: 3970903957064756829}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -8418,6 +8454,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScript: {fileID: 8917487550973113773}
+--- !u!114 &3970903957064756829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8917487551796440882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27674dc7a1e3cdd498eb40c713590b2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _harmable: {fileID: 8917487550973113768}
 --- !u!1 &8917487551872663727
 GameObject:
   m_ObjectHideFlags: 0
@@ -8544,6 +8593,7 @@ MonoBehaviour:
   HorizontalKnockback: 0.1
   VerticalKnockback: -1
   HitStunDuration: 0.25
+  Player: 0
 --- !u!1 &8917487551943707180
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Types.Enums;
 using System;
+using Assets.Scripts.Components;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -25,17 +26,19 @@ namespace Assets.Scripts.Controllers
         public int[] Secrets;
         public byte EnemiesDefeated;
 
-        private WeaponType _weapon;
+        private Weapon _weapon;
         private Inventory _inventory;
         private UIController _uiController;
         private RankingController _rankingController;
         private SaveDataManager _saveDataManager;
         private float _levelStartTime;
+        private EntityAnimation _ea;
 
         void Awake()
         {
             _inventory = GetComponent<Inventory>();
-            _weapon = _inventory.currentWeaponType;
+            _ea = GetComponent<EntityAnimation>();
+            _weapon = _inventory.weapon;
             _levelStartTime = Time.realtimeSinceStartup;
             Secrets = new int[3] { 0, 0, 0 };
         }
@@ -43,6 +46,8 @@ namespace Assets.Scripts.Controllers
         private void Start() {
             _uiController = UIController.Instance;
             _rankingController = RankingController.Instance;
+            ChangeWeapon(_weapon);
+            
         }
 
         void Update()
@@ -60,15 +65,17 @@ namespace Assets.Scripts.Controllers
             _saveDataManager.SaveData(CurrentLevelIndex, ranking, Score, StageTimeInSeconds, Deaths, MaxCombo, Secrets);
         }
 
-        public void ChangeWeapon()
-        {
-            if (_weapon == WeaponType.None)
+        public void ChangeWeapon(Weapon weapon) {
+            _weapon = weapon;
+            if (weapon.WeaponType == WeaponType.None)
             {
                 _uiController.DropWeapon();
+                SetDurability(0);
             }
             else
             {
-                _uiController.PickUpWeapon(_weapon);
+                _uiController.PickUpWeapon(_weapon.WeaponType);
+                SetDurability(weapon.Durability);
             }
         }
 
@@ -105,11 +112,35 @@ namespace Assets.Scripts.Controllers
             }
         }
 
+        public void SetDurability(byte durability) {
+            _uiController.SetDurability(durability);
+        }
+
         public void EndCombo()
         {
             Combo = 0;
             AddScore(10 * Combo * GetCurrentMultiplier());
             _uiController.ResetCombo();
+        }
+
+        public void ResetScore() {
+            Score = 0;
+            _uiController.ResetScore();
+        }
+
+        public void ResetAll() {
+            EndCombo();
+            ResetScore();
+            Lives = MaxLives;
+            Health = MaxHealth;
+            Multiplier = 0;
+            StageTimeInSeconds = 0;
+            Secrets = new int[3] { 0, 0, 0 };
+            
+            _uiController.ResetLife();
+            _uiController.ResetMultiplier();
+            _uiController.ResetScore();
+            _uiController.RestoreAllHealth();
         }
 
         public int GetCurrentMultiplier()
@@ -126,7 +157,7 @@ namespace Assets.Scripts.Controllers
                 Health = MaxHealth;
                 _uiController.RestoreAllHealth();
             }
-            else if (Health + modify < 0)
+            else if (Health + modify <= 0)
             {
                 Die();
             }
@@ -158,8 +189,8 @@ namespace Assets.Scripts.Controllers
             }
         }
 
-        public void Die()
-        {
+        public void Die() {
+            _ea.Die();
             Deaths += 1;
             _uiController.LoseAllHealth();
             if (Lives - 1 < 0)
@@ -169,13 +200,13 @@ namespace Assets.Scripts.Controllers
             {
                 Lives -= 1;
                 _uiController.LoseLife();
-                //TODO: Reset to checkpoint
+                GameManager.Instance.DieAndReset(this);
             }
         }
 
         public void GameOver()
         {
-            //TODO: Handle game over state
+            GameManager.Instance.GameOver(this);
         }
     }
 }

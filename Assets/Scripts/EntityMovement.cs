@@ -474,6 +474,10 @@ public class EntityMovement : MonoBehaviour {
     public void Walk(float input) {
         if (levelFinish) return;
         if (hitstun) {
+            if (_defer != null) {
+                StopCoroutine(_defer);
+                _defer = null;
+            }
             _defer = StartCoroutine(DeferInput(input));
             return;
         }

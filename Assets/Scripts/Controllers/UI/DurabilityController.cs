@@ -35,7 +35,7 @@ namespace Assets.Scripts.Controllers.UI
 
                 if (MaxDurability > 24)
                 {
-                    newSize = Mathf.Round(newSize);
+                    newSize = Mathf.Round(newSize * 4) / 4;
                 }
                 durabilityMaskAnchor.localScale = new Vector3(newSize, 1, 1);
                 _updateDurability = false;

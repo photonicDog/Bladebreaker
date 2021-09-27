@@ -15,6 +15,7 @@ public class Inventory : SerializedMonoBehaviour {
     public Dictionary<WeaponType, GameObject> weaponObjects;
     public WeaponType currentWeaponType;
     public Weapon weapon;
+    public Weapon fists;
 
     public WeaponPickup standingOn;
 
@@ -57,7 +58,7 @@ public class Inventory : SerializedMonoBehaviour {
             PickUpWeapon();
         }
         else {
-            if (weapon != null) EjectWeapon(fling);
+            if (weapon != null && weapon.WeaponType != WeaponType.None) EjectWeapon(fling);
         }
     }
 
@@ -65,6 +66,7 @@ public class Inventory : SerializedMonoBehaviour {
         if (standingOn) {
             EjectWeapon(Vector2.zero);
             SetWeapon(standingOn.weapon);
+            _psc.ChangeWeapon(weapon);
             Destroy(standingOn.gameObject);
         }
     }
@@ -85,7 +87,7 @@ public class Inventory : SerializedMonoBehaviour {
             throwVector = new Vector2(-0.25f * _em._facing, 0.25f);
         }
 
-        if (weapon != null) {
+        if (weapon != null && weapon.WeaponType != WeaponType.None) {
             GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[weapon.WeaponType], transform.position, quaternion.identity);
             droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
             droppedWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
@@ -106,6 +108,7 @@ public class Inventory : SerializedMonoBehaviour {
 
     public void WeaponDamage() {
         weapon.Durability -= weapon.DurabilityLostOnHit;
+        _psc.SetDurability(weapon.Durability);
     }
 
     public void DurabilityCheck() {
@@ -118,7 +121,8 @@ public class Inventory : SerializedMonoBehaviour {
         foreach (KeyValuePair<WeaponType, GameObject> entry in weaponObjects) {
             entry.Value.SetActive(false);
         }
-        weapon = null;
+        weapon = fists;
+        _psc.ChangeWeapon(fists);
     }
 
     public void SetWeapon(Weapon weaponSet) {
