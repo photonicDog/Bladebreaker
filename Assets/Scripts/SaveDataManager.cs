@@ -17,11 +17,14 @@ namespace Assets.Scripts
         private string _savePath;
         private BinaryFormatter _bf;
 
+        public SaveData saveData;
+
         private static SaveDataManager _instance;
         public static SaveDataManager Instance { get { return _instance; } }
 
         void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
@@ -31,7 +34,7 @@ namespace Assets.Scripts
                 _instance = this;
             }
 
-            _savePath = Application.persistentDataPath + "\\game.dat";
+            _savePath = Application.persistentDataPath + "\\save.dat";
             _bf = new BinaryFormatter();
         }
 
@@ -49,6 +52,8 @@ namespace Assets.Scripts
                 save.Secrets[levelIndex] = secrets;
 
                 OverwriteSave(save);
+                
+                saveData = save;
                 return true;
             } catch (Exception ex)
             {
@@ -71,15 +76,17 @@ namespace Assets.Scripts
                 _saveFileStream.Close();
             }
 
+            saveData = save;
             return save;
         }
 
-        private SaveData CreateNewSave()
+        public SaveData CreateNewSave()
         {
             SaveData save = new SaveData();
 
             OverwriteSave(save);
 
+            saveData = save;
             return save;
         }
 

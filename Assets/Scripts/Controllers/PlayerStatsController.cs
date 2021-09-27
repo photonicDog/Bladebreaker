@@ -120,7 +120,7 @@ namespace Assets.Scripts.Controllers
             }
         }
 
-        public void SetDurability(byte durability) {
+        public void SetDurability(int durability) {
             _uiController.SetDurability(durability);
         }
 

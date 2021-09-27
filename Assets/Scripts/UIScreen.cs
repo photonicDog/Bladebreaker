@@ -15,7 +15,7 @@ public class UIScreen : SerializedMonoBehaviour {
     [NonSerialized][OdinSerialize]public Dictionary<int, Tuple<Vector2, UIAction>> Actions;
 
     private int position;
-    [ShowInInspector] private bool control;
+    public bool control;
 
     public void Awake() {
         cursor.SetActive(false);
@@ -28,12 +28,13 @@ public class UIScreen : SerializedMonoBehaviour {
         }
     }
 
+    public void OneWayActivate() {
+        if (control) return;
+        Activate(1);
+    }
+
     public void Activate(int active) {
-        control = active==1;
-        input.currentActionMap = input.actions.FindActionMap(active==1?"UI":"Gameplay");
-        cursor.SetActive(control);
-        position = 0;
-        UpdatePosition();
+        StartCoroutine(Activate(control = active==1));
     } 
     
     public void Select(InputAction.CallbackContext context) {
@@ -67,5 +68,14 @@ public class UIScreen : SerializedMonoBehaviour {
             Actions[position].Item2.Invoke();
             Activate(0);
         }
+    }
+
+    IEnumerator Activate(bool set) {
+        yield return new WaitForEndOfFrame();
+        control = set;
+        input.currentActionMap = input.actions.FindActionMap(control?"UI":"Gameplay");
+        cursor.SetActive(control);
+        position = 0;
+        UpdatePosition();
     }
 }

@@ -202,6 +202,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Exit Game",
+                    "type": "Button",
+                    "id": "4dd8b466-b26e-4715-9743-fa78de06dd36",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -279,6 +287,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Act",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e746d63-cf58-41c3-b82f-02d79a406275",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "Hold(duration=4)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit Game",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

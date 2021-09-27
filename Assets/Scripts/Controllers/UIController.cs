@@ -140,7 +140,7 @@ namespace Assets.Scripts.Controllers
             _durabilityController.RemoveDurability(lostDurability);
         }
 
-        public void SetDurability(byte newDurability)
+        public void SetDurability(int newDurability)
         {
             _durabilityController.SetDurability(newDurability);
         }
