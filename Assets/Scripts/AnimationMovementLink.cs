@@ -13,4 +13,9 @@ public class AnimationMovementLink : MonoBehaviour
     public void PushEntityVertical(float impulse) {
         targetScript.PushEntity(new Vector2(0, impulse));
     }
+
+    public void Antigravity(int on) {
+        if (on==1) targetScript.Antigravity();
+        else targetScript.StopAntigravity();
+    }
 }
