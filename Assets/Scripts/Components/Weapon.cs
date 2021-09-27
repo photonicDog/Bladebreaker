@@ -7,7 +7,7 @@ namespace Assets.Scripts.Components
     [Serializable]
     public class Weapon
     {
-        public Weapon(WeaponType weaponType, byte durability, byte durabilityLostOnHit) {
+        public Weapon(WeaponType weaponType, int durability, byte durabilityLostOnHit) {
             WeaponType = weaponType;
             Durability = durability;
             DurabilityLostOnHit = durabilityLostOnHit;
@@ -23,7 +23,7 @@ namespace Assets.Scripts.Components
         public WeaponType WeaponType;
 
         [Header("Durability")]
-        public byte Durability;
-        public byte DurabilityLostOnHit;
+        public int Durability;
+        public int DurabilityLostOnHit;
     }
 }
