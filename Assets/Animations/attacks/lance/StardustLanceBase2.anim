@@ -196,7 +196,7 @@ AnimationClip:
       value: {fileID: -7528798690410770720, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
     - time: 0.9166667
       value: {fileID: 1878694594422847322, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
-    - time: 1.25
+    - time: 1.6666666
       value: {fileID: 1878694594422847322, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
     attribute: m_Sprite
     path: 
@@ -266,7 +266,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.2666667
+    m_StopTime: 1.6833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -419,5 +419,12 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0.2
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.9166667
+    functionName: PushEntityHorizontal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.3
     intParameter: 0
     messageOptions: 0

@@ -43,7 +43,7 @@ MonoBehaviour:
       Data: 0
     - Name: runSpeed
       Entry: 4
-      Data: 1
+      Data: 0.3
     - Name: stopDistance
       Entry: 4
       Data: 4
@@ -82,7 +82,7 @@ MonoBehaviour:
       Data: 2
     - Name: ended
       Entry: 5
-      Data: true
+      Data: false
     - Name: _entityAI
       Entry: 10
       Data: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
       Data: 0.5
     - Name: ended
       Entry: 5
-      Data: false
+      Data: true
     - Name: _entityAI
       Entry: 10
       Data: 0
