@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon:
-    WeaponType: 0
+    WeaponType: 3
     Durability: 255
     DurabilityLostOnHit: 24
 --- !u!1 &7161652069587751660

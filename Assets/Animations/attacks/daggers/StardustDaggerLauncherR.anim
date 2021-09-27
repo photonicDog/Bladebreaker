@@ -21,7 +21,7 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 6449197811241793665, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
-    - time: 0.33333334
+    - time: 0.16666667
       value: {fileID: 6449197811241793665, guid: b57dc8b9ecb598b47815d428120893c4, type: 3}
     attribute: m_Sprite
     path: 
@@ -30,7 +30,7 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 9007014073103485773, guid: 45980ee209b535d4cb2503e44a3f216a, type: 3}
-    - time: 0.33333334
+    - time: 0.16666667
       value: {fileID: 9007014073103485773, guid: 45980ee209b535d4cb2503e44a3f216a, type: 3}
     attribute: m_Sprite
     path: Daggers
@@ -67,7 +67,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.18333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

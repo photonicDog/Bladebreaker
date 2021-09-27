@@ -193,34 +193,34 @@ AnimationClip:
     functionName: PushEntityHorizontal
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.7
+    floatParameter: 0.2
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
+  - time: 0.21666667
     functionName: PushEntityHorizontal
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.3
+    floatParameter: 0.2
     intParameter: 0
     messageOptions: 0
-  - time: 0.26666668
+  - time: 0.3
+    functionName: PushEntityHorizontal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.2
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.38333333
+    functionName: PushEntityHorizontal
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.2
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.46666667
     functionName: PushEntityVertical
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 1
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.41666666
-    functionName: PushEntityHorizontal
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.2
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.53333336
-    functionName: PushEntityHorizontal
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.2
+    floatParameter: 1.1
     intParameter: 0
     messageOptions: 0
