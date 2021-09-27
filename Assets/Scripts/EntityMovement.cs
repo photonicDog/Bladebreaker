@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Controllers;
 using Sirenix.OdinInspector;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -77,8 +78,15 @@ public class EntityMovement : MonoBehaviour {
     public bool leftCollide;
     public bool rightCollide;
 
+    [Header("SFX")]
+    public AudioClip JumpSFX;
+    public AudioClip LandSFX;
+
     private float _dashStartPos;
     private Vector3 _newPos;
+    private AudioController _ac;
+    private bool _isPlayer;
+    private bool _landedThisFrame;
 
     // Start is called before the first frame update
     void Awake() {
@@ -90,6 +98,12 @@ public class EntityMovement : MonoBehaviour {
         terrain = LayerMask.GetMask("Terrain");
         platform = LayerMask.GetMask("Platform");
         levelFinish = false;
+        _isPlayer = gameObject.CompareTag("Player");
+    }
+
+    void Start()
+    {
+        _ac = AudioController.Instance;
     }
 
     private void FixedUpdate() {
@@ -107,6 +121,14 @@ public class EntityMovement : MonoBehaviour {
         }
 
         if (jump && _hasJump && !attackFreeze) {
+            if (_isPlayer)
+            {
+                _ac.PlayPlayerSFX(JumpSFX);
+            }
+            else
+            {
+                _ac.PlayEnemySFX(JumpSFX);
+            }
             _frameVelocity += new Vector2(0, _jumpHeight);
             _jumpDecayCurrent = _jumpDecay;
             midair = true;
@@ -151,6 +173,18 @@ public class EntityMovement : MonoBehaviour {
         if(allowPlatformNoclip && standingOnPlatform)
         {
             _hasJump = false;
+        }
+
+        if(_landedThisFrame)
+        {
+            if (_isPlayer)
+            {
+                _ac.PlayPlayerSFX(LandSFX);
+            }
+            else
+            {
+                _ac.PlayEnemySFX(LandSFX);
+            }
         }
 
         transform.position += groundComp + wallComp;
@@ -301,6 +335,7 @@ public class EntityMovement : MonoBehaviour {
         float topY = _coll.bounds.max.y + velocity.y;
         float sizeX = _coll.bounds.size.x;
         float sizeY = _coll.bounds.size.y;
+        bool midairThisFrame = midair;
 
         Physics2D.queriesStartInColliders = true;
         RaycastHit2D platformClipRightRay = Physics2D.Raycast(new Vector2(rightXBound, bottomY + 0.25f), Vector2.up, sizeY, platform);
@@ -336,6 +371,7 @@ public class EntityMovement : MonoBehaviour {
             midair = false;
             fastfall = false;
             velocity.y = 0;
+            _landedThisFrame = midairThisFrame && !midair;
             inGround = (_leftRay.point.y > _coll.bounds.min.y + 0.125f || _rightRay.point.y > _coll.bounds.min.y + 0.125f);
             if (leftRay) {
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
@@ -353,6 +389,7 @@ public class EntityMovement : MonoBehaviour {
             midair = false;
             fastfall = false;
             velocity.y = 0;
+            _landedThisFrame = midairThisFrame && !midair;
             inGround = (_leftplatRay.point.y > _coll.bounds.min.y + 0.125f || _rightplatRay.point.y > _coll.bounds.min.y + 0.125f);
             if (leftPlatRay && leftPlatRay.point.y > _coll.bounds.min.y)
             {
