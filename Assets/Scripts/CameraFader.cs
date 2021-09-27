@@ -16,13 +16,28 @@ public class CameraFader : MonoBehaviour
     void Awake()
     {
         if (_instance != null && _instance != this) {
-            Destroy(gameObject);
+            Destroy(this);
         }
         else {
             _instance = this;
         }
-        profile = postprocess.profile;
-        profile.TryGetSettings(out gbc);
+
+        SetUpProfile();
+
+    }
+
+    public bool FindCamera() {
+        if (postprocess) return true;
+        postprocess = FindObjectOfType<PostProcessVolume>();
+        return SetUpProfile();
+    }
+
+    private bool SetUpProfile() {
+        if (postprocess) {
+            profile = postprocess.profile;
+            return profile.TryGetSettings(out gbc);
+        }
+        return false;
     }
 
     public IEnumerator FadeCoroutine(float target, float time) {

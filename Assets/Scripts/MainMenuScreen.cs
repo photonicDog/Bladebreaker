@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,11 +14,13 @@ public class MainMenuScreen : MonoBehaviour {
     }
 
     public void NewGame() {
-        
+        SaveDataManager.Instance.CreateNewSave();
+        SceneManager.Instance.SwitchLevel(0);
     }
 
     public void Continue() {
-        
+        SaveDataManager.Instance.LoadData();
+        SceneManager.Instance.SwitchLevel(SaveDataManager.Instance.saveData.LastClearedLevel);
     }
 
     public void Options() {
@@ -25,20 +28,26 @@ public class MainMenuScreen : MonoBehaviour {
     }
 
     public void FadeIn(float time) {
+        if (CameraFader.Instance.FindCamera())
         StartCoroutine(CameraFader.Instance.FadeCoroutine(1f, time));
     }
     
     public void FadeBlack(float time) {
+        if (CameraFader.Instance.FindCamera())
         StartCoroutine(CameraFader.Instance.FadeCoroutine(0f, time));
     }
     
     public void FadeWhite(float time) {
+        if (CameraFader.Instance.FindCamera())
         StartCoroutine(CameraFader.Instance.FadeCoroutine(20f, time));
     }
 
     public void StartMenu(InputAction.CallbackContext context) {
         if (!context.started) return;
-        anim.SetTrigger("Started");
-        ui.OneWayActivate();
+        if (!ui.control) {
+            anim.SetTrigger("Started");
+            ui.OneWayActivate();
+            ui.control = true;
+        }
     }
 }
