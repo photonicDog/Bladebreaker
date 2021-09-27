@@ -96,9 +96,6 @@ public class Inventory : SerializedMonoBehaviour {
             droppedWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
         }
         
-
-
-        
         ClearWeapons();
     }
 
