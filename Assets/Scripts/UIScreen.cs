@@ -28,6 +28,11 @@ public class UIScreen : SerializedMonoBehaviour {
         }
     }
 
+    public void OneWayActivate() {
+        if (control) return;
+        else Activate(1);
+    }
+
     public void Activate(int active) {
         control = active==1;
         input.currentActionMap = input.actions.FindActionMap(active==1?"UI":"Gameplay");
