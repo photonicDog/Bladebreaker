@@ -14,11 +14,11 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
     public float health;
     public Dictionary<WeaponType, float> dropTable;
     public AudioClip explodeSound;
+    private EntityAnimation _ea;
     
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start() {
+        _ea = GetComponent<EntityAnimation>();
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
         DropWeapon();
         GameManager.Instance.player.GetComponent<PlayerStatsController>().DefeatEnemy();
         GameManager.Instance.player.GetComponent<PlayerStatsController>().IncrementCombo();
-        //Enemy explosion effect
+        _ea.Die();
         Destroy(gameObject);
     }
 

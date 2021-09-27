@@ -71,27 +71,33 @@ public class Inventory : SerializedMonoBehaviour {
         }
     }
 
-    public void EjectWeapon(Vector2 fling) {
+    public void EjectWeapon(Vector2 dir) {
+        if (weapon == null || weapon.WeaponType == WeaponType.None) return;
         Vector2 throwVector;
-        Debug.Log(fling);
+        Debug.Log(dir);
         
-        if (fling == Vector2.down && !_em.midair) {
+        if (dir == Vector2.down && !_em.midair) {
             EatWeapon();
             return;
         }
         
-        if (fling != Vector2.zero) {
-            throwVector = fling;
+        if (Mathf.Abs(dir.x) > 0.01f) {
+            //THROW FORWARD
+            throwVector = new Vector2(1f * _em._facing, 0f).normalized * 1.5f;
+            GameObject thrownWeapon = Instantiate(GameManager.Instance.WeaponThrows[weapon.WeaponType], transform.position, quaternion.identity);
+            thrownWeapon.GetComponent<WeaponPickup>().weapon = weapon;
+            thrownWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
+            thrownWeapon.GetComponent<EntityMovement>().antigravity = true;
         }
         else {
-            throwVector = new Vector2(-0.25f * _em._facing, 0.25f);
-        }
-
-        if (weapon != null && weapon.WeaponType != WeaponType.None) {
+            throwVector = new Vector2(-0.3f * _em._facing, 1f).normalized * 0.75f;
             GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[weapon.WeaponType], transform.position, quaternion.identity);
             droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
             droppedWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
         }
+        
+
+
         
         ClearWeapons();
     }

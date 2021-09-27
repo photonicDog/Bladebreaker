@@ -47,10 +47,7 @@ namespace Assets.Scripts.Controllers
 
             _musicSource.clip = Loop ? Loop : Music;
             _musicSource.loop = true;
-        }
-
-        private void Start()
-        {
+            //DontDestroyOnLoad(gameObject);
         }
 
         public void PlayMusic(AudioClip music)

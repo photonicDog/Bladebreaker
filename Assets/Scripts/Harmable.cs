@@ -35,11 +35,14 @@ public class Harmable : MonoBehaviour, IHarmable {
                 playerInventory.GetComponent<EntityMovement>().Antigravity();
             }
         }
-        Damage(hitbox.Damage, 
-            hitbox.HitStunDuration, 
-            hitbox.HorizontalKnockback, 
-            hitbox.VerticalKnockback, 
-            hitbox.transform.parent.transform);
+
+        Transform tf = hitbox.transform;
+        Transform parent = tf.parent;
+        Damage(hitbox.Damage,
+            hitbox.HitStunDuration,
+            hitbox.HorizontalKnockback,
+            hitbox.VerticalKnockback,
+            parent != null ? parent.transform : tf);
     }
 
     public void Damage(byte Damage, float HitStunDuration, float HorizontalKnockback, float VerticalKnockback, Transform source) {

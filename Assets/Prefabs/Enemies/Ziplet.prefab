@@ -153,6 +153,7 @@ MonoBehaviour:
   _em: {fileID: 4269948961361772367}
   _spr: {fileID: 4269948962256789649}
   _weaponry: {fileID: 0}
+  _asplode: {fileID: 6992575378664323509, guid: 6ae29ef565d015e4ab7331ec2c607575, type: 3}
   canJump: 0
   canDash: 0
   canSprint: 0

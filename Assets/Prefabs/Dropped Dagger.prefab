@@ -81,13 +81,15 @@ MonoBehaviour:
   _sprintMod: 1.28
   _jumpDecay: 0.06
   _groundFriction: 0.12
-  _airResistance: 0.12
+  _airResistance: 0
   _gravity: 0.03
   _maxVelocity: 0.02
   _horizontalCollisionRange: 2.4
   _verticalCollisionRange: 1
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 10
+  _bouncy: 1
+  _bounces: 3
   _freeMove: 0
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
@@ -111,6 +113,8 @@ MonoBehaviour:
   hitstun: 0
   leftCollide: 0
   rightCollide: 0
+  JumpSFX: {fileID: 0}
+  LandSFX: {fileID: 0}
 --- !u!114 &-6530109013232482039
 MonoBehaviour:
   m_ObjectHideFlags: 0

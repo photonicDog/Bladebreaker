@@ -55,6 +55,10 @@ MonoBehaviour:
     - {fileID: 3354780359226986464, guid: 4248976493420534784c5f4b09c97ce9, type: 3}
     - {fileID: 3354780359226986464, guid: c841fa6b66d35b24a80db868359d7324, type: 3}
     - {fileID: 3354780359226986464, guid: 2d13c7d8da9e383468ff0eaf0537a0ff, type: 3}
+    - {fileID: 3354780359226986464, guid: 3a49f4136b3fdae4ca4065382de6d128, type: 3}
+    - {fileID: 3354780359226986464, guid: 7b78da169b326b54c9094852abdb016a, type: 3}
+    - {fileID: 3354780359226986464, guid: 73196c5e2ce10744a87ff677790ed285, type: 3}
+    - {fileID: 3354780359226986464, guid: 6004b3b83f2addc448b11a483d94ad71, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -208,8 +212,85 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
-    - Name: playerStats
-      Entry: 6
+    - Name: WeaponThrows
+      Entry: 7
+      Data: 4|System.Collections.Generic.Dictionary`2[[Assets.Scripts.Types.Enums.WeaponType,
+        Assembly-CSharp],[UnityEngine.GameObject, UnityEngine.CoreModule]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 5|System.Collections.Generic.EnumEqualityComparer`1[[Assets.Scripts.Types.Enums.WeaponType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
       Data: 
-  checkpoints: []
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 11
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   checkpointMarker: 0
+  postprocess: {fileID: 0}
+  gameOver: {fileID: 0}
+  player: {fileID: 0}

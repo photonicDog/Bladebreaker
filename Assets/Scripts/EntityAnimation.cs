@@ -10,6 +10,7 @@ public class EntityAnimation : MonoBehaviour {
     [SerializeField] private SpriteRenderer _spr;
 
     [SerializeField] private GameObject _weaponry;
+    [SerializeField] private GameObject _asplode;
 
     private static readonly int WalkAnim = Animator.StringToHash("Walk");
     private static readonly int JumpAnim = Animator.StringToHash("Jump");
@@ -96,6 +97,7 @@ public class EntityAnimation : MonoBehaviour {
 
     public void Die() {
         if (canDie) _anim.SetTrigger(DieAnim);
+        else Instantiate(_asplode, transform.position, Quaternion.identity);
     }
 
     IEnumerator DashCoroutine(float time) {
