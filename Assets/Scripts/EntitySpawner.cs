@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Sirenix.OdinInspector;
 using Unity.Mathematics;
 using UnityEngine;
@@ -38,5 +39,9 @@ public class EntitySpawner : MonoBehaviour {
         if (aliveEntities.Count <= 0) {
             AssociatedEntitiesDestroyed = true;
         }
+    }
+
+    public void KillAll() {
+        aliveEntities.ForEach(Destroy);
     }
 }

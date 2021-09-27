@@ -50,6 +50,11 @@ public class SpawnerChoreographer : SerializedMonoBehaviour {
         }
     }
 
+    public void KillEverything() {
+        spawners.ForEach(a => a.KillAll());
+        stepIndex = 0;
+    }
+
     public void EndChoreography() {
         activated = false;
     }

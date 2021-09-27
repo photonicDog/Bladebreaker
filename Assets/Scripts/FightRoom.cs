@@ -58,6 +58,7 @@ public class FightRoom : MonoBehaviour {
 
     public void Reset() {
         End();
+        choreographer.KillEverything();
         activated = false;
     }
 }
