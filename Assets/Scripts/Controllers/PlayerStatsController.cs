@@ -26,6 +26,11 @@ namespace Assets.Scripts.Controllers
         public int[] Secrets;
         public byte EnemiesDefeated;
 
+        [Header("Audio SFX")]
+        public AudioClip DamageSFX;
+        public AudioClip HealSFX;
+        public AudioClip PickUpSFX;
+
         private Weapon _weapon;
         private Inventory _inventory;
         private UIController _uiController;
@@ -33,6 +38,7 @@ namespace Assets.Scripts.Controllers
         private SaveDataManager _saveDataManager;
         private float _levelStartTime;
         private EntityAnimation _ea;
+        private AudioController _audio;
 
         void Awake()
         {
@@ -46,6 +52,7 @@ namespace Assets.Scripts.Controllers
         private void Start() {
             _uiController = UIController.Instance;
             _rankingController = RankingController.Instance;
+            _audio = AudioController.Instance;
             ChangeWeapon(_weapon);
             
         }
@@ -66,17 +73,18 @@ namespace Assets.Scripts.Controllers
         }
 
         public void ChangeWeapon(Weapon weapon) {
-            _weapon = weapon;
             if (weapon.WeaponType == WeaponType.None)
             {
-                _uiController.DropWeapon();
                 SetDurability(0);
+                if (_weapon.WeaponType == WeaponType.None) return;
+                _uiController.DropWeapon();
             }
             else
             {
                 _uiController.PickUpWeapon(_weapon.WeaponType);
                 SetDurability(weapon.Durability);
             }
+            _weapon = weapon;
         }
 
         public void DefeatEnemy()
@@ -155,6 +163,7 @@ namespace Assets.Scripts.Controllers
             if (Health + modify > MaxHealth)
             {
                 Health = MaxHealth;
+                _audio.PlayPlayerSFX(HealSFX);
                 _uiController.RestoreAllHealth();
             }
             else if (Health + modify <= 0)
@@ -167,6 +176,7 @@ namespace Assets.Scripts.Controllers
 
                 if (modify < 0)
                 {
+                    _audio.PlayPlayerSFX(DamageSFX);
                     _uiController.TakeDamage(modify / 4);
                 }
                 else
@@ -193,6 +203,7 @@ namespace Assets.Scripts.Controllers
             _ea.Die();
             Deaths += 1;
             _uiController.LoseAllHealth();
+            _audio.StopMusic();
             if (Lives - 1 < 0)
             {
                 GameOver();
