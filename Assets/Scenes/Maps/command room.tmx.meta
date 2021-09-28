@@ -1,0 +1,34 @@
+fileFormatVersion: 2
+guid: 2e4579b779ea90a438c8fb53d2e86d7e
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
+  missingFiles: []
+  errors: []
+  warnings:
+  - Pixels Per Unit mismatch between map (100) and tileset 'bladebreaker command.tsx'
+    (8)
+  - Pixels Per Unit mismatch between map (100) and tileset 'bladebreaker_ship.tsx'
+    (8)
+  - Pixels Per Unit mismatch between map (100) and tileset 'bladebreaker deck.tsx'
+    (8)
+  - Pixels Per Unit mismatch between map (100) and tileset 'bladebreaker_fields.tsx'
+    (8)
+  - Pixels Per Unit mismatch between map (100) and tileset 'ship_tileso.tsx' (8)
+  missingSortingLayers: []
+  missingLayers: []
+  missingTags: []
+  importerVersion: 24
+  pixelsPerUnit: 100
+  edgesPerEllipse: 32
+  numberOfObjectsImported: 2
+  tilesAsObjects: 0
+  sortingMode: 0
+  isIsometric: 0
+  customImporterClassName: 
+  internalTilesets: []
