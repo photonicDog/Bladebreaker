@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Spear
   m_EditorClassIdentifier: 
   WeaponType: 2
-  Durability: 16
-  DurabilityLostOnHit: 2
+  Durability: 255
+  DurabilityLostOnHit: 12

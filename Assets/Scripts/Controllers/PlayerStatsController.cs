@@ -53,7 +53,7 @@ namespace Assets.Scripts.Controllers
             _uiController = UIController.Instance;
             _rankingController = RankingController.Instance;
             _audio = AudioController.Instance;
-            ChangeWeapon(_weapon);
+            _inventory.SetWeapon(_weapon, true);
             
         }
 
@@ -68,7 +68,7 @@ namespace Assets.Scripts.Controllers
         public void StartLevel() {
             if (SceneManager.Instance.currentWeapon != null) {
                 _inventory.weapon = SceneManager.Instance.currentWeapon;
-                ChangeWeapon(_inventory.weapon);
+                _inventory.SetWeapon(_inventory.weapon, true);
             }
         }
 
@@ -78,6 +78,8 @@ namespace Assets.Scripts.Controllers
             Ranking ranking = _rankingController.FinishLevel(CurrentLevelIndex + 1, Secrets);
             _saveDataManager.SaveData(CurrentLevelIndex, ranking, Score, StageTimeInSeconds, Deaths, MaxCombo, EnemiesDefeated, Secrets);
             SceneManager.Instance.currentWeapon = _weapon;
+            SceneManager.Instance.level++;
+            SceneManager.Instance.SwitchLevel(SceneManager.Instance.level);
         }
 
         public void ChangeWeapon(Weapon weapon) {

@@ -65,7 +65,7 @@ public class Inventory : SerializedMonoBehaviour {
     public void PickUpWeapon() {
         if (standingOn) {
             EjectWeapon(Vector2.zero);
-            SetWeapon(standingOn.weapon);
+            SetWeapon(standingOn.weapon, true);
             _psc.ChangeWeapon(weapon);
             Destroy(standingOn.gameObject);
         }
@@ -128,15 +128,15 @@ public class Inventory : SerializedMonoBehaviour {
         foreach (KeyValuePair<WeaponType, GameObject> entry in weaponObjects) {
             entry.Value.SetActive(false);
         }
-        weapon = fists;
+        SetWeapon(fists, false);
         _psc.ChangeWeapon(fists);
     }
 
-    public void SetWeapon(Weapon weaponSet) {
-        ClearWeapons();
-        weaponObjects[weaponSet.WeaponType].SetActive(true);
+    public void SetWeapon(Weapon weaponSet, bool clear) {
+        if (clear) ClearWeapons();
+        if (weaponSet.WeaponType != WeaponType.None) weaponObjects[weaponSet.WeaponType].SetActive(true);
         currentWeaponType = weaponSet.WeaponType;
         weapon = weaponSet;
-        animator.SetInteger("WeaponID", (int)weaponSet.WeaponType);
+        animator.SetInteger("WeaponID", (weaponSet.WeaponType==WeaponType.None)?-1:(int)weaponSet.WeaponType);
     }
 }

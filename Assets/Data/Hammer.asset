@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Hammer
   m_EditorClassIdentifier: 
   WeaponType: 3
-  Durability: 16
-  DurabilityLostOnHit: 1
+  Durability: 255
+  DurabilityLostOnHit: 24

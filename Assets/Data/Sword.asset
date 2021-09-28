@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   WeaponType: 0
-  Durability: 16
-  DurabilityLostOnHit: 1
+  Durability: 255
+  DurabilityLostOnHit: 12
