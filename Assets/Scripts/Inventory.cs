@@ -113,6 +113,7 @@ public class Inventory : SerializedMonoBehaviour {
 
     public void DurabilityCheck() {
         if (weapon != null && weapon.Durability <= 0) {
+            GameManager.Instance.player.GetComponent<PlayerStatsController>().WeaponBreak();
             ClearWeapons();
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Components;
+using Assets.Scripts.Controllers;
 using Assets.Scripts.Types.Enums;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
@@ -12,6 +13,7 @@ using Random = UnityEngine.Random;
 public class EnemyStats : SerializedMonoBehaviour, IStats {
     public float health;
     public Dictionary<WeaponType, float> dropTable;
+    public AudioClip explodeSound;
     
     // Start is called before the first frame update
     void Start()
@@ -33,6 +35,8 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
 
     public void Die() {
         DropWeapon();
+        GameManager.Instance.player.GetComponent<PlayerStatsController>().DefeatEnemy();
+        GameManager.Instance.player.GetComponent<PlayerStatsController>().IncrementCombo();
         //Enemy explosion effect
         Destroy(gameObject);
     }
