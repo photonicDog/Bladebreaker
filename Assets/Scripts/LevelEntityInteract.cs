@@ -72,7 +72,7 @@ namespace Assets.Scripts
 
         private void HitFinishLevel()
         {
-            //_playerStats.FinishLevel();
+            _playerStats.FinishLevel();
             _em.levelFinish = true;
             _em.walk = true;
         }

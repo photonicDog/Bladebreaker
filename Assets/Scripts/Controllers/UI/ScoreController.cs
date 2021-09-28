@@ -7,6 +7,9 @@ namespace Assets.Scripts.Controllers.UI
 {
     public class ScoreController : MonoBehaviour
     {
+        public bool ScoreTicksOnIncrease;
+        public int TickDuration;
+
         public Transform Digit1;
         public Transform Digit2;
         public Transform Digit3;
@@ -26,6 +29,7 @@ namespace Assets.Scripts.Controllers.UI
         private List<Transform>[] _digits;
 
         private int _score;
+        private int _lastScore;
         private bool _updateScore;
 
         private void Awake()
@@ -41,6 +45,7 @@ namespace Assets.Scripts.Controllers.UI
             _digits = new List<Transform>[] { _digit7Nums, _digit6Nums, _digit5Nums, _digit4Nums, _digit3Nums, _digit2Nums, _digit1Nums };
 
             _score = 0;
+            _lastScore = 0;
             _updateScore = true;
         }
 
@@ -48,24 +53,14 @@ namespace Assets.Scripts.Controllers.UI
         {
             if (_updateScore)
             {
-                string scoreStr = _score.ToString();
-                while (scoreStr.Length < 7)
-                {
-                    scoreStr = $"0{scoreStr}";
-                }
-
-                for(int i = 0; i < 7; i++)
-                {
-                    char digit = scoreStr[i];
-                    ChangeActive(i, digit);
-                }
-
+                SetScoreDisplay(_score);
                 _updateScore = false;
             }
         }
 
         public void AddScore(int addScore)
         {
+            _lastScore = _score;
             _score += addScore;
 
             if (_score > 9999999)
@@ -77,6 +72,7 @@ namespace Assets.Scripts.Controllers.UI
         }
         public void RemoveScore(int removeScore)
         {
+            _lastScore = _score;
             _score -= removeScore;
 
             if (_score < 0)
@@ -89,6 +85,7 @@ namespace Assets.Scripts.Controllers.UI
 
         public void SetScore(int newScore)
         {
+            _lastScore = _score;
             _score = newScore;
 
             if (_score > 9999999)
@@ -114,6 +111,39 @@ namespace Assets.Scripts.Controllers.UI
                 {
                     num.gameObject.SetActive(false);
                 }
+            }
+        }
+
+        public IEnumerator TickUpScore(float time, int score)
+        {
+            float ellapsedTime = 0;
+            int newScore = 0;
+
+            while (ellapsedTime < time)
+            {
+                ellapsedTime = Time.deltaTime;
+                newScore = (int)Mathf.Round(score * (ellapsedTime / time));
+                if (newScore > score)
+                {
+                    newScore = score;
+                }
+                SetScoreDisplay(newScore);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+
+        private void SetScoreDisplay(int newScore)
+        {
+            string scoreStr = newScore.ToString();
+            while (scoreStr.Length < 7)
+            {
+                scoreStr = $"0{scoreStr}";
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+                char digit = scoreStr[i];
+                ChangeActive(i, digit);
             }
         }
     }
