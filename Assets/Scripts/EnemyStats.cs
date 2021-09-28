@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Components;
 using Assets.Scripts.Types.Enums;
 using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class EnemyStats : SerializedMonoBehaviour, IStats {
     public float health;
-    [SerializeField] private Dictionary<WeaponType, float> dropTable;
+    public Dictionary<WeaponType, float> dropTable;
     
     // Start is called before the first frame update
     void Start()

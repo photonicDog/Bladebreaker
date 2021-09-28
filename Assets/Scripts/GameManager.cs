@@ -49,6 +49,7 @@ public class GameManager : SerializedMonoBehaviour {
         profile = postprocess.profile;
         profile.TryGetSettings(out gbc);
         _fightRooms = new List<FightRoom>(FindObjectsOfType<FightRoom>().ToList());
+        gbc._Fade.value = 0;
     }
     
     IEnumerator FadeCoroutine(float target, float time) {
@@ -101,6 +102,7 @@ public class GameManager : SerializedMonoBehaviour {
     IEnumerator StartLevelSequence() {
         yield return FadeCoroutine(0f, 1f);
         checkpoints[checkpointMarker].TeleportToCheckpoint();
+        player.GetComponent<PlayerStatsController>().StartLevel();
         AudioController.Instance.PlayMusic();
         yield return FadeCoroutine(1f, 1f);
     }

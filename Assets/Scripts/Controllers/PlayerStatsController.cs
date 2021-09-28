@@ -2,7 +2,6 @@
 using System;
 using Assets.Scripts.Components;
 using Unity.Mathematics;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers

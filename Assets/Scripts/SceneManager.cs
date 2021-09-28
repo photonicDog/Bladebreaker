@@ -57,9 +57,8 @@ public class SceneManager : SerializedMonoBehaviour
         if (CameraFader.Instance.FindCamera()) {
             yield return StartCoroutine(CameraFader.Instance.FadeCoroutine(0f, 1f));
             yield return UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(i);
-            yield return new WaitForSeconds(2f);
-            if (i >= scenesBeforeLevel) GameManager.Instance.player.GetComponent<PlayerStatsController>().StartLevel();
-            yield return StartCoroutine(CameraFader.Instance.FadeCoroutine(1f, 1f));
+            if (i >= scenesBeforeLevel) GameManager.Instance.LoadLevel();
+            else yield return StartCoroutine(CameraFader.Instance.FadeCoroutine(0f, 1f));
         }
         else {
             yield return UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(i);
