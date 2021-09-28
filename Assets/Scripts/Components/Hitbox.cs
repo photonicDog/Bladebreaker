@@ -15,6 +15,7 @@ namespace Assets.Scripts.Components
         [Header("Hit Stun")]
         public float HitStunDuration;
         public bool Player;
+        public bool Thrown;
 
         private void OnTriggerEnter2D(Collider2D other) {
             if (Player && other.gameObject.layer == LayerMask.NameToLayer("EnemyHitbox")) {

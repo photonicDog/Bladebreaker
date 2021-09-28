@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 3606994850143032986}
   - component: {fileID: 2330022567615565245}
   - component: {fileID: -6530109013232482039}
-  m_Layer: 13
-  m_Name: Dropped Dagger
+  - component: {fileID: 3123024881608369605}
+  - component: {fileID: 5811608736929947371}
+  m_Layer: 10
+  m_Name: Thrown Dagger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,8 +90,8 @@ MonoBehaviour:
   _verticalCollisionRange: 1
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 10
-  _bouncy: 1
-  _bounces: 3
+  _bouncy: 0
+  _bounces: 0
   _freeMove: 0
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
@@ -131,6 +133,38 @@ MonoBehaviour:
     WeaponType: 1
     Durability: 255
     DurabilityLostOnHit: 15
+--- !u!114 &3123024881608369605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3354780359226986464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c60b1549a0c76b4e94b10900f0eb323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 5
+  HorizontalKnockback: 0.1
+  VerticalKnockback: 0
+  HitStunDuration: 1
+  Player: 0
+  Thrown: 1
+--- !u!114 &5811608736929947371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3354780359226986464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e1b8ba4c1486f4d9548f375d595fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explodeEffect: {fileID: 6992575378664323509, guid: 6ae29ef565d015e4ab7331ec2c607575, type: 3}
+  asplosion: {fileID: 3217827835179698279, guid: 39ab55c3c3a51224cb1b8e037d1036db, type: 3}
 --- !u!1 &6220067843801976876
 GameObject:
   m_ObjectHideFlags: 0

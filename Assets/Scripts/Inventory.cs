@@ -65,29 +65,32 @@ public class Inventory : SerializedMonoBehaviour {
     public void PickUpWeapon() {
         if (standingOn) {
             EjectWeapon(Vector2.zero);
-            SetWeapon(standingOn.weapon);
+            SetWeapon(standingOn.weapon, true);
             _psc.ChangeWeapon(weapon);
             Destroy(standingOn.gameObject);
         }
     }
 
-    public void EjectWeapon(Vector2 fling) {
+    public void EjectWeapon(Vector2 dir) {
+        if (weapon == null || weapon.WeaponType == WeaponType.None) return;
         Vector2 throwVector;
-        Debug.Log(fling);
+        Debug.Log(dir);
         
-        if (fling == Vector2.down && !_em.midair) {
+        if (dir == Vector2.down && !_em.midair) {
             EatWeapon();
             return;
         }
         
-        if (fling != Vector2.zero) {
-            throwVector = fling;
+        if (Mathf.Abs(dir.x) > 0.01f) {
+            //THROW FORWARD
+            throwVector = new Vector2(1f * _em._facing, 0f).normalized * 1.2f;
+            GameObject thrownWeapon = Instantiate(GameManager.Instance.WeaponThrows[weapon.WeaponType], transform.position, quaternion.identity);
+            thrownWeapon.GetComponent<WeaponPickup>().weapon = weapon;
+            thrownWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
+            thrownWeapon.GetComponent<EntityMovement>().antigravity = true;
         }
         else {
-            throwVector = new Vector2(-0.25f * _em._facing, 0.25f);
-        }
-
-        if (weapon != null && weapon.WeaponType != WeaponType.None) {
+            throwVector = new Vector2(-0.3f * _em._facing, 0.8f).normalized * 0.55f;
             GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[weapon.WeaponType], transform.position, quaternion.identity);
             droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
             droppedWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
@@ -122,15 +125,15 @@ public class Inventory : SerializedMonoBehaviour {
         foreach (KeyValuePair<WeaponType, GameObject> entry in weaponObjects) {
             entry.Value.SetActive(false);
         }
-        weapon = fists;
+        SetWeapon(fists, false);
         _psc.ChangeWeapon(fists);
     }
 
-    public void SetWeapon(Weapon weaponSet) {
-        ClearWeapons();
-        weaponObjects[weaponSet.WeaponType].SetActive(true);
+    public void SetWeapon(Weapon weaponSet, bool clear) {
+        if (clear) ClearWeapons();
+        if (weaponSet.WeaponType != WeaponType.None) weaponObjects[weaponSet.WeaponType].SetActive(true);
         currentWeaponType = weaponSet.WeaponType;
         weapon = weaponSet;
-        animator.SetInteger("WeaponID", (int)weaponSet.WeaponType);
+        animator.SetInteger("WeaponID", (weaponSet.WeaponType==WeaponType.None)?-1:(int)weaponSet.WeaponType);
     }
 }

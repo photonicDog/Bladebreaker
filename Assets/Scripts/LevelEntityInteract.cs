@@ -9,8 +9,6 @@ namespace Assets.Scripts
 {
     public class LevelEntityInteract : MonoBehaviour
     {
-        public PostProcessVolume volume;
-
         private Collider2D _player;
         private PlayerStatsController _playerStats;
         private EntityMovement _em;
@@ -29,9 +27,6 @@ namespace Assets.Scripts
             _em = GetComponent<EntityMovement>();
 
             _hasDied = false;
-            Camera camera = Camera.main;
-            volume.profile.TryGetSettings(out _gbc);
-            _pc = camera.GetComponent<PlayerCamera>();
         }
 
         private void Update()
@@ -95,30 +90,13 @@ namespace Assets.Scripts
             }
         }
 
-        public IEnumerator FadeTeleportCoroutine()
-        {
-            float time = 0.5f;
-
-            float elapsedTime = 0;
-
-            while (elapsedTime < time)
-            {
-                elapsedTime += Time.deltaTime;
-                _gbc._Fade.value = Mathf.Lerp(1, 0, elapsedTime / time);
-                yield return null;
-            }
+        public IEnumerator FadeTeleportCoroutine() {
+            yield return StartCoroutine(CameraFader.Instance.FadeCoroutine(0, 0.5f));
 
             _player.transform.position = _currentDoor.Location;
             _pc.CurrentArea = _currentDoor.LocationCameraBounds;
 
-            elapsedTime = 0;
-
-            while (elapsedTime < time)
-            {
-                elapsedTime += Time.deltaTime;
-                _gbc._Fade.value = Mathf.Lerp(0, 1, elapsedTime / time);
-                yield return null;
-            }
+            yield return StartCoroutine(CameraFader.Instance.FadeCoroutine(1, 0.5f));
 
             _currentDoor = null;
         }

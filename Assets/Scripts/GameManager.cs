@@ -15,6 +15,7 @@ public class GameManager : SerializedMonoBehaviour {
 
     public Dictionary<WeaponType, WeaponObject> WeaponData;
     public Dictionary<WeaponType, GameObject> WeaponDrops;
+    public Dictionary<WeaponType, GameObject> WeaponThrows;
 
     [Header("Checkpoints and Death")]
     public List<Checkpoint> checkpoints;

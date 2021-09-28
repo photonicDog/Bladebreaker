@@ -24,6 +24,11 @@ public class EntityMovement : MonoBehaviour {
     [SerializeField] private float _colliderWidthOffset;
     [SerializeField] private float _fastfallFrameDelay;
 
+    [SerializeField] private bool _bouncy;
+    [ShowIf("_bouncy")][SerializeField] private int _bounces;
+    private int bouncesLeft;
+    private Vector3 saveBounceSpeed;
+
     [SerializeField] private bool _freeMove;
 
     private Coroutine _defer;
@@ -97,6 +102,7 @@ public class EntityMovement : MonoBehaviour {
         platform = LayerMask.GetMask("Platform");
         levelFinish = false;
         _isPlayer = gameObject.CompareTag("Player");
+        if (_bouncy) bouncesLeft = _bounces;
     }
 
     void Start()
@@ -145,7 +151,12 @@ public class EntityMovement : MonoBehaviour {
             }
         }
 
-        velocity = (velocity * 0.95f) + _frameVelocity;
+        if (midair && _bouncy && (Mathf.Abs(velocity.y) > 0.001 || Mathf.Abs(velocity.x) > 0.001)) {
+            Debug.Log("BOUNCESAVE");
+            saveBounceSpeed = velocity;
+        }
+        
+        velocity = (velocity * ((_bouncy&&bouncesLeft>0)?1f:0.95f)) + _frameVelocity;
         if (!midair) velocity *= new Vector2(1, 0);
 
         if ((leftCollide && velocity.x < 0) || (rightCollide && velocity.x > 0)) 
@@ -295,6 +306,30 @@ public class EntityMovement : MonoBehaviour {
         }
     }
 
+    public void StopAntigravity() {
+        if (_antigrav != null) StopCoroutine(_antigrav);
+        antigravity = false;
+    }
+
+    public void BounceCheck(bool y) {
+        if (_bouncy && bouncesLeft > 0) {
+            midair = true;
+            if (y) BounceY();
+            else BounceX();
+            bouncesLeft--;
+        }
+    }
+
+    public void BounceY() {
+        Debug.Log("BOUCNEY" + saveBounceSpeed);
+        velocity = saveBounceSpeed * new Vector2(1, -1);
+    }
+
+    public void BounceX() {
+        Debug.Log("BOUCNEX");
+        velocity = saveBounceSpeed * new Vector2(-1, 1);
+    }
+
     IEnumerator AntigravityCoroutine() {
         if (velocity.y < 0) velocity = new Vector2(velocity.x, 0);
         antigravity = true;
@@ -372,12 +407,15 @@ public class EntityMovement : MonoBehaviour {
             _landedThisFrame = midairThisFrame && !midair;
             inGround = (_leftRay.point.y > _coll.bounds.min.y + 0.125f || _rightRay.point.y > _coll.bounds.min.y + 0.125f);
             if (leftRay) {
+                BounceCheck(true);
                 return new Vector2(0, (leftRay.point.y - _coll.bounds.min.y));
             }
             if (rightRay)
             {
+                BounceCheck(true);
                 return new Vector2(0, (rightRay.point.y - _coll.bounds.min.y));
             }
+
         }
         else if (((_leftplatRay && !platformDrop) || (_rightplatRay && !platformDrop)) && !allowPlatformNoclip && velocity.y <= 0)
         {
@@ -391,10 +429,12 @@ public class EntityMovement : MonoBehaviour {
             inGround = (_leftplatRay.point.y > _coll.bounds.min.y + 0.125f || _rightplatRay.point.y > _coll.bounds.min.y + 0.125f);
             if (leftPlatRay && leftPlatRay.point.y > _coll.bounds.min.y)
             {
+                BounceCheck(true);
                 return new Vector2(0, (leftPlatRay.point.y - _coll.bounds.min.y));
             }
             if (rightPlatRay && rightPlatRay.point.y > _coll.bounds.min.y)
             {
+                BounceCheck(true);
                 return new Vector2(0, (rightPlatRay.point.y - _coll.bounds.min.y));
             }
         } else if ((leftHeadRay || rightHeadRay) && velocity.y > 0 && midair)
@@ -440,11 +480,14 @@ public class EntityMovement : MonoBehaviour {
         if ((topLeftRay || bottomLeftRay) && !(inGround)) {
             leftCollide = true;
             if (topLeftRay && topLeftRay.point.x > _coll.bounds.min.x) {
+                BounceCheck(false);
                 return new Vector2((topLeftRay.point.x - _coll.bounds.min.x), 0);
             }
             if (bottomLeftRay && bottomLeftRay.point.x > _coll.bounds.min.x) {
+                BounceCheck(false);
                 return new Vector2((bottomLeftRay.point.x - _coll.bounds.min.x), 0);
             }
+
         }
         else {
             leftCollide = false;
@@ -453,9 +496,11 @@ public class EntityMovement : MonoBehaviour {
         if ((topRightRay || bottomRightRay) && !(inGround)) {
             rightCollide = true;
             if (topRightRay && topRightRay.point.x < _coll.bounds.max.x) {
+                BounceCheck(false);
                 return new Vector2((topRightRay.point.x - _coll.bounds.max.x), 0);
             }
             if (bottomRightRay && bottomRightRay.point.x < _coll.bounds.max.x) {
+                BounceCheck(false);
                 return new Vector2((bottomRightRay.point.x - _coll.bounds.max.x), 0);
             }
         }
