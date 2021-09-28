@@ -2,6 +2,7 @@
 using System;
 using Assets.Scripts.Components;
 using Unity.Mathematics;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace Assets.Scripts.Controllers
@@ -65,11 +66,19 @@ namespace Assets.Scripts.Controllers
             }
         }
 
+        public void StartLevel() {
+            if (SceneManager.Instance.currentWeapon != null) {
+                _inventory.weapon = SceneManager.Instance.currentWeapon;
+                ChangeWeapon(_inventory.weapon);
+            }
+        }
+
         public void FinishLevel()
         {
             StageTimeInSeconds = Time.realtimeSinceStartup - _levelStartTime;
             Ranking ranking = _rankingController.FinishLevel();
             _saveDataManager.SaveData(CurrentLevelIndex, ranking, Score, StageTimeInSeconds, Deaths, MaxCombo, Secrets);
+            SceneManager.Instance.currentWeapon = _weapon;
         }
 
         public void ChangeWeapon(Weapon weapon) {

@@ -87,6 +87,7 @@ public class GameManager : SerializedMonoBehaviour {
         checkpointMarker = 0;
         player.GetComponent<Inventory>().ClearWeapons();
         FindObjectsOfType<EntityAI>().ForEach(a => a.ResetEverything());
+        FindObjectsOfType<Secret>(true).ForEach(a => a.gameObject.SetActive(true));
         gameOver.SetActive(true);
         yield return FadeCoroutine(1f, 1f);
     }
