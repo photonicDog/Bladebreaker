@@ -83,14 +83,14 @@ public class Inventory : SerializedMonoBehaviour {
         
         if (Mathf.Abs(dir.x) > 0.01f) {
             //THROW FORWARD
-            throwVector = new Vector2(1f * _em._facing, 0f).normalized * 1.5f;
+            throwVector = new Vector2(1f * _em._facing, 0f).normalized * 1.2f;
             GameObject thrownWeapon = Instantiate(GameManager.Instance.WeaponThrows[weapon.WeaponType], transform.position, quaternion.identity);
             thrownWeapon.GetComponent<WeaponPickup>().weapon = weapon;
             thrownWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
             thrownWeapon.GetComponent<EntityMovement>().antigravity = true;
         }
         else {
-            throwVector = new Vector2(-0.3f * _em._facing, 1f).normalized * 0.75f;
+            throwVector = new Vector2(-0.3f * _em._facing, 0.8f).normalized * 0.55f;
             GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[weapon.WeaponType], transform.position, quaternion.identity);
             droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
             droppedWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);
