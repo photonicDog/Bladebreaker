@@ -47,7 +47,6 @@ namespace Assets.Scripts.Controllers
 
             _musicSource.clip = Loop ? Loop : Music;
             _musicSource.loop = true;
-            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()

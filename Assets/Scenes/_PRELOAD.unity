@@ -161,6 +161,7 @@ MonoBehaviour:
     - 0
     Deaths: 000000000000000000000000
     MaxCombos: 000000000000000000000000
+    EnemiesDefeated: 000000000000000000000000
     LastClearedLevel: 0
 --- !u!4 &526199964
 Transform:
@@ -443,6 +444,10 @@ MonoBehaviour:
   MainMenuScene: 1
   CreditsScene: 2
   scenesBeforeLevel: 3
+  currentWeapon:
+    WeaponType: 0
+    Durability: 0
+    DurabilityLostOnHit: 0
 --- !u!4 &1437350766
 Transform:
   m_ObjectHideFlags: 0

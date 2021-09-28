@@ -18,6 +18,8 @@ public class SceneManager : SerializedMonoBehaviour
 
     private static SceneManager _instance;
     public static SceneManager Instance => _instance;
+
+    private AudioController _audio;
     
     // Start is called before the first frame update
     void Awake()
@@ -29,6 +31,11 @@ public class SceneManager : SerializedMonoBehaviour
         else {
             _instance = this;
         }
+    }
+
+    private void Start()
+    {
+        _audio = AudioController.Instance;
     }
 
     public void GoToMainMenu() {
@@ -44,7 +51,8 @@ public class SceneManager : SerializedMonoBehaviour
             Debug.Log("Cannot backtrack levels!");
             return;
         }
-        else {
+        else
+        {
             SwitchScene(target+scenesBeforeLevel);
         };
     }

@@ -139,6 +139,71 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 2959108262511040059, guid: 9a638e813562ec0448cf38cf2eb5573f, type: 3}
   m_PrefabInstance: {fileID: 1316461439}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &349658889
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4605728584989287279, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: Loop
+      value: 
+      objectReference: {fileID: 8300000, guid: 6c2dda45d09ef74478a86ee57bb08253, type: 3}
+    - target: {fileID: 4605728584989287279, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: Music
+      value: 
+      objectReference: {fileID: 8300000, guid: 5fab4120e9e07b740947aa7d5f9dc410, type: 3}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480156007725634500, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7989227883441186504, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
+      propertyPath: m_Name
+      value: AudioController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 932aec1a1e574ed46af124a6ced63f00, type: 3}
 --- !u!1001 &1316461439
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,9 +232,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1712079368}
     - target: {fileID: 2959108262511040056, guid: 9a638e813562ec0448cf38cf2eb5573f, type: 3}
+      propertyPath: StartAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 009821c25d612094ba6678e7d07d5af8, type: 3}
+    - target: {fileID: 2959108262511040056, guid: 9a638e813562ec0448cf38cf2eb5573f, type: 3}
+      propertyPath: SelectAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: 755fcebc3b2b26c4badbc4e86fd8a637, type: 3}
+    - target: {fileID: 2959108262511040056, guid: 9a638e813562ec0448cf38cf2eb5573f, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 2959108262511040056, guid: 9a638e813562ec0448cf38cf2eb5573f, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2959108262511040056, guid: 9a638e813562ec0448cf38cf2eb5573f, type: 3}
       propertyPath: serializationData.PrefabModifications.Array.size
       value: 13
@@ -471,6 +544,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 96fbb0dd-cced-4db0-84d6-3114f09a0ab7
     m_ActionName: UI/Act[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4dd8b466-b26e-4715-9743-fa78de06dd36
+    m_ActionName: UI/Exit Game[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Assets.Scripts.Controllers;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -17,6 +18,11 @@ public class UIScreen : SerializedMonoBehaviour {
     private int position;
     public bool control;
 
+    private AudioController _audio;
+
+    public AudioClip SelectAudio;
+    public AudioClip StartAudio;
+
     public void Awake() {
         cursor.SetActive(false);
 
@@ -26,6 +32,8 @@ public class UIScreen : SerializedMonoBehaviour {
         if (input == null) {
             input = GameManager.Instance.player.GetComponent<PlayerInput>();
         }
+        _audio = AudioController.Instance;
+        _audio.PlayMusic();
     }
 
     public void OneWayActivate() {
@@ -33,13 +41,16 @@ public class UIScreen : SerializedMonoBehaviour {
         Activate(1);
     }
 
-    public void Activate(int active) {
+    public void Activate(int active)
+    {
+        _audio.PlayStageSFX(StartAudio);
         StartCoroutine(Activate(control = active==1));
     } 
     
     public void Select(InputAction.CallbackContext context) {
         if (!control) return;
         if (context.started) {
+            _audio.PlayStageSFX(SelectAudio);
             SetCursor(context.ReadValue<float>());
         }
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
+using Assets.Scripts.Controllers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,16 +10,28 @@ public class MainMenuScreen : MonoBehaviour {
     public Animator anim;
     private UIScreen ui;
 
+    private AudioController _audio;
+
     private void Awake() {
         ui = GetComponent<UIScreen>();
     }
 
-    public void NewGame() {
+    public void Start()
+    {
+        _audio = AudioController.Instance;
+        _audio.PlayMusic();
+    }
+
+    public void NewGame()
+    {
+        if (_audio) _audio.StopMusic();
         SaveDataManager.Instance.CreateNewSave();
         SceneManager.Instance.SwitchLevel(0);
     }
 
-    public void Continue() {
+    public void Continue()
+    {
+        if (_audio) _audio.StopMusic();
         SaveDataManager.Instance.LoadData();
         SceneManager.Instance.SwitchLevel(SaveDataManager.Instance.saveData.LastClearedLevel);
     }

@@ -41,6 +41,7 @@ namespace Assets.Scripts.Controllers.UI
                 yield return new WaitForSecondsRealtime(_tickLength);
                 _currentSize -= _drainSpeed;
             }
+            
         }
 
         private IEnumerator RapidFillMeter()

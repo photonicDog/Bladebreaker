@@ -1,6 +1,7 @@
 using System;
 using Assets.Scripts;
 using Assets.Scripts.Components;
+using Assets.Scripts.Controllers;
 using UnityEngine;
 
 public class Harmable : MonoBehaviour, IHarmable {
@@ -12,12 +13,17 @@ public class Harmable : MonoBehaviour, IHarmable {
     public bool iFrame = false;
 
     public LayerMask attackingLayer;
+    public PlayerStatsController _pStats;
 
     private void Awake() {
         _em = GetComponent<EntityMovement>();
         _ea = GetComponent<EntityAnimation>();
         _hasAI = TryGetComponent(out _eai);
         TryGetComponent(out _stats);
+    }
+
+    private void Start()
+    {
     }
 
     public void Damage(Hitbox hitbox) {
