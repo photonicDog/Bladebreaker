@@ -65,11 +65,19 @@ namespace Assets.Scripts.Controllers
             }
         }
 
+        public void StartLevel() {
+            if (SceneManager.Instance.currentWeapon != null) {
+                _inventory.weapon = SceneManager.Instance.currentWeapon;
+                ChangeWeapon(_inventory.weapon);
+            }
+        }
+
         public void FinishLevel()
         {
             StageTimeInSeconds = Time.realtimeSinceStartup - _levelStartTime;
             Ranking ranking = _rankingController.FinishLevel(CurrentLevelIndex + 1, Secrets);
             _saveDataManager.SaveData(CurrentLevelIndex, ranking, Score, StageTimeInSeconds, Deaths, MaxCombo, EnemiesDefeated, Secrets);
+            SceneManager.Instance.currentWeapon = _weapon;
         }
 
         public void ChangeWeapon(Weapon weapon) {

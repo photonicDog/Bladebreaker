@@ -52,13 +52,17 @@ namespace Assets.Scripts.Controllers
 
         private void Start()
         {
-            PlayMusic(Music);
         }
 
         public void PlayMusic(AudioClip music)
         {
             _musicSource.PlayOneShot(music);
             _musicSource.PlayScheduled(AudioSettings.dspTime + music.length);
+        }
+
+        public void PlayMusic() {
+            _musicSource.PlayOneShot(Music);
+            _musicSource.PlayScheduled(AudioSettings.dspTime + Music.length);
         }
 
         public void StopMusic()

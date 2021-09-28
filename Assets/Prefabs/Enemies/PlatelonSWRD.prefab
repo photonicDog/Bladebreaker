@@ -136,6 +136,8 @@ MonoBehaviour:
   hitstun: 0
   leftCollide: 0
   rightCollide: 0
+  JumpSFX: {fileID: 0}
+  LandSFX: {fileID: 0}
 --- !u!114 &4269948961361772366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,8 +233,8 @@ MonoBehaviour:
     SerializationNodes:
     - Name: dropTable
       Entry: 7
-      Data: 0|Unity.Cloud.Collaborate.Common.SerializableDictionary`2[[Assets.Scripts.Types.Enums.WeaponType,
-        Assembly-CSharp],[System.Single, mscorlib]], Unity.CollabProxy.Editor
+      Data: 0|System.Collections.Generic.Dictionary`2[[Assets.Scripts.Types.Enums.WeaponType,
+        Assembly-CSharp],[System.Single, mscorlib]], mscorlib
     - Name: comparer
       Entry: 7
       Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[Assets.Scripts.Types.Enums.WeaponType,
@@ -248,7 +250,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
       Data: 0
+    - Name: $v
+      Entry: 4
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: 
       Entry: 13
       Data: 

@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Assets.Scripts.Controllers;
 using Sirenix.OdinInspector;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EntityMovement : MonoBehaviour {

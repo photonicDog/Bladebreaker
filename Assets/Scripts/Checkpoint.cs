@@ -17,5 +17,6 @@ public class Checkpoint : MonoBehaviour
 
     public void TeleportToCheckpoint() {
         GameManager.Instance.player.transform.position = transform.position;
+        GameManager.Instance.player.GetComponent<EntityMovement>().velocity = Vector2.zero;
     }
 }
