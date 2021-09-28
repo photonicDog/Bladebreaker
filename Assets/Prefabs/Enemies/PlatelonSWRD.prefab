@@ -113,6 +113,8 @@ MonoBehaviour:
   _verticalCollisionRange: 2
   _colliderWidthOffset: 0.1
   _fastfallFrameDelay: 0
+  _bouncy: 0
+  _bounces: 0
   _freeMove: 0
   velocity: {x: 0, y: 0}
   _frameVelocity: {x: 0, y: 0}
@@ -154,6 +156,7 @@ MonoBehaviour:
   _em: {fileID: 4269948961361772367}
   _spr: {fileID: 4269948962256789649}
   _weaponry: {fileID: 0}
+  _asplode: {fileID: 6992575378664323509, guid: 6ae29ef565d015e4ab7331ec2c607575, type: 3}
   canJump: 0
   canDash: 0
   canSprint: 0
@@ -210,6 +213,7 @@ MonoBehaviour:
   attackingLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _pStats: {fileID: 0}
 --- !u!114 &2725640073866405045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +274,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   health: 40
+  explodeSound: {fileID: 0}
 --- !u!1 &4269948962256789647
 GameObject:
   m_ObjectHideFlags: 0

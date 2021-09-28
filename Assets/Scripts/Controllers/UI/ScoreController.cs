@@ -121,7 +121,7 @@ namespace Assets.Scripts.Controllers.UI
 
             while (ellapsedTime < time)
             {
-                ellapsedTime = Time.deltaTime;
+                ellapsedTime += Time.deltaTime;
                 newScore = (int)Mathf.Round(score * (ellapsedTime / time));
                 if (newScore > score)
                 {

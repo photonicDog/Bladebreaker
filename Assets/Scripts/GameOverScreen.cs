@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameOverScreen : MonoBehaviour
 {
     void GoToMenu() {
-        //TODO: Go to main menu scene
+        SceneManager.Instance.GoToMainMenu();
     }
 
     void Continue() {

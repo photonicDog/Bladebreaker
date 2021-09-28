@@ -71,7 +71,7 @@ namespace Assets.Scripts.Controllers.UI
 
         public IEnumerator TickUpTime(float tickTime, float time)
         {
-            SetTimeDisplay(0000000);
+            SetTimeDisplay(10000000);
             Colon.gameObject.SetActive(true);
             Dot.gameObject.SetActive(true);
 
@@ -81,13 +81,13 @@ namespace Assets.Scripts.Controllers.UI
 
             while (ellapsedTime < tickTime)
             {
-                ellapsedTime = UnityEngine.Time.deltaTime;
+                ellapsedTime += UnityEngine.Time.deltaTime;
                 newTime = (int)Mathf.Round(timeResult * (ellapsedTime / tickTime));
                 if (newTime > timeResult)
                 {
                     newTime = timeResult;
                 }
-                SetTimeDisplay(newTime);
+                SetTimeDisplay(10000000+newTime);
                 yield return new WaitForEndOfFrame();
             }
         }
@@ -96,10 +96,10 @@ namespace Assets.Scripts.Controllers.UI
         {
             string scoreStr = newTime.ToString();
 
-            for (int i = 0; i < 7; i++)
+            for (int i = 1; i < 8; i++)
             {
                 char digit = scoreStr[i];
-                ChangeActive(i, digit);
+                ChangeActive(i-1, digit);
             }
         }
 

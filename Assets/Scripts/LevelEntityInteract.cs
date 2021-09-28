@@ -27,6 +27,7 @@ namespace Assets.Scripts
             _em = GetComponent<EntityMovement>();
 
             _hasDied = false;
+            _pc = Camera.main.GetComponent<PlayerCamera>();
         }
 
         private void Update()
@@ -94,7 +95,7 @@ namespace Assets.Scripts
             yield return StartCoroutine(CameraFader.Instance.FadeCoroutine(0, 0.5f));
 
             _player.transform.position = _currentDoor.Location;
-            _pc.CurrentArea = _currentDoor.LocationCameraBounds;
+            if (_currentDoor.LocationCameraBounds) _pc.CurrentArea = _currentDoor.LocationCameraBounds;
 
             yield return StartCoroutine(CameraFader.Instance.FadeCoroutine(1, 0.5f));
 

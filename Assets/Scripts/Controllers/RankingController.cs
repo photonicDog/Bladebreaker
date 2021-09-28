@@ -69,8 +69,12 @@ namespace Assets.Scripts.Controllers
 
         }
 
-        public Ranking FinishLevel(int levelNumber, int[] secrets)
-        {
+        public Ranking FinishLevel(int levelNumber, int[] secrets, PlayerStatsController psc) {
+            Score = psc.Score;
+            TimeInSeconds = psc.StageTimeInSeconds;
+            MaxCombo = psc.MaxCombo;
+            Deaths = psc.Deaths;
+            EnemiesDefeated = psc.EnemiesDefeated;
             LevelNumber = levelNumber;
             Ranking = CalculateRanking(Score, TimeInSeconds, MaxCombo, Deaths, EnemiesDefeated);
             StartCoroutine(DisplayRankScreen(secrets));
@@ -132,18 +136,22 @@ namespace Assets.Scripts.Controllers
             {
                 yield return StartCoroutine(DisplaySecrets(secrets));
             }
+
+            yield return new WaitForSeconds(4f);
+            SceneManager.Instance.level++;
+            SceneManager.Instance.SwitchLevel(SceneManager.Instance.level);
         }
 
         private IEnumerator ScrollDown(float time)
         {
-            Vector3 startPos = transform.position;
+            Vector3 startPos = transform.localPosition;
             Vector3 endPos = startPos - new Vector3(0, 18f, 0);
-            float elapsedTime = Time.realtimeSinceStartup;
+            float elapsedTime = 0;
 
             while (elapsedTime < time)
             {
                 elapsedTime += Time.deltaTime;
-                transform.position = Vector3.Lerp(startPos, endPos, elapsedTime / time);
+                transform.localPosition = Vector3.Lerp(startPos, endPos, elapsedTime / time);
                 yield return null;
             }
         }
@@ -172,7 +180,7 @@ namespace Assets.Scripts.Controllers
                 float ellapsedTime = 0f;
 
                 while (ellapsedTime < localTime) {
-                    ellapsedTime = Time.deltaTime;
+                    ellapsedTime += Time.deltaTime;
                     GaugeAnchor.localScale = new Vector3(Mathf.Lerp(0, localProgress, ellapsedTime / localTime), 1, 1);
                     yield return new WaitForEndOfFrame();
                 }

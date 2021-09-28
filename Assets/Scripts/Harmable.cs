@@ -35,7 +35,8 @@ public class Harmable : MonoBehaviour, IHarmable {
                 playerInventory.GetComponent<EntityMovement>().Antigravity();
             }
         }
-
+        
+        // TODO: Figure out why enemies can sometimes OHKO you - hitbox flicker?
         Transform tf = hitbox.transform;
         Transform parent = tf.parent;
         Damage(hitbox.Damage,

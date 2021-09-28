@@ -14,10 +14,12 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
     public Dictionary<WeaponType, float> dropTable;
     public AudioClip explodeSound;
     private EntityAnimation _ea;
+    private EntityMovement _em;
     
     // Start is called before the first frame update
     void Start() {
         _ea = GetComponent<EntityAnimation>();
+        _em = GetComponent<EntityMovement>();
     }
 
     // Update is called once per frame
@@ -46,7 +48,7 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
                 Weapon weapon = new Weapon(GameManager.Instance.WeaponData[entry.Key]);
                 GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[entry.Key], transform.position, quaternion.identity);
                 droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
-                droppedWeapon.GetComponent<EntityMovement>().PushEntity(new Vector2(0.5f, 1f));
+                droppedWeapon.GetComponent<EntityMovement>().PushEntity(new Vector2(0.2f, _em.midair?-0.5f:0.2f));
                 
                 break;
             }

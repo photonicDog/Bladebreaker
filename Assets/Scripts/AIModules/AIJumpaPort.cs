@@ -49,6 +49,7 @@ namespace AIModules {
                 await Task.Yield();
             }
             
+            //HEH NOTHING PERSONELL KID
             Vector2 teleportPosition = new Vector2((playerTransform.position.x - pem._facing * teleportDistance), playerTransform.position.y + 6);
             _entityAI.transform.position = teleportPosition;
             _em.velocity *= Vector2.right;

@@ -115,7 +115,7 @@ public class Inventory : SerializedMonoBehaviour {
     }
 
     public void DurabilityCheck() {
-        if (weapon != null && weapon.Durability <= 0) {
+        if (weapon != null && weapon.Durability <= 0 && weapon != fists) {
             GameManager.Instance.player.GetComponent<PlayerStatsController>().WeaponBreak();
             ClearWeapons();
         }
@@ -131,7 +131,7 @@ public class Inventory : SerializedMonoBehaviour {
 
     public void SetWeapon(Weapon weaponSet, bool clear) {
         if (clear) ClearWeapons();
-        if (weaponSet.WeaponType != WeaponType.None) weaponObjects[weaponSet.WeaponType].SetActive(true);
+        weaponObjects[weaponSet.WeaponType].SetActive(true);
         currentWeaponType = weaponSet.WeaponType;
         weapon = weaponSet;
         animator.SetInteger("WeaponID", (weaponSet.WeaponType==WeaponType.None)?-1:(int)weaponSet.WeaponType);

@@ -25,7 +25,7 @@ namespace AIModules {
         }
 
         public override void Do() {
-            throw new System.NotImplementedException();
+            throw new System.Exception("Shouldn't DO goto-style conditional IfDistance!");
         }
 
         public override void End() {
