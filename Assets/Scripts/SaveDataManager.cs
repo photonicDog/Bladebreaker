@@ -38,7 +38,7 @@ namespace Assets.Scripts
             _bf = new BinaryFormatter();
         }
 
-        public bool SaveData(int levelIndex, Ranking ranking, int score, float time, int deaths, int maxCombo, int[] secrets)
+        public bool SaveData(int levelIndex, Ranking ranking, int score, float time, int deaths, int maxCombo, int enemies, int[] secrets)
         {
             try
             {
@@ -49,6 +49,7 @@ namespace Assets.Scripts
                 save.Times[levelIndex] = time;
                 save.Deaths[levelIndex] = deaths;
                 save.MaxCombos[levelIndex] = maxCombo;
+                save.EnemiesDefeated[levelIndex] = enemies;
                 save.Secrets[levelIndex] = secrets;
 
                 OverwriteSave(save);

@@ -68,8 +68,8 @@ namespace Assets.Scripts.Controllers
         public void FinishLevel()
         {
             StageTimeInSeconds = Time.realtimeSinceStartup - _levelStartTime;
-            Ranking ranking = _rankingController.FinishLevel();
-            _saveDataManager.SaveData(CurrentLevelIndex, ranking, Score, StageTimeInSeconds, Deaths, MaxCombo, Secrets);
+            Ranking ranking = _rankingController.FinishLevel(CurrentLevelIndex + 1, Secrets);
+            _saveDataManager.SaveData(CurrentLevelIndex, ranking, Score, StageTimeInSeconds, Deaths, MaxCombo, EnemiesDefeated, Secrets);
         }
 
         public void ChangeWeapon(Weapon weapon) {
