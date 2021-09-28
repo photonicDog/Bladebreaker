@@ -74,6 +74,7 @@ public class GameManager : SerializedMonoBehaviour {
         /* TODO: Optimize */ FindObjectsOfType<EntityAI>().ForEach(a => a.ResetEverything());
         checkpoints[checkpointMarker].TeleportToCheckpoint();
         yield return FadeCoroutine(1f, 1f);
+        AudioController.Instance.PlayMusic();
     }
 
     public void GameOver(PlayerStatsController psc) {
@@ -100,6 +101,7 @@ public class GameManager : SerializedMonoBehaviour {
     IEnumerator StartLevelSequence() {
         yield return FadeCoroutine(0f, 1f);
         checkpoints[checkpointMarker].TeleportToCheckpoint();
+        AudioController.Instance.PlayMusic();
         yield return FadeCoroutine(1f, 1f);
     }
 }
