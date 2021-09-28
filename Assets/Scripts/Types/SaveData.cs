@@ -12,6 +12,7 @@ namespace Assets.Scripts.Types
         public List<int> Deaths;
         public List<int> MaxCombos;
         public List<int[]> Secrets;
+        public List<int> EnemiesDefeated;
         public int LastClearedLevel;
 
         private const int totalLevelCount = 3;
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Types
             Deaths = new List<int>();
             MaxCombos = new List<int>();
             Secrets = new List<int[]>();
+            EnemiesDefeated = new List<int>();
             LastClearedLevel = 0;
 
             for(int i = 0; i < totalLevelCount; i++)
@@ -32,7 +34,8 @@ namespace Assets.Scripts.Types
                 Times.Add(0f);
                 Deaths.Add(0);
                 MaxCombos.Add(0);
-                Secrets.Add(new int[] { 0 });
+                EnemiesDefeated.Add(0);
+                Secrets.Add(new int[] { 0, 0, 0 });
             }
         }
     }
