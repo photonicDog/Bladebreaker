@@ -7483,7 +7483,7 @@ MonoBehaviour:
   _anim: {fileID: 8917487551796440892}
   _em: {fileID: 8917487550973113773}
   _spr: {fileID: 8917487551796440893}
-  _weaponry: {fileID: 8917487550578093537}
+  _weaponry: {fileID: 0}
   _asplode: {fileID: 0}
   canJump: 1
   canDash: 1
@@ -7610,7 +7610,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   animator: {fileID: 8917487551796440892}
-  currentWeaponType: 0
+  currentWeaponType: 7
   weapon:
     WeaponType: 7
     Durability: 0
