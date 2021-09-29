@@ -115,7 +115,7 @@ public class Inventory : SerializedMonoBehaviour {
     }
 
     public void DurabilityCheck() {
-        if (weapon != null && weapon.Durability <= 0 && weapon != fists) {
+        if (weapon != null && weapon.Durability <= 0 && weapon.WeaponType != WeaponType.None) {
             GameManager.Instance.player.GetComponent<PlayerStatsController>().WeaponBreak();
             ClearWeapons();
         }

@@ -46,7 +46,7 @@ namespace Assets.Scripts.Controllers.UI
 
         public int FormatTime(float time)
         {
-            string mins = (time - (time % 60)).ToString();
+            string mins = ((time - (time % 60))/60).ToString();
             string secs = Mathf.FloorToInt(time % 60).ToString();
             string millisecs = Mathf.FloorToInt(100 * (time - Mathf.FloorToInt(time))).ToString();
 

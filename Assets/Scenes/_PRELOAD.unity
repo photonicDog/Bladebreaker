@@ -445,7 +445,7 @@ MonoBehaviour:
   CreditsScene: 2
   scenesBeforeLevel: 3
   currentWeapon:
-    WeaponType: 0
+    WeaponType: 7
     Durability: 0
     DurabilityLostOnHit: 0
 --- !u!4 &1437350766

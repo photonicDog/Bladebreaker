@@ -87,13 +87,14 @@ namespace Assets.Scripts.Controllers
                 SetDurability(0);
                 if (_weapon.WeaponType == WeaponType.None) return;
                 _uiController.DropWeapon();
+                _weapon = weapon;
             }
             else
             {
+                _weapon = weapon;
                 _uiController.PickUpWeapon(_weapon.WeaponType);
                 SetDurability(weapon.Durability);
             }
-            _weapon = weapon;
         }
 
         public void DefeatEnemy()
