@@ -6,6 +6,7 @@ using UnityEngine;
 public class FightRoom : MonoBehaviour {
     public SpawnerChoreographer choreographer;
     public GameObject wallParent;
+    public Collider2D RoomArea;
     public float FocusX;
     private PlayerCamera _camera;
 
@@ -19,6 +20,7 @@ public class FightRoom : MonoBehaviour {
     private void Awake()
     {
         _camera = Camera.main.GetComponent<PlayerCamera>();
+        RoomArea = transform.Find("CameraBounds").GetComponent<BoxCollider2D>();
         FocusX = gameObject.GetComponentInChildren<BoxCollider2D>().bounds.center.x;
     }
 
@@ -31,7 +33,7 @@ public class FightRoom : MonoBehaviour {
     }
 
     void Begin() {
-        _camera.LockCameraOnTarget(FocusX, 0);
+        _camera.LockCameraOnTarget(RoomArea);
         //Fight room fx
         startTime = Time.realtimeSinceStartupAsDouble;
         Walls(true);

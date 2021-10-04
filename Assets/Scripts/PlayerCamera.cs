@@ -8,11 +8,7 @@ public class PlayerCamera : MonoBehaviour {
     private Vector3 newPos;
     public Transform player;
     public Collider2D CurrentArea;
-    public float FocusX;
-    public float FocusY;
 
-    public bool LockVertical;
-    public bool LockHorizontal;
     public bool isSmoothing;
 
     public float UpperYBound;
@@ -23,41 +19,34 @@ public class PlayerCamera : MonoBehaviour {
     private float _xFromCenter;
     private float _yFromCenter;
 
+    private bool _inFightRoom;
+    private Collider2D _levelArea;
+    private Vector3 _intendedPos;
+
     private void Awake()
     {
         _xFromCenter = 10f;
         _yFromCenter = 9f;
-        FocusX = 0f;
-        FocusY = 0f;
     }
 
     private void LateUpdate()
     {
+        UpperXBound = CurrentArea.bounds.max.x;
+        UpperYBound = CurrentArea.bounds.max.y;
+        LowerXBound = CurrentArea.bounds.min.x;
+        LowerYBound = CurrentArea.bounds.min.y;
+
+        newPos = new Vector3(
+            player.position.x,
+            player.position.y,
+            player.position.z - 1);
+
+        newPos = KeepCameraInStage(newPos);
+
+        _intendedPos = newPos;
+
         if (!isSmoothing)
         {
-            UpperXBound = CurrentArea.bounds.max.x;
-            UpperYBound = CurrentArea.bounds.max.y;
-            LowerXBound = CurrentArea.bounds.min.x;
-            LowerYBound = CurrentArea.bounds.min.y;
-
-            newPos = new Vector3(
-                FocusX == 0 ? player.position.x : FocusX,
-                FocusY == 0 ? player.position.y : FocusY,
-                player.position.z - 1);
-
-            newPos = KeepCameraInStage(newPos);
-
-            if (LockVertical)
-            {
-                newPos.y = transform.position.y;
-            }
-
-            if (LockHorizontal)
-            {
-                newPos.x = transform.position.x;
-            }
-
-
             transform.position = newPos;
         }
     }
@@ -87,47 +76,41 @@ public class PlayerCamera : MonoBehaviour {
         return pos;
     }
 
-    public void LockCameraOnTarget(float focusX, float focusY)
+    public void LockCameraOnTarget(Collider2D fightRoomArea)
     {
-        FocusX = focusX;
-        FocusY = focusY;
         newPos = new Vector3(
-            FocusX == 0 ? transform.position.x : FocusX,
-            FocusY == 0 ? transform.position.y : FocusY,
+            transform.position.x,
+            transform.position.y,
             player.position.z - 1);
         isSmoothing = true;
-        StartCoroutine(SmoothLock(newPos, 0.5f));
+        if (fightRoomArea)
+        {
+            _levelArea = CurrentArea;
+            CurrentArea = fightRoomArea;
+            _inFightRoom = true;
+        }
+        StartCoroutine(SmoothTransition(0.5f));
     }
 
     public void UnlockCamera()
     {
-        FocusX = 0;
-        FocusY = 0;
         isSmoothing = true;
-        StartCoroutine(SmoothUnlock(0.5f));
+        StartCoroutine(SmoothTransition(0.5f));
+        if (_inFightRoom) {
+            CurrentArea = _levelArea;
+            _inFightRoom = false;
+        }
     }
 
-    private IEnumerator SmoothLock(Vector3 endPos, float duration)
-    {
-        Vector3 startPos = transform.position;
-        float ellapsedTime = 0f;
-        while(ellapsedTime < duration)
-        {
-            ellapsedTime += Time.deltaTime;
-            transform.position = KeepCameraInStage(Vector3.Lerp(startPos, endPos, ellapsedTime/duration));
-            yield return null;
-        }
-        isSmoothing = false;
-    }
-    private IEnumerator SmoothUnlock(float duration)
+    private IEnumerator SmoothTransition(float duration)
     {
         Vector3 startPos = transform.position;
         float ellapsedTime = 0f;
         while (ellapsedTime < duration)
         {
-            Vector3 endPos = player.position + Vector3.back;
+            Vector3 endPos = KeepCameraInStage(player.position + Vector3.back);
             ellapsedTime += Time.deltaTime;
-            transform.position = KeepCameraInStage(Vector3.Lerp(startPos, endPos, ellapsedTime / duration));
+            transform.position = Vector3.Lerp(startPos, endPos, ellapsedTime / duration);
             yield return null;
         }
         isSmoothing = false;
