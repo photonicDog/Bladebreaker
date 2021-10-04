@@ -27,7 +27,7 @@ namespace Assets.Scripts.Controllers.UI
 
         private int _maxHealth;
         private int _health;
-        private int _healthChange;
+        private int _uiHealth;
 
         void Awake()
         {
@@ -41,57 +41,80 @@ namespace Assets.Scripts.Controllers.UI
             _hearts = new List<Transform>[] { _hp1Quarters, _hp2Quarters, _hp3Quarters, _hp4Quarters, _hp5Quarters, _hp6Quarters };
 
             _maxHealth = MaxHearts * 4;
-            _health = _maxHealth;
-            _healthChange = 0;
+            ResetHealth();
+            _uiHealth = _health;
         }
 
         void FixedUpdate()
         {
-            if ((_healthChange < 0 && _health <= 0) || (_healthChange > 0 && _health >= _maxHealth))
+            if (_uiHealth != _health)
             {
-                _healthChange = 0;
-            }
-
-            if (_healthChange < 0 && _health > 0)
-            {
-
-                List<Transform> CurrentHeart = _hearts[(int)(Math.Ceiling((float)_health / 4)) - 1];
-                CurrentHeart[_health % 4].gameObject.SetActive(false);
-                _healthChange += 1;
-                _health -= 1;
-            }
-
-            if (_healthChange > 0 && _health < _maxHealth)
-            {
-                if (_health + _healthChange > _maxHealth)
+                // If displayed health is greater than actual health, e.g. needs to be decreased
+                if (_uiHealth > _health)
                 {
-                    _healthChange = _maxHealth - _health;
+                    List<Transform> currentHeart;
+                    Transform healthSegment;
+
+                    if (_uiHealth == _maxHealth)
+                    {
+                        currentHeart = _hearts[5];
+                        healthSegment = currentHeart[0];
+                    } else
+                    {
+                        currentHeart = _hearts[(int)(Math.Floor((float)(_uiHealth - 1) / 4))];
+                        healthSegment = currentHeart[4 - (_uiHealth % 4) == 4 ? 0 : 4 - (_uiHealth % 4)];
+                    }
+
+                    healthSegment.gameObject.SetActive(false);
+                    _uiHealth -= 1;
                 }
 
-                int heartIndex;
-                int heartStateIndex = _health % 4 == 0 ? 0 : _health % 4;
-
-                if (heartStateIndex == 0 && _health != _maxHealth) {
-                    heartIndex = (int)(Math.Ceiling((float)_health / 4));
-                } else
+                // If displayed health is lower than actual health, e.g. needs to be increased
+                if (_uiHealth < _health)
                 {
-                    heartIndex = (int)(Math.Ceiling((float)_health / 4)) - 1;
+                    _uiHealth += 1;
+                    List<Transform> currentHeart;
+                    Transform healthSegment;
+
+                    if (_uiHealth == 0)
+                    {
+                        currentHeart = _hearts[0];
+                        healthSegment = currentHeart[3];
+                    }
+                    else
+                    {
+                        currentHeart = _hearts[(int)(Math.Floor((float)(_uiHealth - 1) / 4))];
+                        healthSegment = currentHeart[4 - (_uiHealth % 4) == 4 ? 0 : 4 - (_uiHealth % 4)];
+                    }
+
+                    healthSegment.gameObject.SetActive(true);
                 }
-                List<Transform> CurrentHeart = _hearts[heartIndex];
-                CurrentHeart[heartStateIndex].gameObject.SetActive(true);
-                _healthChange -= 1;
-                _health += 1;
             }
         }
 
         public void Deplete(int healthLost)
         {
-            _healthChange -= healthLost;
+            // Don't decrease health below zero
+            if (_health - healthLost >= 0)
+            {
+                _health -= healthLost;
+            } else
+            {
+                _health = 0;
+            }
         }
 
         public void Fill(int healthGained)
         {
-            _healthChange += healthGained;
+            // Don't increase health above the max
+            if (_health + healthGained <= _maxHealth)
+            {
+                _health += healthGained;
+            }
+            else
+            {
+                _health = _maxHealth;
+            }
         }
 
         public void Die()
@@ -112,6 +135,11 @@ namespace Assets.Scripts.Controllers.UI
         public void LoseHearts(int heartsLost)
         {
             Deplete(heartsLost * 4);
+        }
+
+        public void ResetHealth()
+        {
+            _health = _maxHealth;
         }
     }
 }
