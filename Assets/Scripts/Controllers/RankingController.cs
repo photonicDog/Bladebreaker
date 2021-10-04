@@ -125,14 +125,15 @@ namespace Assets.Scripts.Controllers
 
         private IEnumerator DisplayRankScreen(int[] secrets)
         {
-            yield return StartCoroutine(ScrollDown(0.5f));
+            yield return new WaitForSeconds(1.5f);
+            yield return StartCoroutine(ScrollDown(1f));
             yield return StartCoroutine(ScoreDisplay.TickUpScore(3f, Score));
             yield return StartCoroutine(TimeDisplay.TickUpTime(3f, (float)TimeInSeconds));
             yield return StartCoroutine(FillGauge(Ranking, 1f));
             yield return new WaitForSeconds(0.5f);
             DisplayRanking();
-            yield return new WaitForSeconds(1f);
-            if (Array.IndexOf(secrets, 1) != 0)
+            yield return new WaitForSeconds(0.75f);
+            if (Array.IndexOf(secrets, 1) != -1)
             {
                 yield return StartCoroutine(DisplaySecrets(secrets));
             }
@@ -196,7 +197,7 @@ namespace Assets.Scripts.Controllers
             Transform[] secretIcons = new Transform[3];
             for (int i=0; i < 3; i++)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.5f);
                 if(secrets[i] == 1) Secrets.GetChild(i).gameObject.SetActive(true);
             }
         }
