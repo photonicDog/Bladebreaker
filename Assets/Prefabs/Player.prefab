@@ -7240,6 +7240,7 @@ MonoBehaviour:
   _facing: 1
   midair: 0
   _hasJump: 0
+  IsPaused: 0
   walk: 0
   dash: 0
   jump: 0
@@ -7270,6 +7271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02cfa6cd9b0c8b4794163577014c63d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPaused: 0
 --- !u!114 &8917487550973113763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7662,8 +7664,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentLevelIndex: 0
-  MaxHealth: 6
-  Health: 6
+  MaxHealth: 24
+  Health: 24
   MaxLives: 3
   Lives: 9
   Score: 0

@@ -135,5 +135,16 @@ namespace Assets.Scripts.Controllers
             _stageSFXSource1.Stop();
             _stageSFXSource2.Stop();
         }
+
+        public void OnPause()
+        {
+            _musicSource.Pause();
+            _playerSFXSource1.Stop();
+            _playerSFXSource2.Stop();
+            _enemySFXSource1.Stop();
+            _enemySFXSource2.Stop();
+            _stageSFXSource1.Stop();
+            _stageSFXSource2.Stop();
+        }
     }
 }

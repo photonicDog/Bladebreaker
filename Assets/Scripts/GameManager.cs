@@ -114,17 +114,29 @@ public class GameManager : SerializedMonoBehaviour {
         yield return FadeCoroutine(1f, 1f);
     }
 
-    public void Pause()
+    public void Pause(bool cameraFade = true)
     {
         if (!CanPause) return;
         Time.timeScale = 0;
         IsPaused = true;
         player.GetComponent<EntityInput>().IsPaused = true;
         player.GetComponent<EntityMovement>().IsPaused = true;
+        UIController.Instance.DisplayPause();
+        AudioController.Instance.OnPause();
+        if (cameraFade)
+        {
+            gbc._Fade.value = 0.75f;
+        }
     }
 
     public void Unpause()
     {
+        if (IsPaused)
+        {
+            gbc._Fade.value = 1;
+        }
+        UIController.Instance.HidePause();
+        AudioController.Instance.PlayMusic();
         Time.timeScale = 1;
         IsPaused = false;
         player.GetComponent<EntityInput>().IsPaused = false;
@@ -138,7 +150,7 @@ public class GameManager : SerializedMonoBehaviour {
 
     IEnumerator HitStunPause(float duration)
     {
-        Pause();
+        Pause(false);
         yield return new WaitForSeconds(duration);
         Unpause();
     }
