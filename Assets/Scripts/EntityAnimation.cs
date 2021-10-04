@@ -8,6 +8,8 @@ public class EntityAnimation : MonoBehaviour {
     [SerializeField] private Animator _anim;
     [SerializeField] private EntityMovement _em;
     [SerializeField] private SpriteRenderer _spr;
+    
+    private GameManager _gm;
 
     [SerializeField] private GameObject _weaponry;
     [SerializeField] private GameObject _asplode;
@@ -31,18 +33,28 @@ public class EntityAnimation : MonoBehaviour {
     [SerializeField] private bool canDash;
     [SerializeField] private bool canSprint;
     [SerializeField] private bool canDie;
-        
+
+    private void Start()
+    {
+        _gm = GameManager.Instance;
+    }
+
     private void Update() {
-        if (_em.walk) {
-            _anim.SetBool(WalkAnim, true);
+        if (!_gm.IsPaused)
+        {
+            if (_em.walk)
+            {
+                _anim.SetBool(WalkAnim, true);
+            }
+            else
+            {
+                _anim.SetBool(WalkAnim, false);
+            }
+
+            if (canJump) JumpAnimations();
+            if (canDash) _anim.SetBool(DashAnim, _em.dash);
+            if (canSprint) _anim.SetBool(SprintAnim, _em.sprint);
         }
-        else {
-            _anim.SetBool(WalkAnim, false);
-        }
-        
-        if (canJump) JumpAnimations();
-        if (canDash) _anim.SetBool(DashAnim, _em.dash);
-        if (canSprint) _anim.SetBool(SprintAnim, _em.sprint);
     }
 
     private void JumpAnimations() {

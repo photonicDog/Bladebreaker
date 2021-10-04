@@ -51,6 +51,7 @@ public class EntityMovement : MonoBehaviour {
     public int _facing = 1;
     public bool midair = true;
     public bool _hasJump = true;
+    public bool IsPaused = false;
     private float _jumpDecayCurrent;
 
     private bool _hasAnimation;
@@ -111,93 +112,102 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        _frameVelocity = new Vector2(0, 0);
-
-        if (levelFinish)
+        if (!IsPaused)
         {
-            walk = true;
-            _walkInput = 1;
-        }
+            _frameVelocity = new Vector2(0, 0);
 
-        if (!midair)
-        {
-            fastfall = false;
-        }
-
-        if (jump && _hasJump && !attackFreeze) {
-            if (_isPlayer)
+            if (levelFinish)
             {
-                _ac.PlayPlayerSFX(JumpSFX);
+                walk = true;
+                _walkInput = 1;
             }
-            else
+
+            if (!midair)
             {
-                _ac.PlayEnemySFX(JumpSFX);
+                fastfall = false;
             }
-            _frameVelocity += new Vector2(0, _jumpHeight);
-            _jumpDecayCurrent = _jumpDecay;
-            midair = true;
-            _hasJump = false;
-        }
-        
-        if (midair) MidairPhysics();
-        else GroundPhysics();
 
-        if (_hasAnimation) {
-            if (_facing > 0) {
-                _animation.SetFlip(false);
-            }
-            else {
-                _animation.SetFlip(true);
-            }
-        }
-
-        if (midair && _bouncy && (Mathf.Abs(velocity.y) > 0.001 || Mathf.Abs(velocity.x) > 0.001)) {
-            Debug.Log("BOUNCESAVE");
-            saveBounceSpeed = velocity;
-        }
-        
-        velocity = (velocity * ((_bouncy&&bouncesLeft>0)?1f:0.95f)) + _frameVelocity;
-        if (!midair) velocity *= new Vector2(1, 0);
-
-        if ((leftCollide && velocity.x < 0) || (rightCollide && velocity.x > 0)) 
-            velocity *= new Vector2(0, 1);
-
-
-        _newPos = (transform.position + (Vector3)velocity);
-
-        if (_isDashing && Math.Abs(_dashStartPos - _newPos.x) > _dashDistance && !rightCollide && !leftCollide)
-        {
-            _newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
-        }
-
-        if (attackFreeze) {
-            _attackFreezeEnd = true;
-        }
-
-        transform.position = _newPos;
-
-        Vector3 groundComp = FloorRaycast();
-        Vector3 wallComp = WallRaycast();
-
-        if(allowPlatformNoclip && standingOnPlatform)
-        {
-            _hasJump = false;
-        }
-
-        if(_landedThisFrame)
-        {
-            if (_isPlayer)
+            if (jump && _hasJump && !attackFreeze)
             {
-                _ac.PlayPlayerSFX(LandSFX);
+                if (_isPlayer)
+                {
+                    _ac.PlayPlayerSFX(JumpSFX);
+                }
+                else
+                {
+                    _ac.PlayEnemySFX(JumpSFX);
+                }
+                _frameVelocity += new Vector2(0, _jumpHeight);
+                _jumpDecayCurrent = _jumpDecay;
+                midair = true;
+                _hasJump = false;
             }
-            else
-            {
-                _ac.PlayEnemySFX(LandSFX);
-            }
-        }
 
-        transform.position += groundComp + wallComp;
-        inGround = false;
+            if (midair) MidairPhysics();
+            else GroundPhysics();
+
+            if (_hasAnimation)
+            {
+                if (_facing > 0)
+                {
+                    _animation.SetFlip(false);
+                }
+                else
+                {
+                    _animation.SetFlip(true);
+                }
+            }
+
+            if (midair && _bouncy && (Mathf.Abs(velocity.y) > 0.001 || Mathf.Abs(velocity.x) > 0.001))
+            {
+                Debug.Log("BOUNCESAVE");
+                saveBounceSpeed = velocity;
+            }
+
+            velocity = (velocity * ((_bouncy && bouncesLeft > 0) ? 1f : 0.95f)) + _frameVelocity;
+            if (!midair) velocity *= new Vector2(1, 0);
+
+            if ((leftCollide && velocity.x < 0) || (rightCollide && velocity.x > 0))
+                velocity *= new Vector2(0, 1);
+
+
+            _newPos = (transform.position + (Vector3)velocity);
+
+            if (_isDashing && Math.Abs(_dashStartPos - _newPos.x) > _dashDistance && !rightCollide && !leftCollide)
+            {
+                _newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
+            }
+
+            if (attackFreeze)
+            {
+                _attackFreezeEnd = true;
+            }
+
+            transform.position = _newPos;
+
+            Vector3 groundComp = FloorRaycast();
+            Vector3 wallComp = WallRaycast();
+
+            if (allowPlatformNoclip && standingOnPlatform)
+            {
+                _hasJump = false;
+            }
+
+            if (_landedThisFrame)
+            {
+                if (_isPlayer)
+                {
+                    _ac.PlayPlayerSFX(LandSFX);
+                }
+                else
+                {
+                    _ac.PlayEnemySFX(LandSFX);
+                }
+            }
+
+            transform.position += groundComp + wallComp;
+            inGround = false;
+        }
     }
 
     private void MidairPhysics() {
@@ -289,6 +299,12 @@ public class EntityMovement : MonoBehaviour {
     {
         for(int i = 0; i < _fastfallFrameDelay; i++) {
             if (!downHeld) break;
+
+            while (IsPaused)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+
             yield return new WaitForEndOfFrame();
         }
         if (midair && downHeld)
@@ -330,7 +346,10 @@ public class EntityMovement : MonoBehaviour {
         velocity = saveBounceSpeed * new Vector2(-1, 1);
     }
 
-    IEnumerator AntigravityCoroutine() {
+    IEnumerator AntigravityCoroutine()
+    {
+        yield return new WaitWhile(() => IsPaused);
+
         if (velocity.y < 0) velocity = new Vector2(velocity.x, 0);
         antigravity = true;
         yield return new WaitForSeconds(1f);
@@ -339,6 +358,8 @@ public class EntityMovement : MonoBehaviour {
     // Stops sprint after one frame to allow dash attack that replies on sprint boolean
     private IEnumerator SprintStopIfAttackingCoroutine()
     {
+        yield return new WaitWhile(() => IsPaused);
+
         yield return new WaitForEndOfFrame();
         sprint = false;
         walk = true;
@@ -532,10 +553,15 @@ public class EntityMovement : MonoBehaviour {
         StartCoroutine(HitstunTimer(time));
     }
 
-    IEnumerator HitstunTimer(float time) {
+    IEnumerator HitstunTimer(float time)
+    {
+        yield return new WaitWhile(() => IsPaused);
+
         yield return new WaitForSeconds(time);
 
-        while (midair) {
+        while (midair)
+        {
+            yield return new WaitWhile(() => IsPaused);
             yield return new WaitForEndOfFrame();
         }
         _animation.StopHurt();

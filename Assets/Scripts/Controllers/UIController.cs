@@ -8,6 +8,7 @@ namespace Assets.Scripts.Controllers
     //If you need function to exist you can make it yourself in here but all UI traffic must go through here
     public class UIController : MonoBehaviour
     {
+        public Transform Pause;
         public Transform WeaponBox;
         public Transform Health;
         public Transform Durability;
@@ -170,6 +171,16 @@ namespace Assets.Scripts.Controllers
         public void RefillTimer()
         {
             _comboTimerController.RefreshMeter();
+        }
+
+        public void DisplayPause()
+        {
+            Pause.gameObject.SetActive(true);
+        }
+
+        public void HidePause()
+        {
+            Pause.gameObject.SetActive(false);
         }
     }
 }

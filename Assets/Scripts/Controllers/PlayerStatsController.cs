@@ -39,6 +39,7 @@ namespace Assets.Scripts.Controllers
         private float _levelStartTime;
         private EntityAnimation _ea;
         private AudioController _audio;
+        private GameManager _gm;
 
         void Awake()
         {
@@ -54,6 +55,7 @@ namespace Assets.Scripts.Controllers
             _rankingController = RankingController.Instance;
             _saveDataManager = SaveDataManager.Instance;
             _audio = AudioController.Instance;
+            _gm = GameManager.Instance;
             _inventory.SetWeapon(_weapon, true);
         }
 
@@ -74,6 +76,7 @@ namespace Assets.Scripts.Controllers
 
         public void FinishLevel()
         {
+            _gm.CanPause = false;
             StageTimeInSeconds = Time.realtimeSinceStartup - _levelStartTime;
             Ranking ranking = _rankingController.FinishLevel(CurrentLevelIndex + 1, Secrets, this);
             _saveDataManager.SaveData(CurrentLevelIndex, ranking, Score, StageTimeInSeconds, Deaths, MaxCombo, EnemiesDefeated, Secrets);
