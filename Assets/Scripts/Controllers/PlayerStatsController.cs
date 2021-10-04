@@ -55,7 +55,6 @@ namespace Assets.Scripts.Controllers
             _saveDataManager = SaveDataManager.Instance;
             _audio = AudioController.Instance;
             _inventory.SetWeapon(_weapon, true);
-            
         }
 
         void Update()
@@ -191,6 +190,7 @@ namespace Assets.Scripts.Controllers
                 }
                 else
                 {
+                    _audio.PlayPlayerSFX(HealSFX);
                     _uiController.HealInRawHealth(modify);
                 }
             }
