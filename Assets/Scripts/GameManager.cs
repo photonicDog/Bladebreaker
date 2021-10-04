@@ -33,6 +33,10 @@ public class GameManager : SerializedMonoBehaviour {
     [Header("Player reference")]
     public GameObject player;
 
+    [Header("Pause")]
+    public bool IsPaused;
+    public bool CanPause;
+
     private static GameManager _instance;
     public static GameManager Instance {
         get { return _instance; }
@@ -45,7 +49,8 @@ public class GameManager : SerializedMonoBehaviour {
         else {
             _instance = this;
         }
-        
+
+        CanPause = true;
         player = GameObject.Find("Player");
         profile = postprocess.profile;
         profile.TryGetSettings(out gbc);
@@ -97,6 +102,7 @@ public class GameManager : SerializedMonoBehaviour {
 
     public void LoadLevel() {
         gameOver.SetActive(false);
+        CanPause = true;
         StartCoroutine(StartLevelSequence());
     }
 
@@ -106,5 +112,34 @@ public class GameManager : SerializedMonoBehaviour {
         player.GetComponent<PlayerStatsController>().StartLevel();
         AudioController.Instance.PlayMusic();
         yield return FadeCoroutine(1f, 1f);
+    }
+
+    public void Pause()
+    {
+        if (!CanPause) return;
+        Time.timeScale = 0;
+        IsPaused = true;
+        player.GetComponent<EntityInput>().IsPaused = true;
+        player.GetComponent<EntityMovement>().IsPaused = true;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+        IsPaused = false;
+        player.GetComponent<EntityInput>().IsPaused = false;
+        player.GetComponent<EntityMovement>().IsPaused = false;
+    }
+
+    public void HitStun(float duration)
+    {
+        StartCoroutine(HitStunPause(duration));
+    }
+
+    IEnumerator HitStunPause(float duration)
+    {
+        Pause();
+        yield return new WaitForSeconds(duration);
+        Unpause();
     }
 }

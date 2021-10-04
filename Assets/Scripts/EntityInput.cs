@@ -7,15 +7,19 @@ using UnityEngine.InputSystem;
 public class EntityInput : MonoBehaviour {
     private EntityMovement _em;
     private Inventory _inventory;
+    private GameManager _gm;
 
     private bool _dashStart;
     private bool _dashConfirm;
 
     private Vector2 currentMoveInput;
+    public bool IsPaused;
     
     void Awake() {
         _em = GetComponent<EntityMovement>();
         _inventory = GetComponent<Inventory>();
+        _gm = GameManager.Instance;
+        IsPaused = false;
     }
     
     public void Walk(InputAction.CallbackContext context) {
@@ -28,7 +32,9 @@ public class EntityInput : MonoBehaviour {
                 _dashConfirm = false;
             }
         }
-        else {
+        else
+        {
+            if (IsPaused) return;
             if (context.started && !_dashStart) {
                 _dashStart = true;
                 StartCoroutine(DashCheck());
@@ -94,4 +100,17 @@ public class EntityInput : MonoBehaviour {
         _dashStart = false;
     }
     
+    public void TogglePause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (!IsPaused)
+            {
+                _gm.Pause();
+            } else
+            {
+                _gm.Unpause();
+            }
+        }
+    }
 }
