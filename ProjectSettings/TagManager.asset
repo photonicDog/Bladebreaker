@@ -9,6 +9,7 @@ TagManager:
   - FinishLevel
   - Encounter
   - Door
+  - CameraBounds
   layers:
   - Default
   - TransparentFX
