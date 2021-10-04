@@ -601,6 +601,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7093642116970429597, guid: 1820fd6e5527e7947b119cca6f491640, type: 3}
+      propertyPath: Health
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093642116970429597, guid: 1820fd6e5527e7947b119cca6f491640, type: 3}
+      propertyPath: MaxHealth
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 8497865076999618530, guid: 1820fd6e5527e7947b119cca6f491640, type: 3}
       propertyPath: Player
       value: 
@@ -1197,6 +1205,10 @@ PrefabInstance:
       propertyPath: serializationData.Prefab
       value: 
       objectReference: {fileID: 3234720281721609088, guid: 00d571ba909b1374c8ce357f3c50e2cd, type: 3}
+    - target: {fileID: 6367377169263431936, guid: 00d571ba909b1374c8ce357f3c50e2cd, type: 3}
+      propertyPath: serializationData.Prefab
+      value: 
+      objectReference: {fileID: 6367377169263431936, guid: 00d571ba909b1374c8ce357f3c50e2cd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00d571ba909b1374c8ce357f3c50e2cd, type: 3}
 --- !u!4 &804325144 stripped
@@ -1461,6 +1473,14 @@ PrefabInstance:
     - target: {fileID: -8240776278078318597, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7802479078885715597, guid: 16e225937006f27499b901bebe4217fa, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -7802479078885715597, guid: 16e225937006f27499b901bebe4217fa, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
       objectReference: {fileID: 0}
     - target: {fileID: -7572533838993816820, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_Layer
@@ -2090,6 +2110,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2414192006011507254, guid: 16e225937006f27499b901bebe4217fa, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414192006011507254, guid: 16e225937006f27499b901bebe4217fa, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
+      objectReference: {fileID: 0}
     - target: {fileID: 2617854536201204384, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_OutlineShapes.Array.size
       value: 12
@@ -2649,6 +2677,14 @@ PrefabInstance:
     - target: {fileID: 4198107257266784222, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[8].Array.data[8].y
       value: -12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396209792325383732, guid: 16e225937006f27499b901bebe4217fa, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396209792325383732, guid: 16e225937006f27499b901bebe4217fa, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
       objectReference: {fileID: 0}
     - target: {fileID: 5445481221551151869, guid: 16e225937006f27499b901bebe4217fa, type: 3}
       propertyPath: m_IsTrigger

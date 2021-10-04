@@ -346,9 +346,25 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -7679392456689986077, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -7679392456689986077, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
+      objectReference: {fileID: 0}
     - target: {fileID: -7617287308516434742, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -7582481193167993286, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -7582481193167993286, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
       objectReference: {fileID: 0}
     - target: {fileID: -7569885923610583457, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_TagString
@@ -370,9 +386,33 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -7262441146169454795, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -7262441146169454795, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
+      objectReference: {fileID: 0}
     - target: {fileID: -7169707399133254077, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -6779102592481700695, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -6779102592481700695, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
+      objectReference: {fileID: 0}
+    - target: {fileID: -6711891954776863309, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -6711891954776863309, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
       objectReference: {fileID: 0}
     - target: {fileID: -6463778690857849243, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
@@ -498,6 +538,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -4018107229415321479, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -4018107229415321479, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
+      objectReference: {fileID: 0}
     - target: {fileID: -3858789534875233448, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -566,6 +614,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -2728289710608174690, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -2728289710608174690, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
+      objectReference: {fileID: 0}
     - target: {fileID: -2722385365014614827, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -581,6 +637,14 @@ PrefabInstance:
     - target: {fileID: -2505202952061609758, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2308878201786418753, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -2308878201786418753, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
       objectReference: {fileID: 0}
     - target: {fileID: -1970264644525079453, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
@@ -774,6 +838,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 1713499471402086706, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713499471402086706, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
+      objectReference: {fileID: 0}
     - target: {fileID: 1730262121730464956, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -925,6 +997,14 @@ PrefabInstance:
     - target: {fileID: 5572728252871907221, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617014554012305613, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617014554012305613, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
+      propertyPath: m_TagString
+      value: CameraBounds
       objectReference: {fileID: 0}
     - target: {fileID: 5684565519491834565, guid: 79cdca6ace0fd1c409cbc5cc1c30e54e, type: 3}
       propertyPath: m_Layer
