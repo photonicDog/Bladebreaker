@@ -100,13 +100,8 @@ public class Inventory : SerializedMonoBehaviour {
     }
 
     public void EatWeapon() {
-        if (weapon.Durability == 255) {
-            _psc.GainLives(1);
-        }
-        else {
-            _psc.ModifyHealth(Mathf.CeilToInt((weapon.Durability / 255f) * 4));
-            ClearWeapons(); 
-        }
+        _psc.ModifyHealth(Mathf.CeilToInt((weapon.Durability / 255f) * 4));
+        ClearWeapons();
     }
 
     public void WeaponDamage() {
