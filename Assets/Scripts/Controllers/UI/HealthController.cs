@@ -94,6 +94,7 @@ namespace Assets.Scripts.Controllers.UI
 
         public void Deplete(int healthLost)
         {
+            GameManager.Instance.ShakeScreen(0.8f);
             // Don't decrease health below zero
             if (_health - healthLost >= 0)
             {

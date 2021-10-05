@@ -9,6 +9,7 @@ using Sirenix.Serialization;
 using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Tilemaps;
 using Object = UnityEngine.Object;
 
 public class GameManager : SerializedMonoBehaviour {
@@ -37,6 +38,11 @@ public class GameManager : SerializedMonoBehaviour {
     public bool IsPaused;
     public bool CanPause;
 
+    [Header("Tilemaps")]
+    public Tilemap BackgroundTileMap;
+    public Tilemap TerrainTileMap;
+    public Tilemap PlatformTileMap;
+
     private static GameManager _instance;
     public static GameManager Instance {
         get { return _instance; }
@@ -57,7 +63,7 @@ public class GameManager : SerializedMonoBehaviour {
         _fightRooms = new List<FightRoom>(FindObjectsOfType<FightRoom>().ToList());
         gbc._Fade.value = 0;
     }
-    
+
     IEnumerator FadeCoroutine(float target, float time) {
         float startValue = gbc._Fade.value;
 
@@ -136,7 +142,7 @@ public class GameManager : SerializedMonoBehaviour {
             gbc._Fade.value = 1;
         }
         UIController.Instance.HidePause();
-        AudioController.Instance.PlayMusic();
+        AudioController.Instance.OnResume();
         Time.timeScale = 1;
         IsPaused = false;
         player.GetComponent<EntityInput>().IsPaused = false;
@@ -153,5 +159,53 @@ public class GameManager : SerializedMonoBehaviour {
         Pause(false);
         yield return new WaitForSeconds(duration);
         Unpause();
+    }
+
+    public void ShakeScreen(float duration)
+    {
+        StartCoroutine(ShakeScreenCoroutine(duration, 0.1f));
+    }
+
+    IEnumerator ShakeScreenCoroutine(float duration, float shakeTick)
+    {
+        float ellapsedTime = 0;
+        int rotate = 0;
+        float pixelOffset = 0.125f;
+        bool shaking = false;
+        Vector3 shake = new Vector2(0, 0);
+
+        while (ellapsedTime < duration)
+        {
+            yield return new WaitWhile(() => IsPaused);
+
+            if(shaking)
+            {
+                BackgroundTileMap.tileAnchor -= shake;
+                TerrainTileMap.tileAnchor -= shake;
+                PlatformTileMap.tileAnchor -= shake;
+            }
+
+            shaking = true;
+
+            shake = rotate switch
+            {
+                0 => new Vector2(pixelOffset, pixelOffset),
+                1 => new Vector2(-pixelOffset, pixelOffset),
+                2 => new Vector2(-pixelOffset, -pixelOffset),
+                3 => new Vector2(pixelOffset, -pixelOffset)
+            };
+
+            BackgroundTileMap.tileAnchor += shake;
+            TerrainTileMap.tileAnchor += shake;
+            PlatformTileMap.tileAnchor += shake;
+
+            rotate = rotate == 3 ? 0 : rotate + 1;
+            ellapsedTime += shakeTick;
+            yield return new WaitForSeconds(shakeTick);
+        }
+
+        BackgroundTileMap.tileAnchor -= shake;
+        TerrainTileMap.tileAnchor -= shake;
+        PlatformTileMap.tileAnchor -= shake;
     }
 }
