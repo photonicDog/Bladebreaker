@@ -146,5 +146,10 @@ namespace Assets.Scripts.Controllers
             _stageSFXSource1.Stop();
             _stageSFXSource2.Stop();
         }
+
+        public void OnResume()
+        {
+            _musicSource.Play();
+        }
     }
 }
