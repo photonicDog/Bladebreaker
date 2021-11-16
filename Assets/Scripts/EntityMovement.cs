@@ -112,31 +112,26 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (!IsPaused)
-        {
+        if (!IsPaused) {
             _frameVelocity = new Vector2(0, 0);
 
-            if (levelFinish)
-            {
+            if (levelFinish) {
                 walk = true;
                 _walkInput = 1;
             }
 
-            if (!midair)
-            {
+            if (!midair) {
                 fastfall = false;
             }
 
-            if (jump && _hasJump && !attackFreeze)
-            {
-                if (_isPlayer)
-                {
+            if (jump && _hasJump && !attackFreeze) {
+                if (_isPlayer) {
                     _ac.PlayPlayerSFX(JumpSFX);
                 }
-                else
-                {
+                else {
                     _ac.PlayEnemySFX(JumpSFX);
                 }
+
                 _frameVelocity += new Vector2(0, _jumpHeight);
                 _jumpDecayCurrent = _jumpDecay;
                 midair = true;
@@ -146,40 +141,34 @@ public class EntityMovement : MonoBehaviour {
             if (midair) MidairPhysics();
             else GroundPhysics();
 
-            if (_hasAnimation)
-            {
-                if (_facing > 0)
-                {
+            if (_hasAnimation) {
+                if (_facing > 0) {
                     _animation.SetFlip(false);
                 }
-                else
-                {
+                else {
                     _animation.SetFlip(true);
                 }
             }
 
-            if (midair && _bouncy && (Mathf.Abs(velocity.y) > 0.001 || Mathf.Abs(velocity.x) > 0.001))
-            {
+            if (midair && _bouncy && (Mathf.Abs(velocity.y) > 0.001 || Mathf.Abs(velocity.x) > 0.001)) {
                 Debug.Log("BOUNCESAVE");
                 saveBounceSpeed = velocity;
             }
 
-            velocity = (velocity * ((_bouncy && bouncesLeft > 0) ? 1f : 0.95f)) + _frameVelocity;
+            velocity = (velocity * ((_bouncy) ? 1f : 0.95f)) + _frameVelocity;
             if (!midair) velocity *= new Vector2(1, 0);
 
             if ((leftCollide && velocity.x < 0) || (rightCollide && velocity.x > 0))
                 velocity *= new Vector2(0, 1);
 
 
-            _newPos = (transform.position + (Vector3)velocity);
+            _newPos = (transform.position + (Vector3) velocity);
 
-            if (_isDashing && Math.Abs(_dashStartPos - _newPos.x) > _dashDistance && !rightCollide && !leftCollide)
-            {
+            if (_isDashing && Math.Abs(_dashStartPos - _newPos.x) > _dashDistance && !rightCollide && !leftCollide) {
                 _newPos.x = _dashStartPos + _facing * (_dashDistance + 0.01f);
             }
 
-            if (attackFreeze)
-            {
+            if (attackFreeze) {
                 _attackFreezeEnd = true;
             }
 
@@ -188,19 +177,15 @@ public class EntityMovement : MonoBehaviour {
             Vector3 groundComp = FloorRaycast();
             Vector3 wallComp = WallRaycast();
 
-            if (allowPlatformNoclip && standingOnPlatform)
-            {
+            if (allowPlatformNoclip && standingOnPlatform) {
                 _hasJump = false;
             }
 
-            if (_landedThisFrame)
-            {
-                if (_isPlayer)
-                {
+            if (_landedThisFrame) {
+                if (_isPlayer) {
                     _ac.PlayPlayerSFX(LandSFX);
                 }
-                else
-                {
+                else {
                     _ac.PlayEnemySFX(LandSFX);
                 }
             }
@@ -211,75 +196,75 @@ public class EntityMovement : MonoBehaviour {
     }
 
     private void MidairPhysics() {
-        if (!antigravity) {
-            _frameVelocity += (Vector2.down * _gravity);
-        }
+            if (!antigravity) {
+                _frameVelocity += (Vector2.down * _gravity);
+            }
 
-        if (!attackFreeze || !_attackFreezeEnd)
-            _frameVelocity += new Vector2(_walkInput * _airSpeed, 0);
+            if (!attackFreeze || !_attackFreezeEnd)
+                _frameVelocity += new Vector2(_walkInput * _airSpeed, 0);
 
-        if (jump) {
-            if (_jumpDecayCurrent > 0) {
+            if (jump) {
+                if (_jumpDecayCurrent > 0) {
+                    _frameVelocity += new Vector2(0, _jumpDecayCurrent);
+                    _jumpDecayCurrent -= 0.003f;
+                }
+                else {
+                    jump = false;
+                }
+
                 _frameVelocity += new Vector2(0, _jumpDecayCurrent);
-                _jumpDecayCurrent -= 0.003f;
             }
-            else {
-                jump = false;
+
+            if (_dashKill) {
+                velocity = new Vector2(_facing * _sprintMod * _airResistance, velocity.y);
+                _dashKill = false;
             }
-            _frameVelocity += new Vector2(0, _jumpDecayCurrent);
-        }
 
-        if (_dashKill)
-        {
-            velocity = new Vector2(_facing * _sprintMod * _airResistance, velocity.y);
-            _dashKill = false;
-        }
+            if (fastfall) {
+                _frameVelocity += new Vector2(0, -_jumpHeight);
+            }
 
-        if (fastfall) {
-            _frameVelocity += new Vector2(0, -_jumpHeight);
-        }
+            if (_walkInput == 0) {
+                _frameVelocity.x *= _airResistance;
+            }
 
-        if (_walkInput == 0)
-        {
-            _frameVelocity.x *= _airResistance;
-        }
-
-        _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity);
-    }
-
-    private void GroundPhysics() {
-        if (!attackFreeze) 
-            _frameVelocity = new Vector2(_walkInput * _groundSpeed, 0);
-        
-        if (dash && !attackFreeze) {
-            _frameVelocity += new Vector2(_dashSpeed * _facing, 0);
-            if (!_isDashing) StartCoroutine(DashCoroutine());
-        }
-
-        if (attackFreeze && sprint)
-        {
-            StartCoroutine(SprintStopIfAttackingCoroutine());
-        }
-
-        if (_dashKill) {
-            velocity = new Vector2(_facing * _sprintMod * _groundFriction, velocity.y);
-            _dashKill = false;
-        }
-
-        if (dash) {
-            _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * 40);
-        } else if (sprint) {
-            _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * _sprintMod);
-        } else {
             _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity);
         }
 
-        if (!walk && !sprint && !dash) {
-            velocity += new Vector2(-velocity.x * _groundFriction, velocity.y);
-        }
-    }
+        private void GroundPhysics() {
+            if (!attackFreeze)
+                _frameVelocity = new Vector2(_walkInput * _groundSpeed, 0);
 
-    private IEnumerator DashCoroutine() {
+            if (dash && !attackFreeze) {
+                _frameVelocity += new Vector2(_dashSpeed * _facing, 0);
+                if (!_isDashing) StartCoroutine(DashCoroutine());
+            }
+
+            if (attackFreeze && sprint) {
+                StartCoroutine(SprintStopIfAttackingCoroutine());
+            }
+
+            if (_dashKill) {
+                velocity = new Vector2(_facing * _sprintMod * _groundFriction, velocity.y);
+                _dashKill = false;
+            }
+
+            if (dash) {
+                _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * 40);
+            }
+            else if (sprint) {
+                _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity * _sprintMod);
+            }
+            else {
+                _frameVelocity = VelocityLimit(_frameVelocity, _maxVelocity);
+            }
+
+            if (!walk && !sprint && !dash) {
+                velocity += new Vector2(-velocity.x * _groundFriction, velocity.y);
+            }
+        }
+
+        private IEnumerator DashCoroutine() {
         _isDashing = true;
         _dashStartPos = transform.position.x;
         while(Math.Abs(transform.position.x - _dashStartPos) < _dashDistance && !leftCollide && !rightCollide && !midair)
@@ -299,12 +284,6 @@ public class EntityMovement : MonoBehaviour {
     {
         for(int i = 0; i < _fastfallFrameDelay; i++) {
             if (!downHeld) break;
-
-            while (IsPaused)
-            {
-                yield return new WaitForEndOfFrame();
-            }
-
             yield return new WaitForEndOfFrame();
         }
         if (midair && downHeld)
@@ -346,10 +325,7 @@ public class EntityMovement : MonoBehaviour {
         velocity = saveBounceSpeed * new Vector2(-1, 1);
     }
 
-    IEnumerator AntigravityCoroutine()
-    {
-        yield return new WaitWhile(() => IsPaused);
-
+    IEnumerator AntigravityCoroutine() {
         if (velocity.y < 0) velocity = new Vector2(velocity.x, 0);
         antigravity = true;
         yield return new WaitForSeconds(1f);
@@ -358,8 +334,6 @@ public class EntityMovement : MonoBehaviour {
     // Stops sprint after one frame to allow dash attack that replies on sprint boolean
     private IEnumerator SprintStopIfAttackingCoroutine()
     {
-        yield return new WaitWhile(() => IsPaused);
-
         yield return new WaitForEndOfFrame();
         sprint = false;
         walk = true;
@@ -553,15 +527,10 @@ public class EntityMovement : MonoBehaviour {
         StartCoroutine(HitstunTimer(time));
     }
 
-    IEnumerator HitstunTimer(float time)
-    {
-        yield return new WaitWhile(() => IsPaused);
-
+    IEnumerator HitstunTimer(float time) {
         yield return new WaitForSeconds(time);
 
-        while (midair)
-        {
-            yield return new WaitWhile(() => IsPaused);
+        while (midair) {
             yield return new WaitForEndOfFrame();
         }
         _animation.StopHurt();

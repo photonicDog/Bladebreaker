@@ -277,17 +277,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a870ee49fb7ac74b8523cc73749a67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _groundSpeed: 0.013
-  _airSpeed: 0.013
+  _groundSpeed: 9999
+  _airSpeed: 9999
   _dashSpeed: 0.5
   _dashDistance: 4
   _jumpHeight: 0.15
   _sprintMod: 1.28
   _jumpDecay: 0.06
-  _groundFriction: 0.12
+  _groundFriction: 0
   _airResistance: 0
   _gravity: 0.03
-  _maxVelocity: 0.02
+  _maxVelocity: 9999
   _horizontalCollisionRange: 2.4
   _verticalCollisionRange: 1
   _colliderWidthOffset: 0.1

@@ -90,7 +90,7 @@ public class Inventory : SerializedMonoBehaviour {
             thrownWeapon.GetComponent<EntityMovement>().antigravity = true;
         }
         else {
-            throwVector = new Vector2(-0.3f * _em._facing, 0.8f).normalized * 0.55f;
+            throwVector = new Vector2(-0.25f * _em._facing, 0.75f).normalized * 0.40f;
             GameObject droppedWeapon = Instantiate(GameManager.Instance.WeaponDrops[weapon.WeaponType], transform.position, quaternion.identity);
             droppedWeapon.GetComponent<WeaponPickup>().weapon = weapon;
             droppedWeapon.GetComponent<EntityMovement>().PushEntity(throwVector);

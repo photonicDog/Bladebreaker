@@ -38,6 +38,8 @@ namespace Assets.Scripts
                 {
                     _playerStats.Die();
                     _hasDied = true;
+                    _inKillPlane = false;
+                    _currentKillPlane = null;
                 }
             }
         }
@@ -64,6 +66,7 @@ namespace Assets.Scripts
         private void HitKillPlane()
         {
             _inKillPlane = true;
+            _hasDied = false;
         }
 
         private void HitFinishLevel()
