@@ -1117,7 +1117,7 @@ PrefabInstance:
     - target: {fileID: 5701899760747673462, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
       propertyPath: serializationData.Prefab
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5701899760747673462, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
     - target: {fileID: 5701899760747673462, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
       propertyPath: checkpoints.Array.data[0]
       value: 
@@ -1138,6 +1138,22 @@ PrefabInstance:
       propertyPath: checkpoints.Array.data[4]
       value: 
       objectReference: {fileID: 85141083}
+    - target: {fileID: 5701899760747673462, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701899760747673462, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
+      propertyPath: serializationData.PrefabModifications.Array.data[0]
+      value: '"path":"WeaponDrops.{1es}","value":$eref:0'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701899760747673462, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5701899760747673462, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
+      propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 3354780359226986464, guid: 2d13c7d8da9e383468ff0eaf0537a0ff, type: 3}
     - target: {fileID: 5701899760747673463, guid: a9a5e0866813dce4b9a886fc74c8a95b, type: 3}
       propertyPath: m_Name
       value: GameManager
