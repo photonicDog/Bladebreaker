@@ -121,6 +121,7 @@ MonoBehaviour:
   _facing: 1
   midair: 0
   _hasJump: 0
+  IsPaused: 0
   walk: 0
   dash: 0
   jump: 0
@@ -212,6 +213,7 @@ MonoBehaviour:
   attackingLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _pStats: {fileID: 0}
 --- !u!114 &2725640073866405045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +286,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   health: 25
+  explodeSound: {fileID: 8300000, guid: 4a34e997ca90700479091c05ee085c37, type: 3}
 --- !u!1 &4269948962256789647
 GameObject:
   m_ObjectHideFlags: 0

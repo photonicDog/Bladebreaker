@@ -48,6 +48,10 @@ MonoBehaviour:
   HorizontalKnockback: 0.6
   VerticalKnockback: 0
   HitStunDuration: 0.5
+  Player: 0
+  Thrown: 0
+  slashSfx: {fileID: 8300000, guid: 854b645183db6ed4d8c13fef3a8d2ac1, type: 3}
+  bigSlashSfx: {fileID: 8300000, guid: 820b1d18be36f4942bc4450c2e8d85cf, type: 3}
 --- !u!61 &5563678389503580257
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using Assets.Scripts.Controllers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class FightRoom : MonoBehaviour {
     public SpawnerChoreographer choreographer;
     public GameObject wallParent;
+    public AudioClip warningSfx;
     public Collider2D RoomArea;
     public float FocusX;
     private PlayerCamera _camera;
@@ -34,7 +36,7 @@ public class FightRoom : MonoBehaviour {
 
     void Begin() {
         _camera.LockCameraOnTarget(RoomArea);
-        //Fight room fx
+        AudioController.Instance.PlayStageSFX(warningSfx);
         startTime = Time.realtimeSinceStartupAsDouble;
         Walls(true);
         choreographer.BeginChoreography();
