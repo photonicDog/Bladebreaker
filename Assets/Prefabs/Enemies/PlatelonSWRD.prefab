@@ -122,6 +122,7 @@ MonoBehaviour:
   _facing: 1
   midair: 0
   _hasJump: 0
+  IsPaused: 0
   walk: 0
   dash: 0
   jump: 0
@@ -274,7 +275,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   health: 40
-  explodeSound: {fileID: 0}
+  explodeSound: {fileID: 8300000, guid: 4a34e997ca90700479091c05ee085c37, type: 3}
 --- !u!1 &4269948962256789647
 GameObject:
   m_ObjectHideFlags: 0

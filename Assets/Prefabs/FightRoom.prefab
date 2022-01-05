@@ -196,6 +196,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   choreographer: {fileID: 6367377169263431936}
   wallParent: {fileID: 3234720281108410272}
+  warningSfx: {fileID: 8300000, guid: b24000d1b0b8c724da2c67858ad20c8d, type: 3}
+  RoomArea: {fileID: 0}
+  FocusX: 0
   completionSpeed: 0
   optimalCompletionSpeed: 10
 --- !u!50 &3234720281386952437

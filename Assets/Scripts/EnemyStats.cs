@@ -36,6 +36,7 @@ public class EnemyStats : SerializedMonoBehaviour, IStats {
 
     public void Die() {
         DropWeapon();
+        AudioController.Instance.PlayEnemySFX(explodeSound);
         GameManager.Instance.player.GetComponent<PlayerStatsController>().DefeatEnemy();
         GameManager.Instance.player.GetComponent<PlayerStatsController>().IncrementCombo();
         _ea.Die();
