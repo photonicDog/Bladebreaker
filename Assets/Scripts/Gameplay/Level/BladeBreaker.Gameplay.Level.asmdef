@@ -1,0 +1,23 @@
+{
+    "name": "BladeBreaker.Gameplay.Level",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f3b662dd932d66c4d996d3cdcb1e9b84",
+        "GUID:7ae679296d432094d8c50a36939d3f38",
+        "GUID:707f4bd6556d97e4ea2a48c9415085c1",
+        "GUID:967b843357d7e15439d8c5e218ad0a7b",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:d60799ab2a985554ea1a39cd38695018",
+        "GUID:c60a8073b43da5c46ad97ceac137f5b3",
+        "GUID:4f111de9a87fc364c98de959bcb3b956"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
