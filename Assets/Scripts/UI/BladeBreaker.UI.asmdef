@@ -1,0 +1,23 @@
+{
+    "name": "BladeBreaker.UI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:f3b662dd932d66c4d996d3cdcb1e9b84",
+        "GUID:7ae679296d432094d8c50a36939d3f38",
+        "GUID:d1e412a39609f124b82a1380e77bc4c6",
+        "GUID:08b313d98e0d7ed40a3747fbe9f39ec5",
+        "GUID:e048eeec9bdb9d30448017b829deb3f6",
+        "GUID:b3a7c04efc19d5148a4d43aa511e93ff",
+        "GUID:967b843357d7e15439d8c5e218ad0a7b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
