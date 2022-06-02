@@ -67,3 +67,7 @@ Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta
 Assets/Plugins/Sirenix/Demos/Custom Drawers.unitypackage.meta
 Assets/Plugins/Sirenix/Demos/Custom Attribute Processors.unitypackage.meta
 Assets/Plugins/RogueNoodle/GBCamera/gbcamera_PPS.unitypackage.meta
+ProjectSettings/
+.idea/
+UIElementsSchema/
+UserSettings/
