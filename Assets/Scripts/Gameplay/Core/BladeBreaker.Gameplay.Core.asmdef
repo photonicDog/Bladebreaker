@@ -1,0 +1,16 @@
+{
+    "name": "BladeBreaker.Gameplay.Core",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f3b662dd932d66c4d996d3cdcb1e9b84"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
