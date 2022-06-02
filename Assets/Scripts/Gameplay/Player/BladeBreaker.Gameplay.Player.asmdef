@@ -1,0 +1,21 @@
+{
+    "name": "BladeBreaker.Gameplay.Player",
+    "rootNamespace": "",
+    "references": [
+        "GUID:f3b662dd932d66c4d996d3cdcb1e9b84",
+        "GUID:d1e412a39609f124b82a1380e77bc4c6",
+        "GUID:7ae679296d432094d8c50a36939d3f38",
+        "GUID:707f4bd6556d97e4ea2a48c9415085c1",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
