@@ -108,6 +108,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -772,6 +773,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      dagger attacks_12: -695679102517583735
+      dagger attacks_11: 6163948824523499748
+      dagger attacks_17: -2736736842615861034
+      dagger attacks_3: -4229390302728255941
+      dagger attacks_20: 3151582834073499937
+      dagger attacks_2: 7073014614876618329
+      dagger attacks_18: 1454354325030374221
+      dagger attacks_16: 8914647867201346766
+      dagger attacks_23: -1935291625563371858
+      dagger attacks_4: -7312823829607882282
+      dagger attacks_10: 5299951690263631204
+      dagger attacks_15: 8121239984975600486
+      dagger attacks_1: 5531602120215935431
+      dagger attacks_7: 2128137190912886635
+      dagger attacks_9: 1899552883514800649
+      dagger attacks_25: 6053257237540332609
+      dagger attacks_0: 7047054661488829437
+      dagger attacks_6: -6883148827005501486
+      dagger attacks_5: -7182850328920377506
+      dagger attacks_8: -7533575522175029805
+      dagger attacks_19: 9007014073103485773
+      dagger attacks_14: 1736747718494669758
+      dagger attacks_27: 4611478507995608211
+      dagger attacks_26: 5912096754160964957
+      dagger attacks_21: -9078023740969207356
+      dagger attacks_24: 8352076521129395013
+      dagger attacks_22: 5803216912056569278
+      dagger attacks_13: -1323639536000518589
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

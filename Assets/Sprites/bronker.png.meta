@@ -69,6 +69,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -460,6 +461,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      bronker_5: 7280074359606086358
+      bronker_7: -3477435191371480725
+      bronker_0: -2930684923272653592
+      bronker_1: -7903823841676808896
+      bronker_2: -3322840136548549779
+      bronker_13: 3728153742421755830
+      bronker_11: -8275480282048331753
+      bronker_8: 8281658792600064923
+      bronker_4: 6632787320561326154
+      bronker_6: -4196977287801464704
+      bronker_10: 585062346742111926
+      bronker_3: 2356548980969429103
+      bronker_12: 2356955480354585614
+      bronker_9: 9108735663270183253
+      bronker_14: 6437710697487175651
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

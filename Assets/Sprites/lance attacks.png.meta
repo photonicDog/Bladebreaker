@@ -138,6 +138,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1012,6 +1013,45 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      lance attacks_21: 1574708568444448374
+      lance attacks_3: 9036525505918042143
+      lance attacks_35: -5783128994983918307
+      lance attacks_29: 4972714333144915543
+      lance attacks_30: 9021131295005008827
+      lance attacks_19: -8287422403508993882
+      lance attacks_8: -5414224203402635387
+      lance attacks_24: -651053885505691095
+      lance attacks_31: 1420036510454303159
+      lance attacks_9: -6151131476866031828
+      lance attacks_16: -8986076651258225143
+      lance attacks_32: -1891719674709693288
+      lance attacks_0: 7981865094723988337
+      lance attacks_25: -8603065969278928106
+      lance attacks_27: 2348716152012175370
+      lance attacks_28: -6170705623172678709
+      lance attacks_4: 8611851525619290783
+      lance attacks_2: -6119762992690227621
+      lance attacks_5: 5914034436771618763
+      lance attacks_37: 8052889566469219924
+      lance attacks_7: -1116199426722517168
+      lance attacks_1: 796759276337468219
+      lance attacks_11: -7118460223624500732
+      lance attacks_26: -3154700684238250765
+      lance attacks_33: 8257327762683163228
+      lance attacks_18: 7731415682224544689
+      lance attacks_17: 8198521412234203709
+      lance attacks_20: 8064652388378638548
+      lance attacks_36: -5968699630948490604
+      lance attacks_10: -641919718737032093
+      lance attacks_23: 7732257231540803856
+      lance attacks_22: -8000920838432964539
+      lance attacks_13: -6331785618896068510
+      lance attacks_34: -2298285703348927799
+      lance attacks_14: -6569230370721831698
+      lance attacks_12: 8407570843664669634
+      lance attacks_15: -1562619106278216612
+      lance attacks_6: -4769741138594634724
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

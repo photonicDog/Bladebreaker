@@ -84,6 +84,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -580,6 +581,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      stardust_sprites_2: -8930968551843105299
+      stardust_sprites_17: -1577545231623551255
+      stardust_sprites_19: -1734051324601481319
+      stardust_sprites_12: 7640738158605490658
+      stardust_sprites_15: 4630295879113432937
+      stardust_sprites_3: -3475280683232925596
+      stardust_sprites_13: 4947886186456600147
+      stardust_sprites_10: 7637248252517886382
+      stardust_sprites_1: 8959664790748086820
+      stardust_sprites_5: 4302651076861666807
+      stardust_sprites_18: -3612913551636946841
+      stardust_sprites_9: 1708853316925482512
+      stardust_sprites_14: 4775995706929645735
+      stardust_sprites_11: -3779166877501848636
+      stardust_sprites_16: 5963054959534511756
+      stardust_sprites_0: -8881351294804887696
+      stardust_sprites_4: 2977054587725857560
+      stardust_sprites_6: 5698280265770780791
+      stardust_sprites_7: -6893735915689282810
+      stardust_sprites_8: 8921250627801425045
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

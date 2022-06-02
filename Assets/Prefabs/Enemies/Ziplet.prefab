@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4269948961361772371}
   - component: {fileID: 4269948961361772372}
   - component: {fileID: 2725640073866405045}
+  - component: {fileID: 8878031763672929797}
   m_Layer: 12
   m_Name: Ziplet
   m_TagString: Untagged
@@ -33,6 +34,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 12.72, y: 0.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4269948962256789648}
   m_Father: {fileID: 0}
@@ -121,6 +123,7 @@ MonoBehaviour:
   _facing: 1
   midair: 0
   _hasJump: 0
+  IsPaused: 0
   walk: 0
   dash: 0
   jump: 0
@@ -139,6 +142,7 @@ MonoBehaviour:
   rightCollide: 0
   JumpSFX: {fileID: 0}
   LandSFX: {fileID: 0}
+  attackLanded: 0
 --- !u!114 &4269948961361772366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,15 +190,14 @@ MonoBehaviour:
   em: {fileID: 4269948961361772367}
   ea: {fileID: 4269948961361772366}
   harm: {fileID: 4269948961361772372}
-  AI: {fileID: 11400000, guid: 687ec9ace76d5744fb263eb298f0dd0e, type: 2}
-  wanderRadiusCenter: {x: 0, y: 0, z: 0}
-  wanderRadiusCenterOffset: {x: 0, y: 0, z: 0}
-  wanderRadiusBounds: 5
+  puff: {fileID: 0}
+  runner: {fileID: 8878031763672929797}
+  wanderNodes: []
   leashRadiusCenter: {x: 0, y: 0, z: 0}
   leashRadiusCenterOffset: {x: 0, y: 0, z: 0}
   leashRadiusBounds: 8
   detectionRadius: 10
-  currentlyWandering: 0
+  guarding: 0
   _behaviorQueueIndex: 0
 --- !u!114 &4269948961361772372
 MonoBehaviour:
@@ -212,6 +215,7 @@ MonoBehaviour:
   attackingLayer:
     serializedVersion: 2
     m_Bits: 1024
+  _pStats: {fileID: 0}
 --- !u!114 &2725640073866405045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +288,20 @@ MonoBehaviour:
       Entry: 8
       Data: 
   health: 25
+  explodeSound: {fileID: 0}
+--- !u!114 &8878031763672929797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4269948961361772365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c6f9b140a52a14881ec09eaebb66eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 11400000, guid: ef91c3273a60edd4a935af7d6d7a0b5d, type: 2}
 --- !u!1 &4269948962256789647
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +331,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4085092857723199420}
   m_Father: {fileID: 4269948961361772370}
@@ -329,6 +348,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -371,7 +391,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &4269948962256789650
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -384,6 +404,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -388,6 +389,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      platelon spear_1: -7890342377389194593
+      platelon spear_11: 4594121264254101875
+      platelon spear_7: 8365230792075892063
+      platelon spear_10: -3813103498422250887
+      platelon spear_2: -370384997359500775
+      platelon spear_9: -5078324380981990728
+      platelon spear_4: 7142247497080588908
+      platelon spear_5: 927740768397828391
+      platelon spear_0: -3221684140934442145
+      platelon spear_3: -3406171244825676937
+      platelon spear_8: -5643370391793583695
+      platelon spear_6: 4880655151407399080
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

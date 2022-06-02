@@ -108,6 +108,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -772,6 +773,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      stardust attacks_21: -3786879154727751986
+      stardust attacks_19: 8427828356226500387
+      stardust attacks_25: 4142884488904548699
+      stardust attacks_18: -8167173079007944067
+      stardust attacks_1: -6070327137235866041
+      stardust attacks_12: 6449197811241793665
+      stardust attacks_11: 1878694594422847322
+      stardust attacks_6: 938195185946370460
+      stardust attacks_13: -2601863385145414332
+      stardust attacks_20: 2668508481627336187
+      stardust attacks_8: -7688906849008755333
+      stardust attacks_2: -5344666447897895693
+      stardust attacks_27: 1663150338002317221
+      stardust attacks_3: 6576991633343376805
+      stardust attacks_4: -21136146457045029
+      stardust attacks_7: -6839790930038796443
+      stardust attacks_5: 5293826245135721754
+      stardust attacks_0: -7573913680331401020
+      stardust attacks_14: 33259433390022309
+      stardust attacks_9: -4829521756957480205
+      stardust attacks_16: 3239049414857745583
+      stardust attacks_26: -1260479746307704678
+      stardust attacks_17: 355399810563469931
+      stardust attacks_22: 6961420143147347739
+      stardust attacks_15: 2790584519294835410
+      stardust attacks_10: -7528798690410770720
+      stardust attacks_23: 476745289664572670
+      stardust attacks_24: -30977668486211103
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

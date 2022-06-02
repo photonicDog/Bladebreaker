@@ -126,6 +126,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -895,6 +896,40 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      sword attacks_13: -8991890811300237314
+      sword attacks_5: 4421251391903881724
+      sword attacks_17: 7248141782672449553
+      sword attacks_12: -4707923220073466701
+      sword attacks_26: -2086478825659506888
+      sword attacks_10: -5458644047019087727
+      sword attacks_29: 1497955885247737712
+      sword attacks_30: -1414025292306737986
+      sword attacks_18: 8436297615397311247
+      sword attacks_9: 3485638090676016784
+      sword attacks_22: 8753314895704481186
+      sword attacks_24: 4990727749249161654
+      sword attacks_23: -2532951885129534221
+      sword attacks_3: -7776992291554924223
+      sword attacks_32: -1167340129866944414
+      sword attacks_7: 5762126483223418236
+      sword attacks_19: 637901969179465804
+      sword attacks_2: -7601945041092386008
+      sword attacks_21: 7145408784151049169
+      sword attacks_15: 2136243870451619676
+      sword attacks_27: 8728402161777000257
+      sword attacks_25: -2542992624305484341
+      sword attacks_0: 6010082478964229244
+      sword attacks_4: 5225430316702660965
+      sword attacks_6: -2703344303449253614
+      sword attacks_11: -8861995661122603256
+      sword attacks_20: -999486363296931873
+      sword attacks_28: 7309828040396697099
+      sword attacks_8: 179229574529848342
+      sword attacks_16: -6156738710900550718
+      sword attacks_1: 6086706429704839247
+      sword attacks_31: -6517121387961392530
+      sword attacks_14: 210748759512636411
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
