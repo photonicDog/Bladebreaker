@@ -1,0 +1,16 @@
+{
+    "name": "BladeBreaker.Gameplay.Animation",
+    "rootNamespace": "",
+    "references": [
+        "GUID:707f4bd6556d97e4ea2a48c9415085c1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
