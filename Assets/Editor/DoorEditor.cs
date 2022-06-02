@@ -1,5 +1,5 @@
+using BladeBreaker.Gameplay.Level;
 using System.Collections.Generic;
-using Assets.Scripts.Components;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,8 +17,6 @@ namespace Assets.Scripts {
 
         }
         
-        
-
         private Collider2D CheckCollision(Vector3 check) {
             List<Collider2D> bounds = new List<Collider2D>();
             Transform boundsParent = GameObject.Find("Camera Bounds").transform;
